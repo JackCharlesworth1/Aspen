@@ -1,0 +1,13 @@
+.LoginTitle{
+    margin: 20px;
+}
+.LoginBox{
+    margin-left: 60vw;
+    margin-top: 10vh;
+    width: 30vw;
+    height: 80vh;
+    background-color: grey;
+    padding-top: 5vh;
+    display: flex;
+    flex-direction: column;
+}

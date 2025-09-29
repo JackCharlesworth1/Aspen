@@ -1,0 +1,108 @@
+.PageContainer{
+    background-color: pink;
+    width: 50vw;
+    height: 100%;
+    display:fixed;
+    position: relative;
+}
+
+.mainItem{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.LinkCard{
+    position: absolute;
+    transform: translate(-50%,-50%);
+}
+.LinkCard1{
+    top: 23%;
+    left: 23%;
+}
+
+.LinkCard2{
+    top: 23%;
+    left: 77%;
+}
+
+.LinkCard3{
+    top: 77%;
+    left: 23%;
+}
+
+.LinkCard4{
+    top: 77%;
+    left: 77%;
+}
+
+.PageControlSection{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+button{
+    margin: 5px;
+}
+
+.LinkCanvasContainer{
+    position: absolute;
+    width: 50vw;
+    height: 92vh;
+    margin: 0px;
+}
+
+.LinkCanvas{
+    width: 100%;
+    height: 94vh;
+    margin:0px;
+}
+
+.LinkClickArea{
+    position: absolute;
+    width: 17%;
+    height: 16%;
+}
+
+.LinkClickArea1{
+    top: 25%;
+    left: 28%;
+}
+.LinkClickArea2{
+    top: 25%;
+    left: 55%;
+}
+
+.LinkClickArea3{
+    top: 50%;
+    left:28%;
+    height: 26%;
+}
+
+.LinkClickArea4{
+    top: 50%;
+    left:55%;
+    height: 26%;
+}
+
+.LinkDescriptionBox{
+    position: absolute;
+    top: 1vh;
+    left: 50vw;
+    width: 49.5vw;
+    height: 98vh;
+    background-color: white;
+    z-index: 1;
+}
+
+@media(max-width:500px){
+    .PageContainer{
+        width: 100vw;
+        height: 100vh;
+    }
+}

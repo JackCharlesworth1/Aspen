@@ -1,0 +1,2 @@
+curl --header 'Content-Type: application/json' --request PUT --data '{"SpeciesDescription":"Bring back ants tbh"}' localhost:7000/api/species/Aphid
+

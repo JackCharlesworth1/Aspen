@@ -1,0 +1,65 @@
+.gallery_container{
+    width: 80%;
+    overflow: hidden;
+    background: indigo;
+    padding:1%;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.gallery_item{
+    width: 100%;
+    margin: 0.5%;
+}
+
+.overlay_fill_container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.overlay_exit_button{
+    opacity:200%;
+}
+.overlay_fill_tint{
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    opacity: 70%;
+}
+.overlay_image{
+    position: fixed;
+    top:50%;
+    left: 50%;
+    height: 90%;
+    width: auto;
+    transform: translate(-50%,-50%);
+    z-index:1;
+}
+.exit_button{
+    position:absolute;
+    top: 0px;
+    left: 0px;
+}
+.shrinking_div{
+    width: 24%;
+    margin: 0.5%;
+}
+
+.previous_image_button{
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translate(-50%,-50%);
+}
+
+.next_image_button{
+    position: absolute;
+    top: 50%;
+    left: 95%;
+    transform: translate(-50%,-50%);
+}

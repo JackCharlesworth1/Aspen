@@ -1,0 +1,14 @@
+.RegisterTitle{
+    margin: 20px;
+}
+.RegisterBox{
+    min-width: 300px;
+    margin-left: 10vw;
+    margin-top: 10vh;
+    width: 30vw;
+    height: 80vh;
+    background-color: grey;
+    padding-top: 5vh;
+    display: flex;
+    flex-direction: column;
+}

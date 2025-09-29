@@ -1,0 +1,9 @@
+.DashboardTable{
+    margin: 20px;
+}
+.DashboardTableRow:nth-child(odd){
+    background-color: lightgrey;
+}
+.DashboardTableItem{
+    padding: 20px;
+}

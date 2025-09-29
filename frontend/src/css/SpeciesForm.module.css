@@ -1,0 +1,100 @@
+.SpeciesForm{
+    background-color: lightblue;
+    display: flex;
+    flex-direction: row;
+    min-height: 80vh;
+    padding-top: 20px;
+}
+.FileUploadButton{
+    margin: 20px;
+    background-color: lightgrey;
+    padding: 10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.FileUploadButtonUploaded{
+    margin: 20px;
+    background-color: darkgrey;
+    padding: 10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.LinkSelectorDiv{
+    margin: 20px;
+}
+.LinkChanger{
+    margin-left: 15px;
+}
+.FileDropDiv{
+    background-color: lightgrey;
+    height: 20vh;
+    margin-top: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.FileDropDivUploaded{
+    background-color: darkgrey;
+    height: 20vh;
+    margin-top: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.TableRow:nth-child(odd){
+    background-color: white;
+}
+.TableRow:nth-child(even){
+    background-color: lightgrey;
+}
+.Table{
+    background-color: black;
+    margin: 20px;
+    border: 1px solid;
+}
+.StaticUploadDiv{
+    display: flex;
+    flex-direction: column;
+    min-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.UploadedImage{
+    width: 25%;
+    height: auto;
+    margin: auto;
+}
+
+.TextInfoDiv{
+    width: 50vw;
+}
+.TableRow{
+    margin:2px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.TableRow:first-child{
+    margin-top: 2px;
+}
+.TableRow:last-child{
+    margin-bottom: 2px;
+}
+.TableItem{
+    margin: 3px;
+    width: 100%;
+}
+@media(max-aspect-ratio: 1/1){
+    .Table{
+        margin-right: 20px;
+        width: 90vw;
+    }
+    .SpeciesForm{
+        flex-direction: column;
+    }
+}

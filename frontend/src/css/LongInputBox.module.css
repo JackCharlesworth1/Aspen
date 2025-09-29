@@ -1,0 +1,17 @@
+.LongInputBox{
+    margin: 20px;
+    padding: 10px;
+    resize: none;
+}
+
+.LongInputBoxLabel{
+    margin: 20px;
+    margin-bottom: 0px;
+}
+
+.LongInputDiv{
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+    width: 100%;
+}

@@ -1,0 +1,41 @@
+.InfoCard{
+    background-color: #AAF;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    margin: 0.5vw;
+    width: 50%;
+}
+
+.IconImage{
+    width: 50%;
+    height: auto;
+    margin: 20px auto;
+}
+
+.SpeciesTitle{
+    text-align: center;
+}
+
+.ScientificTitle{
+    text-align: center;
+}
+
+.CommonNames{
+    text-align: center;
+}
+.ToggleSeenDiv{
+    display: flex;
+}
+
+p{
+    margin: 30px;
+    text-align: center;
+}
+
+@media(max-width: 500px){
+    .InfoCard{
+        width: 99vw;
+        height: 100vh;
+    }
+}

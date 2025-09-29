@@ -1,0 +1,21 @@
+.PageContainer{
+    background-color: purple;
+    height: 85vh;
+    overflow: hidden;
+}
+.LandingDiv{
+    display: flex;
+    flex-direction: column;
+    margin-left: 60vw;
+    width: 24vw;
+    min-width: 250px;
+    margin-top: 30vh;
+    height: 20vh;
+    background-color: white;
+    padding-bottom: 50px;
+    padding: 30px;
+
+}
+.LandingInfo{
+    margin: auto;
+}

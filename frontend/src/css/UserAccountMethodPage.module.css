@@ -1,0 +1,16 @@
+.CentralDiv{
+    background-color: green;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 2vw;
+}
+.PageContainer{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.AccountMethodButton{
+    text-align: center;
+}

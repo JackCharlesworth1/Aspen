@@ -1,0 +1,9 @@
+.AdminNavbar{
+    background-color: lightgreen;
+    display: flex;
+}
+.NavTitle{
+    margin-left: 20px;
+    margin-right: auto;
+    text-align: center;
+}

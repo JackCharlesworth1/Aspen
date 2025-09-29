@@ -1,0 +1,9 @@
+.LandingNavbar{
+    background-color: lightpink;
+    display: flex;
+}
+.LandingTitle{
+    margin-left: 20px;
+    margin-right: auto;
+    text-align: center;
+}
