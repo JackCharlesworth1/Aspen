@@ -1,0 +1,35 @@
+services:
+    mongo:
+        image: mongo
+        restart: always
+        container_name: mongo
+        ports:
+            - "27017:27017"
+        volumes:
+            - mongo-data:/data/db
+    backend:
+        build: ./backend
+        container_name: backend
+        ports:
+            - "7000:7000"
+        depends_on:
+            - mongo
+        env_file:
+            - ./backend/.env
+    database_seeding:
+        build: ./backend/
+        command: node maintenance/addAdmin.js
+        container_name: database_seeding
+        depends_on:
+            - backend
+        env_file:
+            - ./backend/.env
+    frontend:
+        build: ./frontend
+        container_name: frontend
+        ports:
+            - "5173:5173"
+        depends_on:
+            - backend
+volumes:
+    mongo-data:
