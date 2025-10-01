@@ -46,7 +46,7 @@ services:
         image: jackcharlesworth1/aspen-frontend:latest
         labels:
             - "traefik.enable=true"
-            - "traefik.http.routers.frontend.rule=Host('theaspenproject.cloud')"
+            - "traefik.http.routers.frontend.rule=Host(theaspenproject.cloud)"
             - "traefik.http.routers.frontend.entrypoints=web"
             - "traefik.http.services.frontend.loadbalancer.server.port=5173"
         container_name: frontend
