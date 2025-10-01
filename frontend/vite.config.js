@@ -7,7 +7,7 @@ export default defineConfig({
   server:{
         host: "0.0.0.0",
         port: 5173,
-        allowedHosts: ["theaspenproject.cloud"]
+        allowedHosts: ["theaspenproject.cloud"],
         proxy:{
             '/api/':{
                 target: 'http://backend:7000',
