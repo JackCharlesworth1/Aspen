@@ -38,7 +38,7 @@ services:
     frontend:
         image: jackcharlesworth1/aspen-frontend:latest
         labels:
-            - "traefik.http.routers.guestbook.rule=Host('theaspenproject.cloud')"
+            - "traefik.http.routers.frontend.rule=Host('theaspenproject.cloud')"
         container_name: frontend
         ports:
             - "5173:5173"
