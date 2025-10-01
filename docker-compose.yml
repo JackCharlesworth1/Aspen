@@ -5,11 +5,14 @@ services:
             #enables webui for traefik
             - "--api.insecure=true"
             - "--providers.docker"
+            - "--entrypoints.web.address=:80"
         ports:
             - "80:80"
             - "8080:8080"
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
+        networks:
+            - web
     mongo:
         image: mongo
         restart: always
@@ -28,6 +31,8 @@ services:
             - mongo
         env_file:
             - ./backend/.env
+        networks:
+            - web
     database_seeding:
         build: ./backend/
         image: jackcharlesworth1/aspen-backend:latest
@@ -37,15 +42,25 @@ services:
             - backend
         env_file:
             - ./backend/.env
+        networks:
+           - web
     frontend:
         build: ./frontend
         image: jackcharlesworth1/aspen-frontend:latest
         labels:
+            - "traefik.enable=true"
             - "traefik.http.routers.frontend.rule=Host('theaspenproject.cloud')"
+            - "traefik.http.routers.frontend.entrypoints=web"
+            - "traefik.http.services.frontend.loadbalancer.server.port=5173"
         container_name: frontend
         ports:
             - "5173:5173"
         depends_on:
             - backend
+        networks:
+            - web
 volumes:
     mongo-data:
+networks:
+    web:
+        external: false
