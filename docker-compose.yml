@@ -1,4 +1,15 @@
 services:
+    reverse-proxy:
+        image: traefik:v3.1 
+        command:
+            #enables webui for traefik
+            - "--api.insecure=true"
+            - "--providers.docker"
+        ports:
+            - "80:80"
+            - "8080:8080"
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
     mongo:
         image: mongo
         restart: always
@@ -29,6 +40,8 @@ services:
     frontend:
         build: ./frontend
         image: jackcharlesworth1/aspen-frontend:latest
+        labels:
+            - "traefik.http.routers.guestbook.rule=Host('theaspenproject.cloud')"
         container_name: frontend
         ports:
             - "5173:5173"
