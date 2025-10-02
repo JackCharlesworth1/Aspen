@@ -1,6 +1,6 @@
 const LandingFooter=()=>{
     return (
-            <p>Footer, est 2025</p>
+            <p>Footer, est October 2025</p>
     )
 }
 export default LandingFooter;
