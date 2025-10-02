@@ -25,20 +25,15 @@ services:
             - web
     backend:
         image: jackcharlesworth1/aspen-backend:latest
-        labels:
-            - "traefik.enable=true"
-            - 'traefik.http.routers.backend.rule=Host("api.theaspenproject.cloud")'
-            - "traefik.http.routers.backend.entrypoints=web"
-            - "traefik.http.services.backend.loadbalancer.server.port=7000"
+        container_name: backend
+        ports:
+            - "7000:7000"
         depends_on:
             - mongo
         env_file:
             - ./backend/.env
         networks:
             - web
-        deploy:
-            mode: replicated
-            replicas: 3
     database_seeding:
         image: jackcharlesworth1/aspen-backend:latest
         command: node maintenance/addAdmin.js
@@ -56,13 +51,13 @@ services:
             - 'traefik.http.routers.frontend.rule=Host("theaspenproject.cloud")'
             - "traefik.http.routers.frontend.entrypoints=web"
             - "traefik.http.services.frontend.loadbalancer.server.port=5173"
+        container_name: frontend
+        ports:
+            - "5173:5173"
         depends_on:
             - backend
         networks:
             - web
-        deploy:
-          mode: replicated
-          replicas: 3
 volumes:
     mongo-data:
 networks:
