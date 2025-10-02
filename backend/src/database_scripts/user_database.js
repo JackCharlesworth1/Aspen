@@ -35,7 +35,8 @@ const connectToMongoose=async (uri)=>{
             await mongoose.connect(uri)
             connected_to_mongoose=true;
         }catch(error){
-            console.log("Failed to connect to mongoose, Error: "+error)
+            console.log("Failed to connect to mongoose, Error: "+error+". Trying again ...")
+            setTimeout(()=>connectToMongoose(uri),5000)
         }
     }else{
         console.log("Warning: Failed attempt to connect to mongoose - Already Connected");
