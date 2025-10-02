@@ -21,6 +21,8 @@ services:
             - "27017:27017"
         volumes:
             - mongo-data:/data/db
+        networks:
+            - web
     backend:
         image: jackcharlesworth1/aspen-backend:latest
         container_name: backend
