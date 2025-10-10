@@ -14,5 +14,10 @@ export default defineConfig({
                   chargeOrigin:true,
             },  
         },
+        hmr:{
+            protocol: 'wss',
+            host: 'theaspenproject.cloud',
+            port: 443,
+        },
   },
-})
+:})
