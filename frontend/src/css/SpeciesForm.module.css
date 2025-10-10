@@ -1,13 +1,14 @@
 .SpeciesForm{
-    background-color: lightblue;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap; 
     min-height: 80vh;
     padding-top: 20px;
+    overflow: visible;
 }
 .FileUploadButton{
     margin: 20px;
-    background-color: lightgrey;
+    border: 2px solid black;
     padding: 10px;
     text-align: center;
     margin-left: auto;
@@ -17,7 +18,7 @@
 }
 .FileUploadButtonUploaded{
     margin: 20px;
-    background-color: darkgrey;
+    border: 2px solid #0F0;
     padding: 10px;
     text-align: center;
     margin-left: auto;
@@ -29,41 +30,47 @@
     margin: 20px;
 }
 .LinkChanger{
+    outline: none;
+    border: 2px solid black;
+    background-color: white;
     margin-left: 15px;
 }
 .FileDropDiv{
-    background-color: lightgrey;
     height: 20vh;
+    border: 2px solid black;
     margin-top: 20px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
 }
 .FileDropDivUploaded{
-    background-color: darkgrey;
+    border: 2px solid #0F0;
     height: 20vh;
     margin-top: 20px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
 }
-.TableRow:nth-child(odd){
-    background-color: white;
+
+.TableRow:first-child{
+    border-top: 2px solid black;
 }
-.TableRow:nth-child(even){
-    background-color: lightgrey;
+.TableRow:last-child{
+    border-bottom: 2px solid black;
 }
+
 .Table{
     background-color: black;
     margin: 20px;
-    border: 1px solid;
 }
 .StaticUploadDiv{
     display: flex;
     flex-direction: column;
-    min-width: 350px;
+    min-width: 360px;
     margin-left: auto;
     margin-right: auto;
+    width: 50vw;
+
 }
 .UploadedImage{
     width: 25%;
@@ -78,6 +85,7 @@
     margin:2px;
     display: flex;
     flex-wrap: wrap;
+    background-color: white;
 }
 .TableRow:first-child{
     margin-top: 2px;
@@ -89,6 +97,26 @@
     margin: 3px;
     width: 100%;
 }
+
+.RelationshipTypeDropdown{
+    margin-left: 20px;
+    background-color: white;
+    border: 2px solid black;
+    outline: none;
+}
+
+.TagSelectorDiv{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    min-width: 20vw;
+}
+
+.NegativeSpacer{
+    margin-top: -10px;
+    padding: 0px;
+}
+
 @media(max-aspect-ratio: 1/1){
     .Table{
         margin-right: 20px;
@@ -96,5 +124,11 @@
     }
     .SpeciesForm{
         flex-direction: column;
+    }
+    .TextInfoDiv{
+        width: 100vw;
+    }
+    .StaticUploadDiv{
+        width: 100vw;        
     }
 }

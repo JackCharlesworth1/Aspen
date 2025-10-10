@@ -1,5 +1,7 @@
 import {useState,useEffect} from 'react'
 import {Link,useNavigate} from 'react-router-dom'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faSliders} from '@fortawesome/free-solid-svg-icons';
 import SpeciesCard from './SpeciesCard.jsx'
 import TagFilterDropdown from './TagFilterDropdown.jsx'
 import Searchbar from './Searchbar.jsx'
@@ -12,6 +14,7 @@ const SpeciesTable=({linkPrefix})=>{
     const [tagFilters,setTagFilters]=useState([])
     const [speciesToDisplay,setSpeciesToDisplay]=useState([])
     const [searchString,setSearchString]=useState("");
+    const [tagFiltersShown,setTagFiltersShown]=useState(false);
 
 
     const initializeMenu=async ()=>{
@@ -84,19 +87,29 @@ const SpeciesTable=({linkPrefix})=>{
         navigate("/user/map/"+speciesToDisplay[Math.floor(Math.random()*speciesToDisplay.length)].SpeciesName)
     }
 
+    const toggleTagFilterMenu=()=>{
+        setTagFiltersShown(!tagFiltersShown);
+    }
+
     useEffect(()=>{initializeMenu()},[]);
     return (
         <>
             {speciesToDisplay ? (
-                    <div>
-                        <Searchbar getSearchString={getSearchString} changeSearchString={changeSearchString}/>
-                        <button onClick={navigateToRandomPage}>?</button>
-                        <ul>
+                    <div className={styles.SpeciesTableContainer}>
+                        <div className={styles.SearchbarContainer}>
+                            <Searchbar getSearchString={getSearchString} changeSearchString={changeSearchString}/>
+                            <button title="Toggle filter menu" className={styles.RandomButton} onClick={toggleTagFilterMenu}><FontAwesomeIcon icon={faSliders}/></button>
+                            <button title="Pick a species at random" className={styles.RandomButton} onClick={navigateToRandomPage}>?</button>
+                        </div>
+
+                        <ul className={styles.SpeciesTable}>
                             {speciesToDisplay.map((species,index)=>(
-                                <li className={styles.cardTableItem} key={index}><Link to={linkPrefix+species.SpeciesName}><SpeciesCard species_name={species.SpeciesName} /></Link></li>
+                                <li className={styles.cardTableItem} key={index}><Link className={styles.CardLink} to={linkPrefix+species.SpeciesName}><SpeciesCard species_name={species.SpeciesName} scientific_name={species.ScientificName}tabled={true} active={!tagFiltersShown} /></Link></li>
                             ))}
                         </ul>
-                        {tags&&<TagFilterDropdown tags={tags} getTagFiltersMethod={getTagFilters} changeTagFiltersMethod={changeTagFilters}/>}
+                        {tags&&<TagFilterDropdown tags={tags} getTagFiltersMethod={getTagFilters} changeTagFiltersMethod={changeTagFilters} shown={tagFiltersShown} />}
+
+
                     </div>
             ):(<p>loading</p>)}
         </>

@@ -49,13 +49,17 @@ const LinkCanvas=({links,page})=>{
         const context=canvas.getContext("2d");
 
         canvas.className=styles.LinkCanvas
-        canvas.width=window.innerWidth/2;
+        if(window.innerWidth>window.innerHeight){
+            canvas.width=window.innerWidth/2;
+        }else{
+            canvas.width=window.innerWidth;
+        }
         canvas.height=window.innerHeight;
         canvas.style.pointerEvents='none';
         canvas.style.zIndex='0'
 
         const margin_proportion=0.23;    
-        const y_offset=-canvas.height*0.035;
+        const y_offset=0//canvas.height*0.035;
 
         const canvas_lines=[[canvas.width*(margin_proportion),canvas.width*(margin_proportion),canvas.width/2,canvas.height/2+y_offset],
                             [canvas.width*(1-margin_proportion),canvas.width*(margin_proportion),canvas.width/2,canvas.height/2+y_offset],
@@ -63,7 +67,7 @@ const LinkCanvas=({links,page})=>{
                             [canvas.width*(1-margin_proportion),canvas.width*(1-margin_proportion),canvas.width/2,canvas.height/2+y_offset]];
 
         for(let i=0;i<number_of_links_to_display;i++){
-            drawLine(context,canvas_lines[i][0],canvas_lines[i][1]+y_offset,canvas_lines[i][2],canvas_lines[i][3]+y_offset)
+            drawLine(context,canvas_lines[i][0],canvas_lines[i][1]+y_offset,canvas_lines[i][2],canvas_lines[i][3])
         }
 
         if(canvas_container.current){

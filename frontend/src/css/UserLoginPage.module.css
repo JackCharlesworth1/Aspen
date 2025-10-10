@@ -6,8 +6,14 @@
     margin-top: 10vh;
     width: 30vw;
     height: 80vh;
-    background-color: grey;
     padding-top: 5vh;
     display: flex;
     flex-direction: column;
+    border: 2px solid black;
+}
+@media(max-width: 800px){
+    .LoginBox{
+        width: 80vw;
+        margin-left: 10vw;
+    }
 }

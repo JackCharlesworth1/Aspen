@@ -1,5 +1,29 @@
+@font-face{
+    font-family: "Arvo";
+    src: url("../../fonts/Arvo/Arvo.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face{
+    font-family: "Arvo";
+    src: url("../../fonts/Arvo/Arvo-Italic.woff2") format("woff2");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face{
+    font-family: "Arvo";
+    src: url("../../fonts/Arvo/Arvo-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+
 .PageContainer{
-    background-color: pink;
     width: 50vw;
     height: 100%;
     display:fixed;
@@ -20,6 +44,7 @@
     position: absolute;
     transform: translate(-50%,-50%);
 }
+
 .LinkCard1{
     top: 23%;
     left: 23%;
@@ -92,17 +117,42 @@ button{
 
 .LinkDescriptionBox{
     position: absolute;
-    top: 1vh;
+    top: 2vh;
     left: 50vw;
-    width: 49.5vw;
-    height: 98vh;
+    width: 49vw;
+    height: 96vh;
     background-color: white;
     z-index: 1;
+    border: 2px solid black;
 }
 
-@media(max-width:500px){
+.RelationDropdown,.ReturnButton{
+    border: 2px solid black;
+    padding: 4px;
+    background-color: white;
+}
+.RelationDropdown{
+    margin-left:5px;
+    margin-top:5px;
+}
+
+.PageButton{
+    background-color: white;
+    border: 2px solid black;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+a{
+    text-decoration: none;
+}
+
+@media(aspect-ratio<1){
     .PageContainer{
         width: 100vw;
         height: 100vh;
+    }
+    .LinkCanvasContainer{
+        width: 100vw;
     }
 }

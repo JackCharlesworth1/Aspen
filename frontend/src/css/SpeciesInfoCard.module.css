@@ -1,41 +1,105 @@
 .InfoCard{
-    background-color: #AAF;
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    margin: 0.5vw;
-    width: 50%;
+    overflow-x: hidden;
+    margin: 1vw;
+    width: 49%;
+    overflow-x: none;
+    border: 2px solid black;
 }
 
 .IconImage{
     width: 50%;
     height: auto;
-    margin: 20px auto;
+    margin-left: 20px ;
+    margin-top: 20px;
+    display: inline-block;
+    float: left;
 }
 
 .SpeciesTitle{
-    text-align: center;
+    margin: 40px;
+    text-align: right;
 }
 
 .ScientificTitle{
-    text-align: center;
+    text-align: right;
+    margin-right: 40px;
 }
 
 .CommonNames{
-    text-align: center;
+    text-align: right;
+    margin-right: 40px;
 }
 .ToggleSeenDiv{
-    display: flex;
+    float: left;
+    display: inline-flex;
+    margin-left: 10px;
+    width: 40%;
 }
 
+.SeenSection{
+    display: flex;
+    flex-direction: column;
+    float: left;
+    width: 100%;
+}
+
+.SightingLeftContainer{
+    width: 50%;
+}
 p{
     margin: 30px;
-    text-align: center;
+    text-align: left;
 }
 
-@media(max-width: 500px){
+.AudioPlayer{
+    width: 50%;
+    margin-right: 30px;
+    margin-left: auto;
+    border: 2px solid black;
+    margin-bottom: 20px;
+
+}
+
+.AudioContainer{
+    display: flex;
+    flex-direction: column;
+}
+
+.TagInfoDiv{
+    width: calc(50% - 40px);
+    margin-left: 40px;
+    float: right;
+}
+.SeenLabel{
+    margin-right: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+.OccurencesContainer{
+    margin-left: 40px;
+    width: calc (100% - 120px);                                                 
+    margin-bottom: 40px;
+}
+
+@media(aspect-ratio<1){
     .InfoCard{
-        width: 99vw;
+        width: 100vw;
         height: 100vh;
+        border-right: 0px;
+        border-left: 0px;
+        margin: 0px;
+    }
+    .SightingLeftContainer{
+        width: 100%;
+    }
+}
+@media(max-width: 550px){
+    .TagInfoDiv{
+
+        float: left;
     }
 }

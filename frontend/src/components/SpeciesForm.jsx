@@ -16,8 +16,10 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
     const [audioFile,setAudioFile]=useState(null);
     const [tagTextboxValues,setTagTextboxValues]=useState([])
     const [initialized,setInitialized]=useState(false);
+    const [submittedForm,setSubmittedForm]=useState(false);
 
     const initalizeForm=async()=>{
+        setAudioFile(null);
         if(species_name!=""){
             const species_data=await getSpecies(species_name)
             const fetchedImageFile=await getSpeciesFile("/api/static/images/",species_name,".jpg",true)
@@ -49,6 +51,7 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
 
     const formSubmit=async(_event)=>{
         _event.preventDefault();
+        setSubmittedForm(true);
         if(formUse==="add"){
             addSpecies();
         }else if(formUse=="update"){
@@ -164,7 +167,7 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
             }
             let description_result="";
             let newLink={};
-            for(let i=0;i<linkDescriptionTextboxValues.length;i++){
+            for(let i=0;i<linkTextboxValues.length;i++){
                 const link_type_option_box=document.getElementById("relationship_type_dropdown_"+i);
                 newLink={SpeciesOne:speciesName,SpeciesTwo:linkTextboxValues[i],
                          LinkDescription:linkDescriptionTextboxValues[i],LinkType:link_type_option_box.value}
@@ -282,7 +285,7 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
        
 
     return (
-        <form className={styles.SpeciesForm} onSubmit={formSubmit} >
+        submittedForm?<p>Submitting...</p>:(<form className={styles.SpeciesForm} onSubmit={formSubmit} >
             <div>
                 <ShortInputBox inputPropertyName="Species Name" inputValue={speciesName} inputUpdater={setSpeciesName} placeholderText="E.g. Robin"/>
                 <LongInputBox inputPropertyName="Species Description" inputValue={speciesDescription} inputUpdater={setSpeciesDescription}/>
@@ -298,7 +301,10 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
                             <div className={styles.TableItem}>
                                 <div>
                                     <ShortInputBox inputPropertyName="Linked Species Name" key={index+100} inputValue={linkTextboxValues[index]} inputUpdater={setLinkTextboxValues} index={index} textboxArray={linkTextboxValues}/>
-                                    <select id={"relationship_type_dropdown_"+index} required>
+                                    <label style={{marginLeft:"20px"}}>Relationship Link Type</label>
+                                    <br />
+                                    <br style={{height:"20px"}}/>
+                                    <select className={styles.RelationshipTypeDropdown} id={"relationship_type_dropdown_"+index} required>
                                         <option value=""> - </option>
                                         <option value="Foodchain">Foodchain</option>
                                         <option value="Evolution">Evolution</option>
@@ -307,7 +313,9 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
                             </div>
                             <div className={styles.TableItem}>
                                 <LongInputBox inputPropertyName="Species Link Description" key={index+200} inputValue={linkDescriptionTextboxValues[index]} inputUpdater={setLinkDescriptionTextboxValues} index={index} textboxArray={linkDescriptionTextboxValues}/>
+                                <br />
                             </div>
+                            <br />
 
                         </div>
                     ))}
@@ -316,14 +324,17 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
                 </div>
             </div>
             <div className={styles.StaticUploadDiv}>
-                <div>
-                    <div className={styles.LinkSelectorDiv}>
+                <div className={styles.TagSelectorDiv}>
+                    <div>
                         <label>Tags</label>
                         <input className={styles.LinkChanger} type="button" value="-" onClick={removeTag}/>
                         <input className={styles.LinkChanger} type="button" value="+" onClick={addTag}/>
                     </div>
                     {tagTextboxValues.map((tag_textbox_value,index)=>(
-                        <ShortInputBox key={index+200} inputValue={tagTextboxValues[index]} inputUpdater={setTagTextboxValues} index={index} textboxArray={tagTextboxValues}/>
+                        <>
+                            <ShortInputBox key={index+200} inputValue={tagTextboxValues[index]} inputUpdater={setTagTextboxValues} index={index} textboxArray={tagTextboxValues}/>
+                            <div className={styles.NegativeSpacer} />
+                        </>
                     ))}
                 </div>
 
@@ -354,7 +365,7 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
 
                 {renderSubmitButton()}
             </div>
-         </form>
+         </form>)
     )
 }
 export default SpeciesForm;

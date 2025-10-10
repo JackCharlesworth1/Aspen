@@ -39,7 +39,10 @@ const UserRegisterPage=()=>{
                 <ShortInputBox inputPropertyName="Email" inputValue={email} inputUpdater={setEmail} />
                 <ShortInputBox inputPropertyName="Password" inputValue={password} inputUpdater={setPassword} password={true} /> 
                 {(errorMessage&&(<p>{errorMessage}</p>))}
-                <SubmitButton />
+
+                <div style={{margin:"20px"}}>
+                    <SubmitButton />
+                </div>
             </form>
         </div>
     )

@@ -6,9 +6,9 @@ const AdminNavbar=()=>{
     return (<nav className={styles.AdminNavbar}>
             <h3 className={styles.NavTitle}>Admin Panel</h3>
             
-            <NavButton destination="/admin/dashboard">Dashboard</NavButton>
-            <NavButton destination="/admin/add-species">Add Species</NavButton>
-            <NavButton destination="/admin/update-species">Update Species</NavButton>
+            <NavButton destination="/admin/dashboard" style_overrides={{'--highlight-color':'#FF0'}}>Dashboard</NavButton>
+            <NavButton destination="/admin/add-species" style_overrides={{'--highlight-color':'#0F0'}}>Add Species</NavButton>
+            <NavButton destination="/admin/update-species" style_overrides={{'--highlight-color':'#0FF'}}>Update Species</NavButton>
 
             </nav>)
 }

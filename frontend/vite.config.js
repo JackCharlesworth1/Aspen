@@ -11,7 +11,7 @@ export default defineConfig({
         proxy:{
             '/api/':{
                 target: 'http://backend:7000',
-                  changeOrigin:true,
+                  chargeOrigin:true,
             },  
         },
   },

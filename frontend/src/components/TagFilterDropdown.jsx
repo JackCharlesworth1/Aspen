@@ -1,6 +1,7 @@
 import {useEffect} from 'react'
+import styles from '../css/TagFilterDropdown.module.css'
 
-const TagFilterDropdown=({tags,getTagFiltersMethod,changeTagFiltersMethod})=>{
+const TagFilterDropdown=({tags,getTagFiltersMethod,changeTagFiltersMethod,shown=true})=>{
 
     const flipTagFilter=(index)=>{
         const tag_filters_copy=getTagFiltersMethod();
@@ -15,14 +16,14 @@ const TagFilterDropdown=({tags,getTagFiltersMethod,changeTagFiltersMethod})=>{
 
     useEffect(()=>{initializeTagFilters()},[tags])
 
-    return (
-        <div>
-            <h6>Tag Filter</h6>
-            <ul>
+    return shown&&(
+        <div className={styles.TagFilterDropdownContainer}>
+            <h3 className={styles.TagFiltersTitle}>Tag Filter</h3>
+            <ul className={styles.TagFiltersList}>
                 {tags.map((tag,index)=>(
-                    <div>
-                        <p key={index}>{tag}</p>
-                        <input type="checkbox" onClick={()=>{flipTagFilter(index)}}/>
+                    <div className={styles.TagFilter}>
+                        <p className={styles.TagFilterName} key={index}>{tag}</p>
+                        <input className={styles.TagFilterCheckbox} type="checkbox" onClick={()=>{flipTagFilter(index)}} defaultChecked={getTagFiltersMethod()[index]}/>
                     </div>
                 ))}
             </ul>

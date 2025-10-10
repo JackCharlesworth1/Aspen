@@ -1,0 +1,42 @@
+.TaxonomyContainer{
+    margin-left: 40px;
+    width: calc(50% - 40px);
+    float: left;
+}
+
+.TaxonomyTable{
+    list-style-type: none;
+    border-top: 2px solid black;
+    padding: 0px;
+}
+.Kingdom{
+    width: calc(100% - 14px);
+}
+.Phylum{
+    width: calc(90% - 14px);
+}
+.Order{
+    width: calc(80% - 14px);
+}
+.Family{
+    width: calc(70% - 14px);
+}
+.Genus{
+    width: calc(60% - 14px);
+}
+.Kingdom,.Phylum,.Order,.Family,.Genus{
+    padding: 5px;
+    border: 2px solid black;
+    border-top: none;
+}
+.InlineHighlight{
+    background: linear-gradient(180deg,rgba(255,255,255,0) 60%, var(--highlight-color) 50%);
+    padding-bottom: 0.1em;
+    display: inline-block;
+    margin: 4px;
+}
+@media(max-width:550px){
+    .TaxonomyContainer{
+        width: calc(100vw - 80px);
+    }
+}

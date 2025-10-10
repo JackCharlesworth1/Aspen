@@ -8,3 +8,56 @@
     background-color: white;
     padding: 5px;
 }
+.TabledCard{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-width: 150px;
+    height: 400px;
+    padding: 20px;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+}
+
+.SpeciesNameTitle{
+    margin-top: 20px;
+    color: black;
+    text-decoration: none;
+    font-size: 1.3em;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.ScientificName{
+    font-style: italic;
+    text-align: center;
+    margin-right: 0px;
+    margin-left: 0px;
+}
+
+.ActiveCard{
+    background-color: white;
+}
+
+.InactiveCard{
+    filter: blur(2px);
+}
+
+.SkeletonStyle{
+    width: 75%;
+    height: auto;
+    background: linear-gradient(90deg,#eee 25%,#ddd 50%,#eee 75%);  
+}
+.ScientificName{
+    margin-top: -10px;
+    color: black;
+}
+@media(max-width: 600px){
+    .Card{
+        width: 75px;
+        height: 150px;
+        padding: 0px;
+    }
+}

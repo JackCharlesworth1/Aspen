@@ -13,7 +13,7 @@ const LandingPage=()=>{
                     <p className={styles.LandingInfo}>
                         Breathe nature back into your life. Don't just learn classifications, learn what things do and how species interact.
                     </p>
-                    <button onClick={callToAction}>What you can do</button>
+                    <button onClick={callToAction} className={styles.CallToActionButton}>What you can do</button>
                 </div>
             </div>
 }

@@ -1,12 +1,14 @@
 .gallery_container{
     width: 80%;
     overflow: hidden;
-    background: indigo;
+    background: white;
+    border: 2px solid black;
     padding:1%;
     margin-left: 10%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin-bottom: 40px;
 }
 
 .gallery_item{
@@ -15,12 +17,13 @@
 }
 
 .overlay_fill_container{
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
 }
+
 
 .overlay_exit_button{
     opacity:200%;
@@ -31,7 +34,7 @@
     height: 100%;
     opacity: 70%;
 }
-.overlay_image{
+.overlay_image_vertically_limited{
     position: fixed;
     top:50%;
     left: 50%;
@@ -40,8 +43,17 @@
     transform: translate(-50%,-50%);
     z-index:1;
 }
+.overlay_image_horizontally_limited{
+    position: fixed;
+    top:50%;
+    left: 50%;
+    height: auto;
+    width: 80%;
+    transform: translate(-50%,-50%);
+    z-index:1;
+}
 .exit_button{
-    position:absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
 }
@@ -51,15 +63,22 @@
 }
 
 .previous_image_button{
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 5%;
     transform: translate(-50%,-50%);
 }
 
 .next_image_button{
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 95%;
     transform: translate(-50%,-50%);
+}
+
+input{
+    padding-right: 6px;
+    padding-left: 6px;
+    background-color: white;
+    border: 2px solid black;
 }

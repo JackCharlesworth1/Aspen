@@ -1,5 +1,8 @@
 import {useEffect,useState} from 'react'
 import {useNavigate} from 'react-router-dom'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
+import {faReply} from '@fortawesome/free-solid-svg-icons';
 import SpeciesCard from './SpeciesCard.jsx'
 import LinkDescription from './LinkDescription.jsx'
 import {getLinkedSpecies,getLinkSkeletons,LinkCanvas} from './SpeciesLinks.jsx'
@@ -88,12 +91,12 @@ const SpeciesMap=({species_name})=>{
         const getPageUI=()=>{
             if(speciesInfo){
                 if(linksToDisplay){
-                    if(linksToDisplay.length!==0){
+                    if(linksToDisplay.length>4){
                         return (<div>
                             <p>On page {page+1} of {Math.ceil(linksToDisplay.length/4)}</p>
                             <div className={styles.PageControlSection}>
-                            <button onClick={previousPage}>{"<"}</button>
-                            <button onClick={nextPage}>{">"}</button>
+                            <button className={styles.PageButton} onClick={previousPage}>{"<"}</button>
+                            <button className={styles.PageButton} onClick={nextPage}>{">"}</button>
                             </div>
                         </div>)
                     }
@@ -120,12 +123,18 @@ const SpeciesMap=({species_name})=>{
                         <LinkDescription species_name={speciesName} linked_species={linksToDisplay[(4*page)+linkSelected]} closeLinkPage={closeLinkInfo} />
                 </div>)}
                 <div>
-                    <select id="relation_type_dropdown" onChange={(event_)=>determineCandidatePages(speciesLinkTypes,speciesInfo)}>
+                    <select className={styles.RelationDropdown} id="relation_type_dropdown" onChange={(event_)=>determineCandidatePages(speciesLinkTypes,speciesInfo)}>
                         <option value="Foodchain" selected >Foodchain</option>
                         <option value="Evolution" >Evolution</option>
                     </select>
                 </div>
-                <button onClick={navigateToSpeciesSelection}>Magnifying Glass</button>
+                <button className={styles.ReturnButton} title="Go back to pick a different species from search menu" onClick={navigateToSpeciesSelection}>
+                    <>
+                        <FontAwesomeIcon icon={faReply} />
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </>
+                </button>
+
                 {speciesInfo&&<LinkCanvas links={linksToDisplay} page={page} />}
 
 

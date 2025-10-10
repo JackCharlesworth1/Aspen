@@ -1,3 +1,5 @@
+import styles from '../css/Searchbar.module.css'
+
 const Searchbar=({getSearchString,changeSearchString})=>{
     
     const setNewSearchbarText=(event_)=>{
@@ -6,7 +8,7 @@ const Searchbar=({getSearchString,changeSearchString})=>{
     }
 
     return (
-        <input type="text" value={getSearchString()} onChange={(event_)=>setNewSearchbarText(event_)}/>
+        <input className={styles.Searchbar} type="text" value={getSearchString()} onChange={(event_)=>setNewSearchbarText(event_)}/>
     )
 }
 export default Searchbar;

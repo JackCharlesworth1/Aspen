@@ -1,4 +1,6 @@
 import {useState,useEffect} from 'react'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faReply} from '@fortawesome/free-solid-svg-icons';
 import styles from '../css/LinkDescription.module.css'
 
 const LinkDescription=({species_name,linked_species,closeLinkPage})=>{
@@ -20,15 +22,15 @@ const LinkDescription=({species_name,linked_species,closeLinkPage})=>{
     },[linked_species])
 
     return (<div>
-                <input type="button" value="Back" onClick={closeLinkPage}/>
+                <button className={styles.ReturnButton} onClick={closeLinkPage} ><FontAwesomeIcon icon={faReply} /></button>
                 {linkDescription&&linkType&&linked_species&&species_name&&(<>
                     <div className={styles.linkedImagesContainer}>
                         <img className={styles.linkedImage} src={"/api/static/images/"+species_name.toLowerCase()+".jpg"} />
                         <img className={styles.linkedImage} src={"/api/static/images/"+linked_species.toLowerCase()+".jpg"} />
                     </div>
-                    <h2>{species_name} & {linked_species}</h2>
-                    <h4>{linkType} link</h4>
-                    <p>{linkDescription}</p>
+                    <h1 className={styles.LinkTitle}>{species_name} & {linked_species}</h1>
+                    <h3 className={styles.LinkType}>{linkType} link</h3>
+                    <p className={styles.LinkContent}>{linkDescription}</p>
                 </>)}
             </div>)
 }

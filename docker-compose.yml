@@ -29,12 +29,17 @@ services:
         container_name: backend
         ports:
             - "7000:7000"
+        volumes:
+            - ./backend/static/:/app/static/
         depends_on:
             - mongo
         env_file:
             - ./backend/.env
         networks:
             - web
+        dns:
+            - 8.8.8.8
+            - 1.1.1.1
     database_seeding:
         build: ./backend/
         image: jackcharlesworth1/aspen-backend:latest

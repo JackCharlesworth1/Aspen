@@ -1,9 +1,13 @@
 .DashboardTable{
     margin: 20px;
 }
-.DashboardTableRow:nth-child(odd){
-    background-color: lightgrey;
-}
 .DashboardTableItem{
     padding: 20px;
+}
+table{
+    border-collapse: collapse;
+    border-style: hidden;
+}
+table td, table th{
+    border: 2px solid black; 
 }

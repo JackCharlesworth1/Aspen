@@ -1,24 +1,26 @@
 import styles from '../css/SpeciesCard.module.css'
 
-const SpeciesCard=({species_name})=>{
+const SpeciesCard=({species_name,scientific_name=null,tabled=false,active=true})=>{
 
-    const skeletonStyleOverrides={
-        width:"100px",
-        height: "75px",
-        background: "linear-gradient(90deg,#eee 25%,#ddd 50%,#eee 75%)",
-    }
     const imageStyleOverrides={
         width: "100%",
         height: "100%",
     }
 
     return (
-        <div className={styles.Card}>
-            <div style={skeletonStyleOverrides}>
-                <img loading="lazy" src={"/api/static/images/"+species_name.toLowerCase()+".jpg"} style={imageStyleOverrides} />
+        <div className={active?styles.ActiveCard:styles.InactiveCard}>
+            <div className={tabled?styles.TabledCard:styles.Card}>
+                <div className={styles.SkeletonStyle}>
+                    <img loading="lazy" src={"/api/static/images/"+species_name.toLowerCase()+".jpg"} style={imageStyleOverrides} />
+                </div>
+                <br />
+                <p className={styles.SpeciesNameTitle}>
+                    {species_name}
+                </p>
+                {scientific_name&&<p className={styles.ScientificName}>
+                    {scientific_name}
+                </p>}
             </div>
-            <br />
-            {species_name}
         </div>
     )
 }

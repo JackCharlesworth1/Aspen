@@ -1,5 +1,8 @@
 import {useState,useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faCircleXmark} from '@fortawesome/free-solid-svg-icons';
+import {faCircleCheck} from '@fortawesome/free-solid-svg-icons';
 import Sightings from './Sightings.jsx'
 import SpeciesDescription from './SpeciesDescription.jsx'
 import ToggleSeenButton from './ToggleSeenButton.jsx'
@@ -72,33 +75,49 @@ const SpeciesInfoCard=({species_name})=>{
     const infoCard=()=>{
         return (
                     <>
-                            <img src={"/api/static/images/"+species_name.toLowerCase()+".jpg"} className={styles.IconImage}/>
-                            <h3 className={styles.SpeciesTitle}>{speciesInfo.SpeciesName}</h3>
-                            {speciesInfo.ScientificName&&<h6 className={styles.ScientificTitle}>{speciesInfo.ScientificName}</h6>}
-                            {commonNames.length!==0&&(<div className={styles.CommonNames}> • 
-                                    {commonNames.map((common_name,index)=>(common_name.toLowerCase()!==speciesInfo.SpeciesName.toLowerCase())&&(<>{common_name+" • "}</>))}
+                            <div>
+                                <img src={"/api/static/images/"+species_name.toLowerCase()+".jpg"} className={styles.IconImage}/>
+                                <h1 className={styles.SpeciesTitle}>{speciesInfo.SpeciesName}</h1>
+                                {speciesInfo.ScientificName&&<h3 className={styles.ScientificTitle}>{speciesInfo.ScientificName}</h3>}
+                                    {commonNames.length!==0&&(<div className={styles.CommonNames}> • 
+                                        {commonNames.map((common_name,index)=>(common_name.toLowerCase()!==speciesInfo.SpeciesName.toLowerCase())&&(<>{common_name+" • "}</>))}
                                     </div>)}
-                            {(username&&(<div className={styles.ToggleSeenDiv}><p>Seen:</p><ToggleSeenButton buttonSeenText="X" buttonUnseenText="O" username={username} species_name={name}/></div>))}
-                            {audioFile&&(<audio controls><source src={URL.createObjectURL(audioFile)} /></audio>)}
-                            <SpeciesDescription description={speciesInfo.SpeciesDescription}/>
-                            {speciesInfo&&speciesInfo.TaxonomyInfo&&<TaxonomyInfo taxonomy_info={speciesInfo.TaxonomyInfo}/>}
-                            <MappingTile species_name={name} />
-                            <Sightings username={username} speciesName={name}/>
+                                {audioFile&&(<div className={styles.AudioContainer}><audio className={styles.AudioPlayer} controls><source src={URL.createObjectURL(audioFile)} /></audio></div>)}
+                                <br />
 
-                            {speciesInfo.SpeciesTags&&(<div>
-                                <h3>Tags</h3>
-                                <ul>
-                                    {speciesInfo.SpeciesTags.map((tag)=>{
-                                        return <li>{tag}</li>
-                                    })}
-                                </ul>
-                            </div>)}
+                                <SpeciesDescription description={speciesInfo.SpeciesDescription}/>
+                            </div>
+                            <div>
+                                {speciesInfo&&speciesInfo.TaxonomyInfo&&<TaxonomyInfo taxonomy_info={speciesInfo.TaxonomyInfo}/>}
+                                {speciesInfo.SpeciesTags&&(<div className={styles.TagInfoDiv}>
+                                    <h3>Tags</h3>
+                                    <ul>
+                                        {speciesInfo.SpeciesTags.map((tag)=>{
+                                            return <li>{tag}</li>
+                                        })}
+                                    </ul>
+                                </div>)}
+                            </div>
+                            <div className={styles.OccurencesContainer}>
+                                <h3>Reported Sightings</h3>
+                                <MappingTile species_name={name} />
+                            </div>
+                            <div style={{display:"flex",flexDirection:"row",flexWrap:"wrap"}}>
+                                <div className={styles.SightingLeftContainer}>
+                                    <h3 style={{marginLeft:"40px"}}>Your Sightings</h3>
+                                    {(username&&(<div className={styles.SeenSection}><div className={styles.ToggleSeenDiv}><p className={styles.SeenLabel} >Seen:</p><ToggleSeenButton buttonSeenText={<FontAwesomeIcon icon={faCircleCheck}/>} buttonUnseenText={<FontAwesomeIcon icon={faCircleXmark} />} username={username} species_name={name}/></div><br /><p style={{marginLeft:"40px"}}>Click the button when you have seen the species in real life</p></div>))}
+                                </div>
+                                <Sightings username={username} speciesName={name}/>
+                            </div>
+
+
                     </>
                )
 
     }
 
-    useEffect(()=>{fetchSpeciesData()},[species_name])
+    useEffect(()=>{fetchSpeciesData();setAudioFile(null);setCommonNames([])},[species_name])
+
 
     return (
         <div className={styles.InfoCard}>

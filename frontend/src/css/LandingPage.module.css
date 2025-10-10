@@ -1,5 +1,5 @@
 .PageContainer{
-    background-color: purple;
+    background-color: white;
     height: 85vh;
     overflow: hidden;
 }
@@ -14,8 +14,21 @@
     background-color: white;
     padding-bottom: 50px;
     padding: 30px;
+    border: 2px solid black;
 
 }
 .LandingInfo{
     margin: auto;
+}
+
+.CallToActionButton{
+    border: 2px solid black;
+    padding: 4px;
+    background-color: white;
+}
+@media(max-width: 800px){
+    .LandingDiv{
+        width: 60vw;
+        margin-left: 8vw;
+    }
 }

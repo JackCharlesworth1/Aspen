@@ -3,6 +3,8 @@
     max-width: 500px;
     padding: 10px;
     margin-bottom: 0px;
+    outline: none;
+    border: 2px solid black;
 }
 
 .ShortInputBoxLabel{
@@ -13,5 +15,29 @@
 .ShortInputDiv{
     display: flex;
     flex-direction: column;
-    height: 150px;
 }
+
+.ShortInputBox:focus{
+    animation: selectedInput 0.5s ease;
+    border: 2px solid #0F0;
+}
+
+@keyframes selectedInput{
+    0% {
+        border: 2px solid black;
+        border-left: 4px solid #0F0;
+    }
+    30%{
+        border: 2px solid #0F0;
+        border-left: 3px solid #0F0;
+        border-right: 3px solid black;
+    }
+    50%{
+        border: 2px solid #0F0;
+        border-right: 4px solid #0F0;
+    }
+    100%{
+        border: 2px solid #0F0;
+    }
+}
+

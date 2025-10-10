@@ -1,15 +1,16 @@
 import {NavLink} from 'react-router-dom'
+import classNames from 'classnames';
 import styles from '../css/NavButton.module.css'
 
-const NavButton=({children,destination})=>{
+const NavButton=({children,destination,style_overrides})=>{
     
-    const activeCSS={color:'red'}
-    const inactiveCSS={color:'black'}
+    const activeCSS=styles.ActiveNavButton;
+    const inactiveCSS=styles.InactiveNavButton;
 
-    const decideStyle=({isActive}) => isActive ? activeCSS:inactiveCSS
+    const decidedStyle=({isActive}) => isActive ? activeCSS:inactiveCSS
 
     return (
-        <NavLink className={styles.NavButton} style={decideStyle} to={destination}>
+        <NavLink className={decidedStyle} to={destination} style={style_overrides}>
             {children}
         </NavLink>
     )

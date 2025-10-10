@@ -42,7 +42,9 @@ const UserLoginPage=()=>{
                 <ShortInputBox inputPropertyName="Username" inputValue={username} inputUpdater={setUsername} />    
                 <ShortInputBox inputPropertyName="Password" inputValue={password} inputUpdater={setPassword} password={true} /> 
                 {(errorMessage&&<p>{errorMessage}</p>)}
-                <SubmitButton />
+                <div style={{margin:"20px"}}>
+                    <SubmitButton />
+                </div>
             </form>
         </div>
     )

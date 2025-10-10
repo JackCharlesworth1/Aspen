@@ -1,0 +1,26 @@
+.TagFilterDropdownContainer{
+    border: 2px solid black;
+    background-color: white;
+    position: absolute;
+    top: 138px;
+    right: 50px;
+    min-width: 258px;
+    min-height: 460px;
+}
+.TagFilterCheckbox{
+    margin-right: 20px;
+    margin-left: auto;
+}
+.TagFiltersTitle{
+    margin: 20px;
+}
+.TagFiltersList{
+    padding: 20px;
+}
+.TagFilter{
+    display: flex;
+}
+.TagFilterName{
+    display: inline;
+    margin: 10px;
+}

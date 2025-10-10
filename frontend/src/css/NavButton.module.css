@@ -1,6 +1,15 @@
-.NavButton{
+.NavButton,.ActiveNavButton,.InactiveNavButton{
     margin: 20px;
     text-align: center;
     margin-top: auto;
     margin-bottom: auto;
+    text-decoration: none;
+    color: black;
+}
+.ActiveNavButton{
+    background: linear-gradient(180deg,rgba(255,255,255,0) 60%, var(--highlight-color) 50%);
+    padding-bottom: 0.1em;
+}
+.InactiveNavButton{
+    background: none;
 }

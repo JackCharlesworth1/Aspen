@@ -10,9 +10,10 @@
 }
 #map{
     background-color: red;
+    width: 100%;
 }
 .map_container{
-    margin: 2vw;
     width: 100%;
     height: auto;
+    text-align: center;
 }

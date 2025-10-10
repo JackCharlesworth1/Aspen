@@ -1,5 +1,5 @@
 .CentralDiv{
-    background-color: green;
+    background-color: white;
     margin: auto;
     display: flex;
     flex-direction: column;
@@ -13,4 +13,5 @@
 
 .AccountMethodButton{
     text-align: center;
+    border: 2px solid black;
 }

@@ -7,3 +7,16 @@
     margin-left: 16.666%;
     height: auto;
  }
+
+.LinkTitle{
+    margin-left: 30px;
+} 
+.LinkType{
+    margin-left: 30px;
+}
+.ReturnButton{
+    border: 2px solid black;
+    margin: 30px;
+    background-color: white;
+    padding: 4px;
+}

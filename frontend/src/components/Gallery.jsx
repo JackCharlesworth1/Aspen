@@ -43,7 +43,7 @@ const Gallery=({imageData})=>{
                     <input type="button" className={styles.exit_button} onClick={disableOverlay} value="X"/>
                     {expandedImageIndex!==0&&<input type="button" className={styles.previous_image_button} onClick={previousSighting} value="<"/>}
                     {expandedImageIndex!==(imageData.length-1)&&<input type="button" className={styles.next_image_button} onClick={nextSighting} value=">"/>}
-                    <img className={styles.overlay_image} src={typeof expandedImageData==='string'?expandedImageData:URL.createObjectURL(expandedImageData)} />
+                    <img className={window.innerWidth>window.innerHeight?styles.overlay_image_vertically_limited:styles.overlay_image_horizontally_limited} src={typeof expandedImageData==='string'?expandedImageData:URL.createObjectURL(expandedImageData)} />
                 </div>)}
             </div>)
 }

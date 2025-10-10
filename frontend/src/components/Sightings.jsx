@@ -12,7 +12,7 @@ const Sightings=({username,speciesName})=>{
     }
  
     const submitSightings=async (_event)=>{
-        _event.preventDefault()
+        _event.preventDefault() 
         const image_form_data=new FormData();
         image_form_data.append("file",imageFile)
         const image_result=await fetch("/api/user/sightings/"+username+"/"+speciesName,{method:'POST',body:image_form_data})
@@ -40,22 +40,22 @@ const Sightings=({username,speciesName})=>{
     },[speciesName])
 
     return (
-        <form onSubmit={submitSightings}>
-        <div>
+        <form style={{width:"50%",minWidth:"400px"}} onSubmit={submitSightings}>
+        <div className={styles.SightingsContainer}>
             <div className={imageFile? styles.FileDropDivUploaded:styles.FileDropDiv} onDragOver={(e)=>e.preventDefault()} onDrop={(e)=>{
                     e.preventDefault();
                     const image_file=e.dataTransfer.files[0];
                     setImageFile(image_file)
                 }}>
-                    <p>Drag and drop to upload your image via here</p>
+                    <p>Drag and drop to upload your sighting here</p>
             </div>
             <div className={styles.UploadingDiv}> 
-                <label className={imageFile? styles.FileUploadButtonUploaded:styles.FileUploadButton} htmlFor="fileUploadButton">{imageFile? "Uploaded":"Pick A File To Upload"}</label>
+                <label className={imageFile? styles.FileUploadButtonUploaded:styles.FileUploadButton} htmlFor="fileUploadButton">{imageFile? "Uploaded":"Click To Pick Photo"}</label>
                 <input type="file" id="fileUploadButton" onChange={onFileUpload} accept="image/jpeg" style={{display:'none'}}/>
                 <br />
                 {imageFile&&<img className={styles.UploadedImage} src={URL.createObjectURL(imageFile)}/>}  
                 <br />
-                <button>SUBMIT SIGHTINGS</button>
+                <button className={styles.SubmitSightingsButton}>Save Sighting</button>
             </div>
             {galleryData&&<Gallery imageData={galleryData}/>}
         </div>

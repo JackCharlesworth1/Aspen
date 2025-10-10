@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState,useRef} from 'react'
 import styles from '../css/ShortInputBox.module.css'
 
 const ShortInputBox=({inputPropertyName,inputValue,inputUpdater,placeholderText="",validationFunction=null,index=-1,textboxArray=null,password=false})=>{

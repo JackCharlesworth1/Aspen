@@ -28,6 +28,8 @@ services:
         container_name: backend
         ports:
             - "7000:7000"
+        volumes:
+            - ./backend/static/:/app/static/
         depends_on:
             - mongo
         env_file:

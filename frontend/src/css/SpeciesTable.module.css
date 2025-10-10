@@ -1,3 +1,56 @@
+.SpeciesTableContainer{
+
+}
+
 .cardTableItem{
     display: inline-block;
+    flex: 0 0 16.6667%;
+    box-sizing: border-box;
+}
+
+.SpeciesTable{
+    border-top: 2px solid black;
+    padding: 0px;
+    margin: 0px;
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.CardLink{
+    text-decoration: none;
+}
+.RandomButton{
+    outline: none;
+    border: 2px solid black;
+    background-color: white;
+    height: 36px;
+    width: 36px;
+    margin-top: 0px;
+}
+
+.SearchbarContainer{
+    width: 100vw; 
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+}
+@media (max-width:1500px){
+    .cardTableItem{
+        flex: 0 0 20%;
+    }
+}
+@media (max-width:1200px){
+    .cardTableItem{
+        flex: 0 0 25%;
+    }
+}
+@media (max-width: 900px){
+    .cardTableItem{
+        flex: 0 0 calc(100% / 3);
+    }
+}
+@media (max-width: 600px){
+    .cardTableItem{
+        flex: 0 0 50%;
+    }
 }

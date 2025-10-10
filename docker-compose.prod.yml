@@ -41,7 +41,8 @@ services:
             - "traefik.http.routers.backend.entrypoints=websecure"
             - "traefik.http.routers.backend.tls.certresolver=leresolver"
             - "traefik.http.services.backend.loadbalancer.server.port=7000"
-
+        volumes:
+            - ./backend/static/:/app/static/
         depends_on:
             - mongo
         env_file:

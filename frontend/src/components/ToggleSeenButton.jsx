@@ -1,4 +1,5 @@
 import {useState,useEffect} from 'react'
+import styles from '../css/ToggleSeenButton.module.css'
 
 const ToggleSeenButton=({buttonUnseenText="O",buttonSeenText="X",username="",species_name=""})=>{
     const [seen,setSeen]=useState(false);
@@ -38,7 +39,7 @@ const ToggleSeenButton=({buttonUnseenText="O",buttonSeenText="X",username="",spe
     }
 
     return (
-        <button onClick={toggleSeen}>{seen?buttonSeenText:buttonUnseenText}</button>
+        <button className={styles.ToggleSeenButton} onClick={toggleSeen}>{seen?buttonSeenText:buttonUnseenText}</button>
     )
 
 }
