@@ -20,4 +20,4 @@ export default defineConfig({
             port: 443,
         },
   },
-:})
+})
