@@ -1,23 +1,14 @@
-# ---- Build Stage ----
-FROM node:20 AS builder
+FROM node:20
 
 WORKDIR /app
 
 COPY package*.json ./
+
 RUN npm install
 
 COPY . .
 
-RUN npm run build
+EXPOSE 7000
 
-# ---- Runtime Stage ----
-FROM node:20 AS runner
+CMD ["node", "src/server.js"] 
 
-WORKDIR /app
-
-COPY package*.json ./
-RUN npm install --omit=dev
-
-COPY --from=builder /app/dist ./dist
-
-CMD ["node", "dist/index.js"]
