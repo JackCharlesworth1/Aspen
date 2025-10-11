@@ -44,4 +44,4 @@ app.use('/api/static/audio',express.static('static/audio'))
 
 app.use('/api/static/user',express.static('static/user'))
 
-app.listen(PORT,()=>{console.log("Server is now always watching on port",PORT)})
+app.listen(PORT,'0.0.0.0',()=>{console.log("Server is now always watching on port",PORT)})
