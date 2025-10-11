@@ -6,7 +6,7 @@ const ToggleSeenButton=({buttonUnseenText="O",buttonSeenText="X",username="",spe
     
     const initaliseButtonState=async ()=>{
         if(username&&species_name){
-            const result=await fetch("/api/user/speciesSeen/"+username+"/"+species_name,{method:"GET",headers:{"Content-Type":"application/json"}})
+            const result=await fetch("https://api.theaspenproject.cloud/api/user/speciesSeen/"+username+"/"+species_name,{method:"GET",headers:{"Content-Type":"application/json"}})
             const result_data=await result.json()
             if("species_seen" in result_data){
                 setSeen(result_data.species_seen)
@@ -31,7 +31,7 @@ const ToggleSeenButton=({buttonUnseenText="O",buttonSeenText="X",username="",spe
             species:species_name,
             seen:next_state
         }
-        const result=await fetch("/api/user/speciesSeen",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(request_body_data)})
+        const result=await fetch("https://api.theaspenproject.cloud/api/user/speciesSeen",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(request_body_data)})
         const result_data=await result.json()
         if(!result_data.success){
             console.log("Warning, updating seen state failed on server side:"+result_data)

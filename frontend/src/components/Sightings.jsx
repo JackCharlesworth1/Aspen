@@ -15,7 +15,7 @@ const Sightings=({username,speciesName})=>{
         _event.preventDefault() 
         const image_form_data=new FormData();
         image_form_data.append("file",imageFile)
-        const image_result=await fetch("/api/user/sightings/"+username+"/"+speciesName,{method:'POST',body:image_form_data})
+        const image_result=await fetch("https://api.theaspenproject.cloud/api/user/sightings/"+username+"/"+speciesName,{method:'POST',body:image_form_data})
         if(image_result){
             const updated_gallery_files=[...galleryData,imageFile]
             setGalleryData(updated_gallery_files) 
@@ -29,7 +29,7 @@ const Sightings=({username,speciesName})=>{
         const number_of_sightings=parseInt(result.sightings)
         let sightings=[];
         for(let i=0;i<number_of_sightings;i++){
-            sightings.push("/api/static/user/testingfortoday/images/Foxglove/"+i+".jpg")
+            sightings.push("https://api.theaspenproject.cloud/api/static/user/testingfortoday/images/Foxglove/"+i+".jpg")
         }
         setGalleryData(sightings)
     };

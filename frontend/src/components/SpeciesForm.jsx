@@ -22,8 +22,8 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
         setAudioFile(null);
         if(species_name!=""){
             const species_data=await getSpecies(species_name)
-            const fetchedImageFile=await getSpeciesFile("/api/static/images/",species_name,".jpg",true)
-            const fetchedAudioFile=await getSpeciesFile("/api/static/audio/",species_name,".mp3",false)
+            const fetchedImageFile=await getSpeciesFile("https://api.theaspenproject.cloud/api/static/images/",species_name,".jpg",true)
+            const fetchedAudioFile=await getSpeciesFile("https://api.theaspenproject.cloud/api/static/audio/",species_name,".mp3",false)
             setImageFile(fetchedImageFile)
             setAudioFile(fetchedAudioFile)
             if(!(species_data instanceof Error)){
@@ -62,7 +62,7 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
     const getSpecies=async(species_name)=>{
         try{
             const token=localStorage.getItem("accessToken")
-            const result=await fetch("/api/species/"+species_name,{headers:{"Authorization":token}});
+            const result=await fetch("https://api.theaspenproject.cloud/api/species/"+species_name,{headers:{"Authorization":token}});
             if(result.ok){
                 const data=await result.json()
                 let link_data=null;
@@ -70,7 +70,7 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
                 let link_types=[]
                 if(data){
                     for(let i=0;i<data.SpeciesLinks.length;i++){
-                        link_data=await fetch("/api/species/links/"+species_name+"/"+data.SpeciesLinks[i],{headers:{"Authorization":token}})
+                        link_data=await fetch("https://api.theaspenproject.cloud/api/species/links/"+species_name+"/"+data.SpeciesLinks[i],{headers:{"Authorization":token}})
                         if(!(link_data instanceof Error)){
                             try{
                                 const link_object=await link_data.json()
@@ -150,18 +150,18 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
         }
         try{
             const token=localStorage.getItem("accessToken")
-            const result=await fetch("/api/species/",{method:'POST',headers:{'Content-Type':'application/json',"Authorization":token},body:JSON.stringify(newSpecies)})
+            const result=await fetch("https://api.theaspenproject.cloud/api/species/",{method:'POST',headers:{'Content-Type':'application/json',"Authorization":token},body:JSON.stringify(newSpecies)})
 
             if(result.ok){
                 const imageFormData=new FormData();
                 imageFormData.append('file',imageFile)
-                const image_result=await fetch("/api/species/images/"+speciesName,{method:'POST',headers:{"Authorization":token},body:imageFormData})
+                const image_result=await fetch("https://api.theaspenproject.cloud/api/species/images/"+speciesName,{method:'POST',headers:{"Authorization":token},body:imageFormData})
 
 
                 if(audioFile){
                     const audioFormData=new FormData();
                     audioFormData.append('file',audioFile)
-                    const audio_result=await fetch("/api/species/audio/"+speciesName,{method:'POST',headers:{"Authorization":token},body:audioFormData})
+                    const audio_result=await fetch("https://api.theaspenproject.cloud/api/species/audio/"+speciesName,{method:'POST',headers:{"Authorization":token},body:audioFormData})
                 }
 
             }
@@ -171,7 +171,7 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
                 const link_type_option_box=document.getElementById("relationship_type_dropdown_"+i);
                 newLink={SpeciesOne:speciesName,SpeciesTwo:linkTextboxValues[i],
                          LinkDescription:linkDescriptionTextboxValues[i],LinkType:link_type_option_box.value}
-                description_result=await fetch("/api/species/links/",{method:'POST',headers:{'Content-Type':'application/json',"Authorization":token},body:JSON.stringify(newLink)})
+                description_result=await fetch("https://api.theaspenproject.cloud/api/species/links/",{method:'POST',headers:{'Content-Type':'application/json',"Authorization":token},body:JSON.stringify(newLink)})
                 if(!result.ok){
                     console.log("Error submitting new links: request failed")
                     return navigate("/admin/request-error")
@@ -197,23 +197,23 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
         }
         try{
             const token=localStorage.getItem("accessToken")
-            const result=await fetch("/api/species/"+species_name,{method:'PUT',headers:{'Content-Type':'application/json','Authorization':token},body:JSON.stringify(newSpecies)})
+            const result=await fetch("https://api.theaspenproject.cloud/api/species/"+species_name,{method:'PUT',headers:{'Content-Type':'application/json','Authorization':token},body:JSON.stringify(newSpecies)})
             if(result.ok){
                 const imageFormData=new FormData();
                 imageFormData.append('file',imageFile)
-                const image_result=await fetch("/api/species/images/"+speciesName,{method:'POST',headers:{"Authorization":token},body:imageFormData})
+                const image_result=await fetch("https://api.theaspenproject.cloud/api/species/images/"+speciesName,{method:'POST',headers:{"Authorization":token},body:imageFormData})
 
 
                 if(audioFile){
                     const audioFormData=new FormData();
                     audioFormData.append('file',audioFile)
-                    const audio_result=await fetch("/api/species/audio/"+speciesName,{method:'POST',headers:{"Authorization":token},body:audioFormData})
+                    const audio_result=await fetch("https://api.theaspenproject.cloud/api/species/audio/"+speciesName,{method:'POST',headers:{"Authorization":token},body:audioFormData})
                 }
 
                 for(let j=0;j<links.length;j++){
                     const link_type_select_object=document.getElementById("relationship_type_dropdown_"+j)
                     const link_description_object={LinkDescription:linkDescriptionTextboxValues[j],LinkType:link_type_select_object.value}
-                    const description_result=await fetch("/api/species/links/"+species_name+"/"+linkTextboxValues[j],{method:'PUT',headers:{'Content-Type':'application/json',"Authorization":token},body:JSON.stringify(link_description_object)})
+                    const description_result=await fetch("https://api.theaspenproject.cloud/api/species/links/"+species_name+"/"+linkTextboxValues[j],{method:'PUT',headers:{'Content-Type':'application/json',"Authorization":token},body:JSON.stringify(link_description_object)})
                 }
                 return navigate("/admin/dashboard")
             }

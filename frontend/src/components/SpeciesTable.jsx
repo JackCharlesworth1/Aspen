@@ -19,8 +19,8 @@ const SpeciesTable=({linkPrefix})=>{
 
     const initializeMenu=async ()=>{
         const token=localStorage.getItem("accessToken");
-        const results=await fetch("/api/species/",{headers:{"Authorization":token}});
-        const tags=await fetch("/api/species/tags/",{headers:{"Authorization":token}});
+        const results=await fetch("https://api.theaspenproject.cloud/api/species/",{headers:{"Authorization":token}});
+        const tags=await fetch("https://api.theaspenproject.cloud/api/species/tags/",{headers:{"Authorization":token}});
         if(!results.ok){
             throw new Error("Error making species fetch request")
         }

@@ -18,7 +18,7 @@ const UserLoginPage=()=>{
     const loginSubmit=async (event_)=>{
         event_.preventDefault()
         const loginDetails={username,password}
-        const result=await fetch("/api/user/login",{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(loginDetails)})
+        const result=await fetch("https://api.theaspenproject.cloud/api/user/login",{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(loginDetails)})
         if(result){
             const reply=await result.json()
             if(reply.token){

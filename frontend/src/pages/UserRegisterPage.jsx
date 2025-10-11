@@ -20,7 +20,7 @@ const UserRegisterPage=()=>{
     const registerSubmit=async(_event)=>{
         _event.preventDefault()
         const registerInfo={username,email,password}
-        const result=await fetch('/api/user/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(registerInfo)})
+        const result=await fetch('https://api.theaspenproject.cloud/api/user/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(registerInfo)})
         const reply=await result.json()
         if(reply.success){
             const token=reply.token;

@@ -20,7 +20,7 @@ const SpeciesInfoCard=({species_name})=>{
 
     const fetchSpeciesData=async()=>{
         const token=localStorage.getItem("accessToken")
-        const fetchedAudioFile=await fetch("/api/static/audio/"+name.toLowerCase()+".mp3",{headers:{"Authorization":token}})
+        const fetchedAudioFile=await fetch("https://api.theaspenproject.cloud/api/static/audio/"+name.toLowerCase()+".mp3",{headers:{"Authorization":token}})
         if(fetchedAudioFile.status===200){
             const audioBlob=await fetchedAudioFile.blob()
             setAudioFile(audioBlob);
@@ -32,7 +32,7 @@ const SpeciesInfoCard=({species_name})=>{
         }
 
         try{
-            const res=await fetch("/api/species/"+name,{headers:{"Authorization":token}})
+            const res=await fetch("https://api.theaspenproject.cloud/api/species/"+name,{headers:{"Authorization":token}})
             if(!res.ok){
                 console.log("Error, fetching data on species failed (bad request): ")
                 return navigate("/user/request-error")
@@ -76,7 +76,7 @@ const SpeciesInfoCard=({species_name})=>{
         return (
                     <>
                             <div>
-                                <img src={"/api/static/images/"+species_name.toLowerCase()+".jpg"} className={styles.IconImage}/>
+                                <img src={"https://api.theaspenproject.cloud/api/static/images/"+species_name.toLowerCase()+".jpg"} className={styles.IconImage}/>
                                 <h1 className={styles.SpeciesTitle}>{speciesInfo.SpeciesName}</h1>
                                 {speciesInfo.ScientificName&&<h3 className={styles.ScientificTitle}>{speciesInfo.ScientificName}</h3>}
                                     {commonNames.length!==0&&(<div className={styles.CommonNames}> • 

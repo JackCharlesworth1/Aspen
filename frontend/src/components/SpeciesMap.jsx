@@ -20,7 +20,7 @@ const SpeciesMap=({species_name})=>{
         const fetchSpeciesData=async()=>{
             try{
                 const token=localStorage.getItem("accessToken")
-                const res=await fetch("/api/species/"+speciesName,{headers:{"Authorization":token}})
+                const res=await fetch("https://api.theaspenproject.cloud/api/species/"+speciesName,{headers:{"Authorization":token}})
                 if(!res.ok){
                     console.log("Error, fetching data on species failed (bad request): ")
                     return navigate("/user/request-error")
@@ -30,7 +30,7 @@ const SpeciesMap=({species_name})=>{
                 if(data){
                     if(data.SpeciesLinks){
                         const species_link_types_copy=[];
-                        const fetch_promises=data.SpeciesLinks.map((link)=>fetch("/api/species/links/"+data.SpeciesName+"/"+link,{headers:{"Authorization":token}}))
+                        const fetch_promises=data.SpeciesLinks.map((link)=>fetch("https://api.theaspenproject.cloud/api/species/links/"+data.SpeciesName+"/"+link,{headers:{"Authorization":token}}))
                         const all_responses=await Promise.all(fetch_promises)
                         const all_json_promises=all_responses.map((link_res)=>{
                             if(!link_res.ok){

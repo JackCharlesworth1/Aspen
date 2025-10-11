@@ -7,7 +7,7 @@ const DeleteButton=({species_name})=>{
     const deleteSpecies=async()=>{
         const token=localStorage.getItem("accessToken")
         try{
-            const result=await fetch("/api/species/"+species_name,{method:'DELETE',headers:{'Content-Type':'application/json','Authorization':token}})
+            const result=await fetch("https://api.theaspenproject.cloud/api/species/"+species_name,{method:'DELETE',headers:{'Content-Type':'application/json','Authorization':token}})
             if(result.ok){
                 return navigate("/admin/dashboard")
             }
