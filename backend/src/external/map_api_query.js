@@ -72,7 +72,7 @@ const saveImageBlob=async (name,blob)=>{
     const filename=name.toLowerCase()+".png"
     const __dirname=import.meta.dirname
     let filepath=path.join(__dirname,'..','..','static','images','maps',filename)
-    let dir_path=path.dirname(filepath)
+    let dir_path=path.join(__dirname,'..','..','static','images','maps')
     let buffer=await blob.arrayBuffer();
     buffer=await Buffer.from(buffer)
     await fs.mkdir(dir_path,{recursive:true})
