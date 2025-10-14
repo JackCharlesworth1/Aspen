@@ -7,7 +7,7 @@ const addAdmin=async ()=>{
     if(admin_username&&admin_email&&admin_password){
         const result=await addUser(admin_username,admin_email,admin_password,"admin");
         if(!result){
-            console.log("Warning, failed to add admin user, something went wrong adding the user to database")
+            console.log("Warning, failed to add admin user, something went wrong adding the user to database. Tried",admin_username,admin_password)
         }else{
             console.log("Added admin successfully")
         }
