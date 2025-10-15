@@ -1,30 +1,44 @@
-import {useState,useEffect} from 'react'
+import {useState,useEffect,useRef} from 'react'
 import {useNavigate} from 'react-router-dom'
 import styles from '../css/AdminDashboardTable.module.css'
 
 const AdminDashboardPage=()=>{
     const navigate=useNavigate();
     const [tableData,setTableData]=useState(null);
+    const mountedRef=useRef(true);
 
     const updateTable=async ()=>{
         console.log("Fetching data")
         const token=localStorage.getItem("accessToken")
-        const results=await fetch("https://api.theaspenproject.cloud/api/species/",{headers:{"Authorization":token}});
+        if(mountedRef.current){
+            const results=await fetch("https://api.theaspenproject.cloud/api/species/",{headers:{"Authorization":token}});
+        }else{
+            return;
+        }
         if(!results.ok){
             console.log("Error making species fetch request",results.status,results.body)
-            return navigate("/admin/request-error")
+            if(mountedRef.current){
+                return navigate("/admin/request-error")
+            }
         }
         try{
-            const data=await results.json()
-            console.log("Collected data successfully",data)
-            setTableData(data);
+            if(mountedRef.current){
+                const data=await results.json()
+                console.log("Collected data successfully",data)
+                setTableData(data);
+            }
         }catch(error){
             console.log("Error converting fetched species data to json: ",error) 
-            navigate("/admin/request-error")
+            if(mountedRef.current){
+                return navigate("/admin/request-error")
+            }
         }
     }
 
-    useEffect(()=>updateTable(),[]);
+    useEffect(()=>{
+            updateTable();
+            return ()=>{mountedRef.current=false};
+    },[]);
     return (
         <>
             {tableData ? (<table className={styles.DashboardTable}>
