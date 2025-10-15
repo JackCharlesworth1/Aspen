@@ -36,7 +36,7 @@ const SpeciesDescription=({description})=>{
         if(!dropdownTextStates){
             return
         }
-        const jsx_elements=[];
+        let jsx_elements=[];
         let expandable_section_index=0;
         for(let i=0;i<parsed_description.length;i++){
             const item=parsed_description[i]
@@ -58,7 +58,18 @@ const SpeciesDescription=({description})=>{
                 case "ReferalLink":
                     const button_text=field_content.split(":")[0]
                     const link=field_content.slice(button_text.length+1)
-                    jsx_elements.push(<span><a className={styles.EmbededHyperlink} href={link}>{button_text}</a></span>)
+                    if(jsx_elements.length==0){
+                        jsx_elements.push(<a className={styles.EmbededHyperlink} href={link}>{button_text}</a>)
+                    }else{
+                        const last_element=jsx_elements[jsx_elements.length-1];
+                        const cloned_replacement=React.cloneElement(last_element,{},
+                                <>
+                                    {last_element.props.children}
+                                    {' '}
+                                    <a className={styles.EmbededHyperlink} href={link}>{button_text}</a>
+                                </>);
+                        jsx_elements=[...jsx_elements.slice(0,-1),cloned_replacement]
+                    }
                     break;
             }
         }
