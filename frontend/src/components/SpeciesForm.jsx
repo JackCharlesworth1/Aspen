@@ -93,7 +93,7 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
                 }
                 return data;
             }else{
-                console.log("Request to get species data was not successful")
+                console.log("Request to get species data was not successful",result.status,result.body)
                 return navigate("/admin/request-error")
 
             }
