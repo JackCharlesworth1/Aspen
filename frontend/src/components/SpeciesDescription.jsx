@@ -52,7 +52,7 @@ const SpeciesDescription=({description})=>{
                     jsx_elements.push(dropdown_button)
                     break;
                 case "SubsectionDescription":
-                    jsx_elements.push(<p className={styles.SubsectionText}>{dropdownTextStates[expandable_section_index]&&field_content}</p>)
+                    jsx_elements.push(<p className={styles.SubsectionDescription}>{dropdownTextStates[expandable_section_index]&&field_content}</p>)
                     expandable_section_index=expandable_section_index+1;
                     break;
                 case "ReferalLink":
@@ -76,7 +76,7 @@ const SpeciesDescription=({description})=>{
     const initializeDropdownValues=(description)=>{
         const parsed_description=parseDescription(description)
         const number_of_dropdowns=parsed_description.filter((item)=>Object.entries(item).some(([key,value])=>key==="SubsectionTitle")).length;
-        const dropdown_states_local=new Array(number_of_dropdowns).fill(false);
+        const dropdown_states_local=new Array(number_of_dropdowns).fill(true);
         setDropdownTextStates(dropdown_states_local)
     }
 
