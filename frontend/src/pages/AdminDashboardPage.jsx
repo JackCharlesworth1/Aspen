@@ -1,10 +1,11 @@
-import {useState,useEffect} from 'react'
+import {useState,useEffect,useRef} from 'react'
 import {useNavigate} from 'react-router-dom'
 import styles from '../css/AdminDashboardTable.module.css'
 
 const AdminDashboardPage=()=>{
     const navigate=useNavigate();
     const [tableData,setTableData]=useState(null);
+    const isMounted=useRef(true)
 
     const updateTable=async ()=>{
         console.log("Fetching data")
@@ -12,7 +13,9 @@ const AdminDashboardPage=()=>{
         const results=await fetch("https://api.theaspenproject.cloud/api/species/",{headers:{"Authorization":token}});
         if(!results.ok){
             console.log("Error making species fetch request",results.status,results.body)
-            return navigate("/admin/request-error")
+            if(isMounted.current){
+                return navigate("/admin/request-error")
+            }
         }
         try{
             const data=await results.json()
@@ -20,11 +23,13 @@ const AdminDashboardPage=()=>{
             setTableData(data);
         }catch(error){
             console.log("Error converting fetched species data to json: ",error) 
-            return navigate("/admin/request-error")
+            if(isMounted.current){
+                return navigate("/admin/request-error")
+            }
         }
     }
 
-    useEffect(()=>updateTable(),[]);
+    useEffect(()=>updateTable();isMounted.current=false,[]);
     return (
         <>
             {tableData ? (<table className={styles.DashboardTable}>
