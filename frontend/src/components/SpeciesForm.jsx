@@ -110,7 +110,7 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
             if(result.status!==404){
                 return result.blob();
             }else{
-                console.log("Request to get species data was not successful")
+                console.log("Request to get species data was not successful. Critical? ",critical)
                 if(critical){
                     return navigate("/admin/request-error")
                 }

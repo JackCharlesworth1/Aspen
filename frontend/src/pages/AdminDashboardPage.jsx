@@ -22,7 +22,7 @@ const AdminDashboardPage=()=>{
         }
     }
 
-    useEffect(()=>updateTable,[]);
+    useEffect(()=>updateTable(),[]);
     return (
         <>
             {tableData ? (<table className={styles.DashboardTable}>
