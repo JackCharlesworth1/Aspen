@@ -1,4 +1,5 @@
 import {useState,useEffect} from 'react'
+import styles from '../css/SpeciesDescription.module.css'
 
 const SpeciesDescription=({description})=>{
     const [dropdownTextStates,setDropdownTextStates]=useState([])
@@ -47,7 +48,7 @@ const SpeciesDescription=({description})=>{
                 case "SubsectionTitle":
                     const expandable_section_index_copy=expandable_section_index;
                     const button_custom_function=(_event)=>onExpandableSectionButtonClick(_event,expandable_section_index_copy)
-                    const dropdown_button=<button key={`button-${expandable_section_index}`} onClick={(_event)=>button_custom_function(_event)}>{field_content}</button>
+                    const dropdown_button=<button className={styles.SubsectionTitle} key={`button-${expandable_section_index}`} onClick={(_event)=>button_custom_function(_event)}>{field_content}</button>
                     jsx_elements.push(dropdown_button)
                     break;
                 case "SubsectionDescription":
