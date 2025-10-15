@@ -29,16 +29,15 @@ const Sightings=({username,speciesName})=>{
         const number_of_sightings=parseInt(result.sightings)
         let sightings=[];
         for(let i=0;i<number_of_sightings;i++){
-            sightings.push("https://api.theaspenproject.cloud/api/static/user/testingfortoday/images/Foxglove/"+i+".jpg")
+            sightings.push("https://api.theaspenproject.cloud/api/static/user/"+username.toLowerCase().replace(" ","_")+"/images/"+speciesName.toLowerCase().replace(" ","_")+"/"+i+".jpg")
         }
-        console.log("SIGHTING INFORMATION",result)
         setGalleryData(sightings)
     };
 
     useEffect(()=>{
         setImageFile(null);
         fetchGalleryData();
-    },[speciesName])
+    },[speciesName,username])
 
     return (
         <form style={{width:"50%",minWidth:"400px"}} onSubmit={submitSightings}>
