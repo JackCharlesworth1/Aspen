@@ -20,7 +20,7 @@ const MappingTile=({species_name})=>{
             map_object.scrollWheelZoom.disable()
             leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',subdomains:['a','b','c']}).addTo(map_object)
-            leaflet.imageOverlay("/api/static/images/maps/" + species_name.toLowerCase() + ".png", image_bounds).addTo(map_object);
+            leaflet.imageOverlay("/api/static/images/maps/" + species_name.toLowerCase().replace(" ","_") + ".png", image_bounds).addTo(map_object);
 
             const resizeObserver = new ResizeObserver(entries => {
                 for (let entry of entries) {
