@@ -21,9 +21,10 @@ async function addAudioToSpecies(req,res,name){
 }
 
 async function addSightingToUser(req,res,username,species_name,number,image_data){
-    const filename=number.toString().toLowerCase()+".jpg"
+    const filename=number.toString().toLowerCase().replace("_"," ")+".jpg"
     const __dirname=import.meta.dirname
     const filepath=path.join(__dirname,'..','..','static','user',username,'images',species_name,filename)
+    console.log("Writing Sightings To",filepath)
     await fs.writeFile(filepath,req.file.buffer,err=>{
         if(err) return new Error("Failed to copy file from buffer to permenant storage");
         return {ok:true}

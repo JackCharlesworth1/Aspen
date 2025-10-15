@@ -88,7 +88,7 @@ const SpeciesDescription=({description})=>{
     const initializeDropdownValues=(description)=>{
         const parsed_description=parseDescription(description)
         const number_of_dropdowns=parsed_description.filter((item)=>Object.entries(item).some(([key,value])=>key==="SubsectionTitle")).length;
-        const dropdown_states_local=new Array(number_of_dropdowns).fill(true);
+        const dropdown_states_local=new Array(number_of_dropdowns+1).fill(true);
         setDropdownTextStates(dropdown_states_local)
     }
 
