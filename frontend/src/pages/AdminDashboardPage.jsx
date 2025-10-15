@@ -1,7 +1,9 @@
 import {useState,useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
 import styles from '../css/AdminDashboardTable.module.css'
 
 const AdminDashboardPage=()=>{
+    const navigate=useNavigate();
     const [tableData,setTableData]=useState(null);
 
     const updateTable=async ()=>{
@@ -15,7 +17,7 @@ const AdminDashboardPage=()=>{
         try{
             const data=await results.json()
             console.log("Collected data successfully",data)
-            await setTableData(data);
+            setTableData(data);
         }catch(error){
             console.log("Error converting fetched species data to json: ",error) 
             return navigate("/admin/request-error")
@@ -26,7 +28,6 @@ const AdminDashboardPage=()=>{
     return (
         <>
             {tableData ? (<table className={styles.DashboardTable}>
-                    <>
                     <thead>
                         <tr>
                             <td><div className={styles.DashboardTableItem}>Species Name</div></td>
@@ -41,7 +42,6 @@ const AdminDashboardPage=()=>{
                             </tr>
                         ))}
                     </tbody>
-                    </>
                 </table>):(<p>loading</p>)}
         </>
     )
