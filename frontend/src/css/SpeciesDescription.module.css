@@ -7,13 +7,16 @@
 }
 .SubsectionDescription{
     margin: 20px;
-    margin-left: 40px
+    margin-left: 40px;
+    margin-bottom: 40px;
+    display: inline;
 }
 .Description{
     margin-left: 40px;
+    display: inline;
 }
 .EmbededHyperlink{
-    display: inline-block;
+    display: inline;
     margin: 0px;
     color: black;
     text-decoration: underline;
