@@ -58,7 +58,7 @@ const SpeciesDescription=({description})=>{
                 case "ReferalLink":
                     const button_text=field_content.split(":")[0]
                     const link=field_content.slice(button_text.length+1)
-                    jsx_elements.push(<a href={link}>{button_text}</a>)
+                    jsx_elements.push(<a className={styles.EmbededHyperlink} href={link}>{button_text}</a>)
                     break;
             }
         }

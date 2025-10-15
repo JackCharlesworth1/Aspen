@@ -6,8 +6,16 @@
     background-color: white;
 }
 .SubsectionDescription{
+    margin: 20px;
     margin-left: 40px
 }
 .Description{
     margin-left: 40px;
+}
+.EmbededHyperlink{
+    display: inline-block;
+    margin: 0px;
+    color: black;
+    text-decoration: underline;
+    text-decoration-color: #0F0;
 }
