@@ -10,8 +10,9 @@ const AdminDashboardPage=()=>{
     const updateTable=async ()=>{
         console.log("Fetching data")
         const token=localStorage.getItem("accessToken")
+        let results;
         if(mountedRef.current){
-            const results=await fetch("https://api.theaspenproject.cloud/api/species/",{headers:{"Authorization":token}});
+            results=await fetch("https://api.theaspenproject.cloud/api/species/",{headers:{"Authorization":token}});
         }else{
             return;
         }
