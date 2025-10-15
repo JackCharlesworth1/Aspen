@@ -14,7 +14,7 @@ const audio_storage_middleware=multer({
 })
 
 async function addImageToSpecies(req,res,name){
-    return await addStaticFile(req,res,name,".jpg",["static","images"])
+    return await addStaticFile(req,res,name.lower().replace(" ","_"),".jpg",["static","images"])
 }
 async function addAudioToSpecies(req,res,name){
     return await addStaticFile(req,res,name,".mp3",["static","audio"])
