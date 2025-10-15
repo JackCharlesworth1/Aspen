@@ -31,6 +31,7 @@ const Sightings=({username,speciesName})=>{
         for(let i=0;i<number_of_sightings;i++){
             sightings.push("https://api.theaspenproject.cloud/api/static/user/testingfortoday/images/Foxglove/"+i+".jpg")
         }
+        console.log("SIGHTING INFORMATION",result)
         setGalleryData(sightings)
     };
 

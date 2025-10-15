@@ -166,7 +166,7 @@ const addUserSubmittedSightings=async (req,res)=>{
 
 const createNewUserSightingDirectory=(username,species_name)=>{
     const __dirname=import.meta.dirname
-    let directory_path=path.join(__dirname,'..','..','static','user',username,"images",species_name)
+    let directory_path=path.join(__dirname,'..','..','static','user',username.replace(" ","_").toLowerCase(),"images",species_name.replace(" ","_").toLowerCase())
     
     fs.mkdir(directory_path,{recursive:true},(error)=>{
         if(error){
