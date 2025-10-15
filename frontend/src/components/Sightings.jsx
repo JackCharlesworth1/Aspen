@@ -25,16 +25,20 @@ const Sightings=({username,speciesName})=>{
 
     const fetchGalleryData=async ()=>{
         console.log("CALLED GET SIGHTINGS FUNCTION")
-        const gallery_response=await fetch("/api/user/sighting-count/"+username+"/"+speciesName)
-        const result=await gallery_response.json()
-        const number_of_sightings=parseInt(result.sightings)
-        console.log("SIGHTINGS RESULT:",result)
-        let sightings=[];
-        for(let i=0;i<number_of_sightings;i++){
-            sightings.push("https://api.theaspenproject.cloud/api/static/user/"+username.toLowerCase().replace(" ","_")+"/images/"+speciesName.toLowerCase().replace(" ","_")+"/"+i+".jpg")
+        const gallery_response=await fetch("https://api.theaspenproject.cloud/api/user/sighting-count/"+username+"/"+speciesName)
+        if(gallery_response.status==200){
+            const result=await gallery_response.json()
+            const number_of_sightings=parseInt(result.sightings)
+            console.log("SIGHTINGS RESULT:",result)
+            let sightings=[];
+            for(let i=0;i<number_of_sightings;i++){
+                sightings.push("https://api.theaspenproject.cloud/api/static/user/"+username.toLowerCase().replace(" ","_")+"/images/"+speciesName.toLowerCase().replace(" ","_")+"/"+i+".jpg")
+            }
+            console.log("SIGHTINGS FINAL:",sightings)
+            setGalleryData(sightings)
+        }else{
+            console.log("Error retrieving sightings of",speciesName,"for username",username)
         }
-        console.log("SIGHTINGS FINAL:",sightings)
-        setGalleryData(sightings)
     };
 
     useEffect(()=>{
