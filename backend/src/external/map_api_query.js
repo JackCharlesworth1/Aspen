@@ -75,7 +75,7 @@ const saveImageBlob=async (name,blob)=>{
     let dir_path=path.join(__dirname,'..','..','static','images','maps')
     let buffer=await blob.arrayBuffer();
     buffer=await Buffer.from(buffer)
-    await fs.mkdir(dir_path,{recursive:true})
+    await fs.mkdir(dir_path,{recursive:true},(error)=>error?console.log("Error Occured",error):console.log("Map Directory Created Successfully"))
     await fs.createWriteStream(filepath).write(buffer)
     return "Success"
 }

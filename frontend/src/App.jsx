@@ -1,4 +1,4 @@
-import {Route,createBrowserRouter,createRoutesFromElements,RouterProvider} from 'react-router-dom';
+import {Route,Navigate,createBrowserRouter,createRoutesFromElements,RouterProvider} from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import AdminPanelLayout from './layouts/AdminPanelLayout.jsx' 
 import AdminDashboardPage from './pages/AdminDashboardPage.jsx'
@@ -41,9 +41,7 @@ function App() {
                 <Route path="/landing/" element={<LandingPanelLayout />}>
                     <Route path="/landing/" element={<LandingPage />} />
                 </Route>,
-                <Route path="/" element={<LandingPanelLayout />}>
-                    <Route path="/" element={<LandingPage />} />
-                </Route>,
+                <Route path="/" element={<Navigate to="/landing/" replace />} />
                 <Route path="*" element={<NotFoundPage redirect="/landing/"/>} />
             ]
         )
