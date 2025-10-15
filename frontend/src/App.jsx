@@ -41,7 +41,7 @@ function App() {
                 <Route path="/landing/" element={<LandingPanelLayout />}>
                     <Route path="/landing/" element={<LandingPage />} />
                 </Route>,
-                <Route path="/" element={<Navigate to="/landing/" replace />} />
+                <Route path="/" element={<Navigate to="/landing/" replace />} />,
                 <Route path="*" element={<NotFoundPage redirect="/landing/"/>} />
             ]
         )
