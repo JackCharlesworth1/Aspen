@@ -1,3 +1,4 @@
+import React from 'react'
 import {useState,useEffect} from 'react'
 import styles from '../css/SpeciesDescription.module.css'
 
