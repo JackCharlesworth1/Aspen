@@ -8,7 +8,7 @@ const AdminDashboardPage=()=>{
         const token=localStorage.getItem("accessToken")
         const results=await fetch("https://api.theaspenproject.cloud/api/species/",{headers:{"Authorization":token}});
         if(!results.ok){
-            console.log("Error making species fetch request")
+            console.log("Error making species fetch request",results.status,results.body)
             return navigate("/admin/request-error")
         }
         try{
