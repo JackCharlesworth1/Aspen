@@ -69,7 +69,7 @@ const getMapDataForSpecies=async(taxon_key,species_name)=>{
 }
 
 const saveImageBlob=async (name,blob)=>{
-    const filename=name.toLowerCase()+".png"
+    const filename=name.toLowerCase().replace(" ","_")+".png"
     const __dirname=import.meta.dirname
     let filepath=path.join(__dirname,'..','..','static','images','maps',filename)
     let dir_path=path.join(__dirname,'..','..','static','images','maps')
