@@ -5,6 +5,7 @@ const AdminDashboardPage=()=>{
     const [tableData,setTableData]=useState(null);
 
     const updateTable=async ()=>{
+        console.log("Fetching data")
         const token=localStorage.getItem("accessToken")
         const results=await fetch("https://api.theaspenproject.cloud/api/species/",{headers:{"Authorization":token}});
         if(!results.ok){
@@ -13,6 +14,7 @@ const AdminDashboardPage=()=>{
         }
         try{
             const data=await results.json()
+            console.log("Collected data successfully",data)
             await setTableData(data);
         }catch(error){
             console.log("Error converting fetched species data to json: ",error) 
