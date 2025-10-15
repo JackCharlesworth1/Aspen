@@ -43,7 +43,7 @@ const SpeciesDescription=({description})=>{
             const [field_name,field_content]=Object.entries(item)[0];
             switch(field_name){
                 case "Description":
-                    jsx_elements.push(<p>{field_content}</p>)
+                    jsx_elements.push(<p className={styles.Description}>{field_content}</p>)
                     break;
                 case "SubsectionTitle":
                     const expandable_section_index_copy=expandable_section_index;
@@ -52,7 +52,7 @@ const SpeciesDescription=({description})=>{
                     jsx_elements.push(dropdown_button)
                     break;
                 case "SubsectionDescription":
-                    jsx_elements.push(<p>{dropdownTextStates[expandable_section_index]&&field_content}</p>)
+                    jsx_elements.push(<p className={styles.SubsectionText}>{dropdownTextStates[expandable_section_index]&&field_content}</p>)
                     expandable_section_index=expandable_section_index+1;
                     break;
                 case "ReferalLink":

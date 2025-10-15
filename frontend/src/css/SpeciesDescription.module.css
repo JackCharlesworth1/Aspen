@@ -1,7 +1,13 @@
 .SubsectionTitle{
-    margin-left: 20px;
+    margin-left: 36px;
     border: none;
     font-size: 19px;
     font-weight: bold;
     background-color: white;
+}
+.SubsectionDescription{
+    margin-left: 40px
+}
+.Description{
+    margin-left: 40px;
 }
