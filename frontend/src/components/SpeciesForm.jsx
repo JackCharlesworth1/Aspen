@@ -22,7 +22,7 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
         setAudioFile(null);
         if(species_name!=""){
             const species_data=await getSpecies(species_name)
-            const fetchedImageFile=await getSpeciesFile("https://api.theaspenproject.cloud/api/static/images/",species_name,".jpg",true)
+            const fetchedImageFile=await getSpeciesFile("https://api.theaspenproject.cloud/api/static/images/",species_name.replace(" ","_").toLowerCase(),".jpg",true)
             const fetchedAudioFile=await getSpeciesFile("https://api.theaspenproject.cloud/api/static/audio/",species_name,".mp3",false)
             setImageFile(fetchedImageFile)
             setAudioFile(fetchedAudioFile)
