@@ -76,7 +76,7 @@ const SpeciesInfoCard=({species_name})=>{
         return (
                     <>
                             <div>
-                                <img src={"https://api.theaspenproject.cloud/api/static/images/"+species_name.toLowerCase()+".jpg"} className={styles.IconImage}/>
+                                <img src={"https://api.theaspenproject.cloud/api/static/images/"+species_name.replace(" ","_").toLowerCase()+".jpg"} className={styles.IconImage}/>
                                 <h1 className={styles.SpeciesTitle}>{speciesInfo.SpeciesName}</h1>
                                 {speciesInfo.ScientificName&&<h3 className={styles.ScientificTitle}>{speciesInfo.ScientificName}</h3>}
                                     {commonNames.length!==0&&(<div className={styles.CommonNames}> • 
