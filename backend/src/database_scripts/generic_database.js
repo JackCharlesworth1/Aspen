@@ -105,8 +105,7 @@ async function dropCollection(db_connection,collection_name){
         ${stackTrace}
         ---------------------------`;
 
-    // Append log to file inside container (e.g., /app/logs/deletes.log)
-    const logFilePath = path.join(__dirname, 'logs', 'drop.log');
+    const logFilePath = path.join(import.meta.dirname, 'logs', 'drop.log');
 
     // Make sure directory exists
     fs.mkdirSync(path.dirname(logFilePath), { recursive: true });
@@ -143,8 +142,7 @@ async function deleteByQuery(db_connection,collection_name,query){
         ${stackTrace}
         ---------------------------`;
 
-    // Append log to file inside container (e.g., /app/logs/deletes.log)
-    const logFilePath = path.join(__dirname, 'logs', 'delete.log');
+    const logFilePath = path.join(import.meta.dirname, 'logs', 'delete.log');
 
     // Make sure directory exists
     fs.mkdirSync(path.dirname(logFilePath), { recursive: true });
