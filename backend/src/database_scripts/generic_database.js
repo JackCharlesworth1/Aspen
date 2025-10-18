@@ -96,7 +96,7 @@ async function getAllOfOneField(db_connection,collection_name,property_name){
 async function dropCollection(db_connection,collection_name){
     const timestamp = new Date().toISOString();
     const stackTrace = new Error().stack;
-
+    console.log("CALLED DROP COLLECTION");
     const logEntry = `
         [${timestamp}] Function: dropCollection
         DB CONNECTION: {$db_connection}
@@ -133,7 +133,7 @@ async function dropCollection(db_connection,collection_name){
 async function deleteByQuery(db_connection,collection_name,query){
     const timestamp = new Date().toISOString();
     const stackTrace = new Error().stack;
-
+    console.log("CALLED DELETE BY QUERY");
     const logEntry = `
         [${timestamp}] Function: deleteByQuery
         collectionName: ${collection_name}
