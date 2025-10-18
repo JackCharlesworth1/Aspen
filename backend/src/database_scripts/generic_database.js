@@ -98,9 +98,9 @@ async function dropCollection(db_connection,collection_name){
     const stackTrace = new Error().stack;
 
     const logEntry = `
-        [${timestamp}] Function: ${functionName}
-        Params: ${JSON.stringify(params)}
-        Result: ${JSON.stringify(result)}
+        [${timestamp}] Function: dropCollection
+        DB CONNECTION: {$db_connection}
+        CllectionName: {$collection_name}
         Stack trace:
         ${stackTrace}
         ---------------------------`;
@@ -136,9 +136,9 @@ async function deleteByQuery(db_connection,collection_name,query){
     const stackTrace = new Error().stack;
 
     const logEntry = `
-        [${timestamp}] Function: ${functionName}
-        Params: ${JSON.stringify(params)}
-        Result: ${JSON.stringify(result)}
+        [${timestamp}] Function: deleteByQuery
+        collectionName: ${collection_name}
+        query: ${query}
         Stack trace:
         ${stackTrace}
         ---------------------------`;
