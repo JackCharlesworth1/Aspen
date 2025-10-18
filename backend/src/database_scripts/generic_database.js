@@ -137,7 +137,7 @@ async function deleteByQuery(db_connection,collection_name,query){
     const logEntry = `
         [${timestamp}] Function: deleteByQuery
         collectionName: ${collection_name}
-        query: ${query}
+        query: ${JSON.stringify(query)}
         Stack trace:
         ${stackTrace}
         ---------------------------`;
