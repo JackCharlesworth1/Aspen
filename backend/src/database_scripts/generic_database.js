@@ -1,4 +1,6 @@
 import {MongoClient} from "mongodb"
+import fs from 'fs'
+import path from 'path'
 
 async function connectToMongo(db_endpoint_uri){
     const client=new MongoClient("mongodb://"+db_endpoint_uri)
@@ -92,6 +94,27 @@ async function getAllOfOneField(db_connection,collection_name,property_name){
 }
 
 async function dropCollection(db_connection,collection_name){
+    const timestamp = new Date().toISOString();
+    const stackTrace = new Error().stack;
+
+    const logEntry = `
+        [${timestamp}] Function: ${functionName}
+        Params: ${JSON.stringify(params)}
+        Result: ${JSON.stringify(result)}
+        Stack trace:
+        ${stackTrace}
+        ---------------------------`;
+
+    // Append log to file inside container (e.g., /app/logs/deletes.log)
+    const logFilePath = path.join(__dirname, 'logs', 'drop.log');
+
+    // Make sure directory exists
+    fs.mkdirSync(path.dirname(logFilePath), { recursive: true });
+
+    fs.appendFile(logFilePath, logEntry, err => {
+      if (err) console.error('Failed to write delete log:', err);
+    });
+
     if(!db_connection||!collection_name){
         return new Error(`Error updating item: A parameter is missing, null or undefined. Parameters supplied ${db_connection}, ${collection_name}`)
     }
@@ -109,6 +132,28 @@ async function dropCollection(db_connection,collection_name){
 }
 
 async function deleteByQuery(db_connection,collection_name,query){
+    const timestamp = new Date().toISOString();
+    const stackTrace = new Error().stack;
+
+    const logEntry = `
+        [${timestamp}] Function: ${functionName}
+        Params: ${JSON.stringify(params)}
+        Result: ${JSON.stringify(result)}
+        Stack trace:
+        ${stackTrace}
+        ---------------------------`;
+
+    // Append log to file inside container (e.g., /app/logs/deletes.log)
+    const logFilePath = path.join(__dirname, 'logs', 'delete.log');
+
+    // Make sure directory exists
+    fs.mkdirSync(path.dirname(logFilePath), { recursive: true });
+
+    fs.appendFile(logFilePath, logEntry, err => {
+      if (err) console.error('Failed to write delete log:', err);
+    });
+
+
     if(!db_connection||!collection_name||!query){
         return new Error(`Error updating item: A parameter is missing, null or undefined. Parameters supplied ${db_connection}, ${collection_name}, ${query}`)
     }

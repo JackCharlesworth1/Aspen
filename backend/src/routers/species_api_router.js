@@ -21,7 +21,7 @@ router.put("/:name",updateSpeciesHandler)
 
 router.delete("/:name",deleteSpeciesHandler)
 
-router.delete("/clear/",clearAllSpeciesHandler)
+//router.delete("/clear/",clearAllSpeciesHandler)  Removed For Safety
 
 
 router.get("/links/:SpeciesOne/:SpeciesTwo",getSpeciesLinkHandler)
