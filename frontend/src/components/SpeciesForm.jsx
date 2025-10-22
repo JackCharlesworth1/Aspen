@@ -219,7 +219,7 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
                 return navigate("/admin/dashboard")
             }
         }catch(error){
-            console.log("Error updating species: request failed. "+error)
+            console.log("Error updating species: request failed. "+error+" Trying to update to ",newSpecies)
             return navigate("/admin/request-error")
 
         }
