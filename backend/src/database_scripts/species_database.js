@@ -70,6 +70,7 @@ async function updateSpeciesByName(db_connection,name,new_item){
 }
 
 async function addLinkToSpecies(db_connection,species_to_add_to,species_to_add){
+    console.log("Getting by name",species_to_add)
     const current_entry=await getEntryByName(db_connection,species_to_add_to);
     if(!(current_entry instanceof Error)){
         let species_links;
