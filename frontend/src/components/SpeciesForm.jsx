@@ -168,9 +168,8 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
             let description_result="";
             let newLink={};
             for(let i=0;i<linkTextboxValues.length;i++){
-                const link_type_option_box=document.getElementById("relationship_type_dropdown_"+i);
                 newLink={SpeciesOne:speciesName,SpeciesTwo:linkTextboxValues[i],
-                         LinkDescription:linkDescriptionTextboxValues[i],LinkType:link_type_option_box.value}
+                         LinkDescription:linkDescriptionTextboxValues[i],LinkType:linkTypes[i]}
                 description_result=await fetch("https://api.theaspenproject.cloud/api/species/links/",{method:'POST',headers:{'Content-Type':'application/json',"Authorization":token},body:JSON.stringify(newLink)})
                 if(!result.ok){
                     console.log("Error submitting new links: request failed")
@@ -211,9 +210,7 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
                 }
 
                 for(let j=0;j<links.length;j++){
-                    const link_type_select_object=document.getElementById("relationship_type_dropdown_"+j)
-                    console.log("links",links,"j",j,"dropdown_obj",link_type_select_object)
-                    const link_description_object={LinkDescription:linkDescriptionTextboxValues[j],LinkType:link_type_select_object.value}
+                    const link_description_object={LinkDescription:linkDescriptionTextboxValues[j],LinkType:linkTypes[j]}
                     const description_result=await fetch("https://api.theaspenproject.cloud/api/species/links/"+species_name+"/"+linkTextboxValues[j],{method:'PUT',headers:{'Content-Type':'application/json',"Authorization":token},body:JSON.stringify(link_description_object)})
                 }
                 return navigate("/admin/dashboard")
@@ -283,7 +280,12 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
         const selected_file=_event.target.files[0];
         setAudioFile(selected_file)
     }
-       
+
+    const updateLinkRelationType=(_event,index)=>{
+        const current_link_types=[...linkTypes];
+        current_link_types[index]=_event.target.value
+        setLinkTextboxValues(current_link_types)
+    } 
 
     return (
         submittedForm?<p>Submitting...</p>:(<form className={styles.SpeciesForm} onSubmit={formSubmit} >
@@ -305,7 +307,7 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
                                     <label style={{marginLeft:"20px"}}>Relationship Link Type</label>
                                     <br />
                                     <br style={{height:"20px"}}/>
-                                    <select className={styles.RelationshipTypeDropdown} id={"relationship_type_dropdown_"+index} required>
+                                    <select className={styles.RelationshipTypeDropdown} id={"relationship_type_dropdown_"+index} onChange={(_event)=>updateLinkRelationType(_event,index)} required>
                                         <option value=""> - </option>
                                         <option value="Foodchain">Foodchain</option>
                                         <option value="Evolution">Evolution</option>
