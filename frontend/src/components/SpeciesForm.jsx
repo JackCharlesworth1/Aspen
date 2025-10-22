@@ -212,6 +212,7 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
 
                 for(let j=0;j<links.length;j++){
                     const link_type_select_object=document.getElementById("relationship_type_dropdown_"+j)
+                    console.log("links",links,"j",j,"dropdown_obj",link_type_select_object)
                     const link_description_object={LinkDescription:linkDescriptionTextboxValues[j],LinkType:link_type_select_object.value}
                     const description_result=await fetch("https://api.theaspenproject.cloud/api/species/links/"+species_name+"/"+linkTextboxValues[j],{method:'PUT',headers:{'Content-Type':'application/json',"Authorization":token},body:JSON.stringify(link_description_object)})
                 }
