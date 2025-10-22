@@ -284,7 +284,7 @@ const SpeciesForm=({formUse="add",species_name=""})=>{
     const updateLinkRelationType=(_event,index)=>{
         const current_link_types=[...linkTypes];
         current_link_types[index]=_event.target.value
-        setLinkTextboxValues(current_link_types)
+        setLinkTypes(current_link_types)
     } 
 
     return (
