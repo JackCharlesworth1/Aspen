@@ -92,8 +92,8 @@ const SpeciesMap=({species_name})=>{
             if(speciesInfo){
                 if(linksToDisplay){
                     if(linksToDisplay.length>4){
-                        return (<div>
-                            <p>On page {page+1} of {Math.ceil(linksToDisplay.length/4)}</p>
+                        return (<div style={backgroundColor:"white"}>
+                            <p style={marginTop:"0px",margin-bottom:"4px"}>On page {page+1} of {Math.ceil(linksToDisplay.length/4)}</p>
                             <div className={styles.PageControlSection}>
                             <button className={styles.PageButton} onClick={previousPage}>{"<"}</button>
                             <button className={styles.PageButton} onClick={nextPage}>{">"}</button>

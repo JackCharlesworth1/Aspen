@@ -2,9 +2,7 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin: 20px;
     width: 100px;
-    height: 200px;
     background-color: white;
     padding: 5px;
 }

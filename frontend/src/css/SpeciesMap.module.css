@@ -155,4 +155,11 @@ a{
     .LinkCanvasContainer{
         width: 100vw;
     }
+    .LinkDescriptionBox{
+        width: 100vw;
+        height: 100vh;
+        border-right: 0px;
+        border-left: 0px;
+        margin: 0px;
+    }
 }
