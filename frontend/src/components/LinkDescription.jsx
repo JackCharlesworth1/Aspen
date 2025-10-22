@@ -25,8 +25,8 @@ const LinkDescription=({species_name,linked_species,closeLinkPage})=>{
                 <button className={styles.ReturnButton} onClick={closeLinkPage} ><FontAwesomeIcon icon={faReply} /></button>
                 {linkDescription&&linkType&&linked_species&&species_name&&(<>
                     <div className={styles.linkedImagesContainer}>
-                        <img className={styles.linkedImage} src={"https://api.theaspenproject.cloud/api/static/images/"+species_name.toLowerCase()+".jpg"} />
-                        <img className={styles.linkedImage} src={"https://api.theaspenproject.cloud/api/static/images/"+linked_species.toLowerCase()+".jpg"} />
+                        <img className={styles.linkedImage} src={"https://api.theaspenproject.cloud/api/static/images/"+species_name.replace(" ","_").toLowerCase()+".jpg"} />
+                        <img className={styles.linkedImage} src={"https://api.theaspenproject.cloud/api/static/images/"+linked_species.replace(" ","_").toLowerCase()+".jpg"} />
                     </div>
                     <h1 className={styles.LinkTitle}>{species_name} & {linked_species}</h1>
                     <h3 className={styles.LinkType}>{linkType} link</h3>
