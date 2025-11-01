@@ -57,8 +57,7 @@ const UserLoginPage=()=>{
         <div className={styles.LoginBox}>
             <form onSubmit={loginSubmit}>
                 <h1 className={styles.LoginTitle}>Login</h1>
-                <ShortInputBox inputPropertyName="Username" inputValue={username} inputUpdater={setUsername} />    
-                <ShortInputBox inputPropertyName="Password" inputValue={password} inputUpdater={setPassword} password={true} /> 
+                <ShortInputBox inputPropertyName="Username" inputValue={username} inputUpdater={setUsername} />    <ShortInputBox inputPropertyName="Password" inputValue={password} inputUpdater={setPassword} password={true} /> 
                 {(errorMessage&&<p>{errorMessage}</p>)}
                 <div style={{margin:"20px"}}>
                     <SubmitButton />
