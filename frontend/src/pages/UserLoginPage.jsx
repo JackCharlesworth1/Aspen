@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {AuthUse} from '../context/authContext.jsx'
+import {GoogleLogin} from '@react-oauth/google';
 import ShortInputBox from '../components/ShortInputBox.jsx'
 import SubmitButton from '../components/SubmitButton.jsx'
 import styles from '../css/UserLoginPage.module.css'
@@ -35,6 +36,23 @@ const UserLoginPage=()=>{
         }
     }
 
+    const handleGoogleSuccess=async (credential_response)=>{
+        try{
+            const response=await fetch("https://api.theaspenproject.cloud/api/auth/google",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({token:credential_response.credential})});
+            if(!response.ok){
+                alert("Failed To Login With Google");
+            }
+            const data=await response.json();
+            console.log("Got Data:",data,"jwt:",data.jwt)
+            alert("Logged in with Google")
+
+        }catch(error){
+            console.log("Login Failure Error:")
+            alert("Failed to login with Google")
+        }
+    }
+
+
     return (
         <div className={styles.LoginBox}>
             <form onSubmit={loginSubmit}>
@@ -45,6 +63,7 @@ const UserLoginPage=()=>{
                 <div style={{margin:"20px"}}>
                     <SubmitButton />
                 </div>
+                <GoogleLogin onSuccess={handleGoogleSuccess} onError={()=>{setErrorMessage("Login With Google Failed")}} />
             </form>
         </div>
     )
