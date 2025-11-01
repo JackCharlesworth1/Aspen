@@ -9,7 +9,7 @@ const GOOGLE_CLIENT_ID=import.meta.env.GOOGLE_CLIENT_ID;
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
+    <GoogleOAuthProvider clientId={VITE_GOOGLE_CLIENT_ID}>
         <AuthProvider>
             <App />
         </AuthProvider>
