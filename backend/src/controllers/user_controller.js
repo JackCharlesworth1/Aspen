@@ -2,6 +2,7 @@ import {createJsonWebToken,connectToMongoose,addUser,getUser,verifyUser,deleteUs
 import {getDBConnection} from '../database_scripts/species_database.js'
 import {addUserData,getUserDataByName,updateUserData} from '../database_scripts/user_data_database.js'
 import {addSightingToUser} from '../static_scripts/static_upload.js'
+import { OAuth2Client } from 'google-auth-library';
 import path from 'path';
 import fs from 'fs';
 
@@ -9,24 +10,30 @@ const database_endpoint_uri=process.env.DATABASE_ENDPOINT_URI
 await connectToMongoose("mongodb://"+database_endpoint_uri)
 const db_connection=await getDBConnection()
 
+const GOOGLE_OAUTH_CLIENT=new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+
 const registrationHandler=async(req,res)=>{
     if(req.body.username&&req.body.email&&req.body.password){
-        if(req.body.email.includes("@")&&req.body.email.includes(".")){
-            const result=await addUser(req.body.username,req.body.email,req.body.password,"user")
-            //If we returned anything, it is an error
-            if(result){
-                if(result.acknowledged){
-                    const data_result=await addUserData(db_connection,req.body.username) 
-                    res=writeUserReturnResponse(res,{"success":true,"token":result.jwt_token});
+        if(!req.username.match(/[^0-9a-z]/i))
+            if(req.body.email.includes("@")&&req.body.email.includes(".")){
+                const result=await addUser(req.body.username,req.body.email,req.body.password,"user")
+                //If we returned anything, it is an error
+                if(result){
+                    if(result.acknowledged){
+                        const data_result=await addUserData(db_connection,req.body.username) 
+                        res=writeUserReturnResponse(res,{"success":true,"token":result.jwt_token});
+                    }
+                }else{
+                    res=writeUserReturnResponse(res,"Either username or email is already in use")
                 }
             }else{
-                res=writeUserReturnResponse(res,"Either username or email is already in use")
+                const invalid_email_message="Invalid email address provided, use a real one"
+                res=writeUserReturnResponse(res,invalid_email_message)
             }
-        }else{
-            const invalid_email_message="Invalid email address provided, use a real one"
-            res=writeUserReturnResponse(res,invalid_email_message)
-        }
         res.end()
+        }else{
+            console.log("Invalid username, stick to alphanumeric characters")
+        }
     }else{
         console.log("Warning, registration not fufilled - Missing parameter/s");
     }
@@ -164,6 +171,40 @@ const addUserSubmittedSightings=async (req,res)=>{
     }
 }
 
+const googleOAuthTokenGenerationHandler=async(req,res)=>{
+   const {auth_credential}=req.body;
+   try{
+        const ticket=await GOOGLE_OAUTH_CLIENT.verifyIdToken({
+            idToken:auth_credential,
+            audience:process.env.GOOGLE_CLIENT_ID,
+        })
+        const payload=ticket.getPayload();
+        const {googleID,email,name}=payload;
+
+        const email_split=email.split("@")
+        const assumed_username="<GOOGLE_USER>"+email_split[0];
+
+        const user_query_response=await getUser(assumed_username)
+
+        if(user_query_response){
+            const token=createJsonWebToken(user_query_response);
+            result={"acknowledged":true,"token":token,"role":user.auth_level};
+
+        }else{
+            const result=await addUser(assumed_username,email,null,"user")
+            if(result){
+                if(result.acknowledged){
+                    const data_result=await addUserData(db_connection,assumed_username) 
+                    res=writeUserReturnResponse(res,{"success":true,"token":result.jwt_token});
+                }
+            }else{
+                res=writeUserReturnResponse(res,"Either username or email is already in use")
+            }
+        }
+
+   }
+}
+
 const createNewUserSightingDirectory=(username,species_name)=>{
     const __dirname=import.meta.dirname
     let directory_path=path.join(__dirname,'..','..','static','user',username.replace(" ","_").toLowerCase(),"images",species_name.replace(" ","_").toLowerCase())
@@ -176,7 +217,6 @@ const createNewUserSightingDirectory=(username,species_name)=>{
         }
     }) 
 }
-
 
 
 function writeUserReturnResponse(response,result){
