@@ -10,7 +10,18 @@ const app=express()
 
 const PORT=process.env.PORT||7000
 
-app.use(cors())
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      return callback(new Error('The origin is not allowed by CORS'), false);
+    }
+    return callback(null, true);
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+}))
 
 app.use('/api/species', (req, res, next) => {
   if (req.is('application/json')) {
