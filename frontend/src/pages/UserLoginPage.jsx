@@ -38,7 +38,7 @@ const UserLoginPage=()=>{
 
     const handleGoogleSuccess=async (credential_response)=>{
         try{
-            const response=await fetch("https://api.theaspenproject.cloud/api/auth/google",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({token:credential_response.credential})});
+            const response=await fetch("https://api.theaspenproject.cloud/api/user/auth/google",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({token:credential_response.credential})});
             if(!response.ok){
                 alert("Failed To Login With Google");
             }
@@ -62,7 +62,7 @@ const UserLoginPage=()=>{
                 <div style={{margin:"20px"}}>
                     <SubmitButton />
                 </div>
-                <GoogleLogin onSuccess={handleGoogleSuccess} onError={()=>{setErrorMessage("Login With Google Failed")}} />
+                <GoogleLogin style={{margin:"20px"}} onSuccess={handleGoogleSuccess} onError={()=>{setErrorMessage("Login With Google Failed")}} />
             </form>
         </div>
     )
