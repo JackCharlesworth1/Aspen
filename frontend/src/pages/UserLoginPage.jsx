@@ -47,7 +47,7 @@ const UserLoginPage=()=>{
             alert("Logged in with Google")
 
         }catch(error){
-            console.log("Login Failure Error:")
+            console.log("Login Failure Error:",error)
             alert("Failed to login with Google")
         }
     }
