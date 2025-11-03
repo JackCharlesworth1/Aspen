@@ -189,7 +189,7 @@ const googleOAuthTokenGenerationHandler=async(req,res)=>{
 
         if(user_query_response){
             const token=createJsonWebToken(user_query_response);
-            const result={"acknowledged":true,"token":token,"role":user_query_response.auth_level};
+            const result={"acknowledged":true,"token":token,"role":user_query_response.auth_level,"username":assumed_username};
             res=writeUserReturnResponse(res,result);
 
         }else{
@@ -197,7 +197,7 @@ const googleOAuthTokenGenerationHandler=async(req,res)=>{
             if(result){
                 if(result.acknowledged){
                     const data_result=await addUserData(db_connection,assumed_username) 
-                    res=writeUserReturnResponse(res,{"success":true,"token":result.jwt_token,"role":"user"});
+                    res=writeUserReturnResponse(res,{"success":true,"token":result.jwt_token,"role":"user","username":assumed_username});
                 }
             }else{
                 res=writeUserReturnResponse(res,"Either username or email is already in use")

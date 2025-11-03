@@ -47,7 +47,7 @@ const UserLoginPage=()=>{
             console.log("Got Data:",data,"jwt:",data.token)
             if(data.token){
                 localStorage.setItem("accessToken",data.token)
-                login(username,data.role);
+                login(data.username,data.role);
                 if(data.role=="admin"){
                     return navigate("/admin/dashboard")
                 }else{
