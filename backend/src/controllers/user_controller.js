@@ -189,7 +189,7 @@ const googleOAuthTokenGenerationHandler=async(req,res)=>{
 
         if(user_query_response){
             const token=createJsonWebToken(user_query_response);
-            result={"acknowledged":true,"token":token,"role":user.auth_level};
+            result={"acknowledged":true,"token":token,"role":user_query_response.auth_level};
             res=writeUserReturnResponse(res,result);
 
         }else{
