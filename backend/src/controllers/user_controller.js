@@ -236,4 +236,4 @@ function writeUserReturnResponse(response,result){
 
 
 
-export {registrationHandler,loginHandler,getIfUserSeenSpeciesHandler,setIfUserSeenSpeciesHandler,addUserSubmittedSightings,getNumberOfSightingImages}
+export {registrationHandler,loginHandler,getIfUserSeenSpeciesHandler,setIfUserSeenSpeciesHandler,addUserSubmittedSightings,getNumberOfSightingImages,googleOAuthTokenGenerationHandler}
