@@ -12,6 +12,11 @@ const PORT=process.env.PORT||7000
 
 const allowed_origins=['https://theaspenproject.cloud','https://api.theaspenproject.cloud']
 
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.originalUrl}`);
+  next();
+});
+
 app.use(cors({
   origin: function (origin, callback) {
     if (!origin) return callback(null, true);
