@@ -44,9 +44,18 @@ const UserLoginPage=()=>{
                 alert("Failed To Login With Google");
             }
             const data=await response.json();
-            console.log("Got Data:",data,"jwt:",data.jwt)
-            alert("Logged in with Google")
-
+            console.log("Got Data:",data,"jwt:",data.token)
+            if(data.token){
+                localStorage.setItem("accessToken",data.token)
+                login(username,data.role);
+                if(data.role=="admin"){
+                    return navigate("/admin/dashboard")
+                }else{
+                    return navigate("/user/pick-species")
+                }
+            }else{
+                setErrorMessage(data)
+            }
         }catch(error){
             console.log("Login Failure Error:",error)
             alert("Failed to login with Google")

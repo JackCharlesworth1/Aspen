@@ -197,7 +197,7 @@ const googleOAuthTokenGenerationHandler=async(req,res)=>{
             if(result){
                 if(result.acknowledged){
                     const data_result=await addUserData(db_connection,assumed_username) 
-                    res=writeUserReturnResponse(res,{"success":true,"token":result.jwt_token});
+                    res=writeUserReturnResponse(res,{"success":true,"token":result.jwt_token,"role":"user"});
                 }
             }else{
                 res=writeUserReturnResponse(res,"Either username or email is already in use")
