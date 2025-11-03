@@ -40,7 +40,7 @@ function App() {
                     <Route path="/user/request-error" element={<UserRequestErrorPage />} />
                     <Route path="/user/*" element={<NotFoundPage redirect="/user/pick-species/"/>} />
                 </Route>,
-                <Route path="/account/" element={<AccountPageLayout />}>
+                <Route path="/account/" element={<AccountPanelLayout />}>
                     <Route path="/account/" element={<AccountPage />} />
                     <Route path="/account/*" element={<NotFoundPage redirect="/user/account-method/" />} />
                 </Route>,
