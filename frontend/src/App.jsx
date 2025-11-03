@@ -41,7 +41,7 @@ function App() {
                     <Route path="/user/*" element={<NotFoundPage redirect="/user/pick-species/"/>} />
                 </Route>,
                 <Route path="/account/" element={<AccountPanelLayout />}>
-                    <Route path="/account/" element={<AccountPage />} />
+                    <Route path="/account/" element={<ProtectedRoute element={<AccountPage />} minimum_authentication_level="user" />} />
                     <Route path="/account/*" element={<NotFoundPage redirect="/user/account-method/" />} />
                 </Route>,
                 <Route path="/landing/" element={<LandingPanelLayout />}>
