@@ -37,6 +37,7 @@ const UserLoginPage=()=>{
     }
 
     const handleGoogleSuccess=async (credential_response)=>{
+        console.log("Sending off credential from ",credential_response)
         try{
             const response=await fetch("https://api.theaspenproject.cloud/api/user/auth/google",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({token:credential_response.credential})});
             if(!response.ok){
