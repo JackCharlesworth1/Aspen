@@ -53,7 +53,7 @@ app.use("/api/user/",logger)
 
 app.use("/api/species/",species_routes)
 
-app.use("/api/user",user_routes)
+app.use("/api/user/",user_routes)
 
 app.use('/api/static/images',express.static('static/images'))
 
