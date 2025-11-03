@@ -10,40 +10,19 @@ const app=express()
 
 const PORT=process.env.PORT||7000
 
-const allowed_origins=['https://theaspenproject.cloud','https://api.theaspenproject.cloud']
 
-/*app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-    if (allowed_origins.indexOf(origin) === -1) {
-      return callback(new Error('The origin is not allowed by CORS'), false);
-    }
-    return callback(null, true);
-  },
+app.use(cors({
+  origin: ['https://theaspenproject.cloud','https://api.theaspenproject.cloud'],
   methods: ['GET', 'POST', 'PUT', 'DELETE','OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: false,
-}))*/
-
-app.use(cors())
+}))
 
 app.options('*',cors())
 
-app.use('/api/species', (req, res, next) => {
-  if (req.is('application/json')) {
-    express.json()(req, res, next);
-  } else {
-    next();
-  }
-});
+app.use('/api/species', express.json());
 
-app.use('/api/user', (req, res, next) => {
-  if (req.is('application/json')) {
-    express.json()(req, res, next);
-  } else {
-    next();
-  }
-});
+app.use('/api/user', express.json());
 
 app.use("/api/species/",logger)
 
