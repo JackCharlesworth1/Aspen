@@ -14,7 +14,7 @@ const GOOGLE_OAUTH_CLIENT=new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const registrationHandler=async(req,res)=>{
     if(req.body.username&&req.body.email&&req.body.password){
-        if(!req.username.match(/[^0-9a-z]/i))
+        if(!req.username.match(/[^0-9a-z]/i)){
             if(req.body.email.includes("@")&&req.body.email.includes(".")){
                 const result=await addUser(req.body.username,req.body.email,req.body.password,"user")
                 //If we returned anything, it is an error
