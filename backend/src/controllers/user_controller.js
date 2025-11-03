@@ -203,6 +203,8 @@ const googleOAuthTokenGenerationHandler=async(req,res)=>{
             }
         }
 
+   }catch(error){
+        console.log("Error when issuing JWT token for a user logging in with google",error)
    }
    res.end();
 }
