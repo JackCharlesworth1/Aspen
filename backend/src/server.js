@@ -18,7 +18,7 @@ app.use(cors({
   credentials: false,
 }))
 
-app.options('*',cors())
+app.options('/*anypath',cors())
 
 app.use('/api/species', express.json());
 
@@ -31,9 +31,9 @@ app.use("/api/species",verifyUserAuthenticationHeader)
 app.use("/api/user",logger)
 
 app.use("/api/species",species_routes)
-/*
+
 app.use("/api/user",user_routes)
-*/
+
 app.use('/api/static/images',express.static('static/images'))
 
 app.use('/api/static/audio',express.static('static/audio'))
