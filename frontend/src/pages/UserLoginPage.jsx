@@ -72,7 +72,9 @@ const UserLoginPage=()=>{
                 <div style={{margin:"20px"}}>
                     <SubmitButton />
                 </div>
-                <GoogleLogin style={{margin:"20px"}} onSuccess={handleGoogleSuccess} onError={()=>{setErrorMessage("Login With Google Failed")}} />
+                <div style={{margin:"20px",filter:"grayscale(100%) contrast(1.4)"}} >
+                    <GoogleLogin onSuccess={handleGoogleSuccess} onError={()=>{setErrorMessage("Login With Google Failed")}} />
+                </div>
             </form>
         </div>
     )
