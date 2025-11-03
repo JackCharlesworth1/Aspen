@@ -13,7 +13,7 @@ const UserPickSpeciesPage=()=>{
 
     return (
             <>
-                <button style={{position:"sticky",marginLeft:"5px",marginTop:"20px"}} className={styles.RandomButton} title="Go to account screen" onClick={navigateToAccountPage}>
+                <button style={{position:"absolute",marginLeft:"5px",marginTop:"20px"}} className={styles.RandomButton} title="Go to account screen" onClick={navigateToAccountPage}>
                         <FontAwesomeIcon icon={faUser} />
                 </button>
                 <SpeciesTable linkPrefix="/user/map/"/>
