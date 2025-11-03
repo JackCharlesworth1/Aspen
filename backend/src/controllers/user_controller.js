@@ -173,10 +173,10 @@ const addUserSubmittedSightings=async (req,res)=>{
 
 const googleOAuthTokenGenerationHandler=async(req,res)=>{
    const auth_credential=req.body;
-   console.log("-------------------------------------Google Auth Credential Attempt",auth_credential,typeof auth_credential)
+   console.log("-------------------------------------Google Auth Credential Attempt",auth_credential.token,typeof auth_credential.token)
    try{
         const ticket=await GOOGLE_OAUTH_CLIENT.verifyIdToken({
-            idToken:auth_credential,
+            idToken:auth_credential.token,
             audience:process.env.GOOGLE_CLIENT_ID,
         })
         const payload=ticket.getPayload();
