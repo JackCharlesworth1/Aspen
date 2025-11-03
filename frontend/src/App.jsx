@@ -13,6 +13,8 @@ import UserAccountMethodPage from './pages/UserAccountMethodPage.jsx'
 import UserLoginPage from './pages/UserLoginPage.jsx'
 import UserRegisterPage from './pages/UserRegisterPage.jsx'
 import UserRequestErrorPage from './pages/UserRequestErrorPage.jsx'
+import AccountPageLayout from './layouts/AccountPageLayout.jsx'
+import AccountPage from './pages/AccountPage.jsx'
 import LandingPanelLayout from './layouts/LandingPanelLayout.jsx'
 import LandingPage from './pages/LandingPage.jsx'
 import NotFoundPage from './pages/NotFoundPage.jsx'
@@ -38,9 +40,14 @@ function App() {
                     <Route path="/user/request-error" element={<UserRequestErrorPage />} />
                     <Route path="/user/*" element={<NotFoundPage redirect="/user/pick-species/"/>} />
                 </Route>,
+                <Route path="/account/" element={<AccountPageLayout />}>
+                    <Route path="/account/" element={<AccountPage />} />
+                    <Route path="/account/*" element={<NotFoundPage redirect="/user/account-method/" />} />
+                </Route>,
                 <Route path="/landing/" element={<LandingPanelLayout />}>
                     <Route path="/landing/" element={<LandingPage />} />
                 </Route>,
+
                 <Route path="/" element={<Navigate to="/landing/" replace />} />,
                 <Route path="*" element={<NotFoundPage redirect="/landing/"/>} />
             ]

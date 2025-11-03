@@ -2,6 +2,7 @@ import {useEffect,useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
+import {faUser} from '@fortawesome/free-solid-svg-icons'
 import {faReply} from '@fortawesome/free-solid-svg-icons';
 import SpeciesCard from './SpeciesCard.jsx'
 import LinkDescription from './LinkDescription.jsx'
@@ -113,6 +114,10 @@ const SpeciesMap=({species_name})=>{
             setLinkSelected(index);
         }
 
+        const navigateToAccountPage=()=>{
+            navigate("/account")
+        }
+
         const closeLinkInfo=()=>{
             setLinkSelected(null);
         }
@@ -132,6 +137,12 @@ const SpeciesMap=({species_name})=>{
                     <>
                         <FontAwesomeIcon icon={faReply} />
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </>
+                </button>
+                <button className={styles.ReturnButton} title="Go back to account screen" onClick={navigateToAccountPage}>
+                    <>
+                        <FontAwesomeIcon icon={faReply} />
+                        <FontAwesomeIcon icon={faUser} />
                     </>
                 </button>
 
