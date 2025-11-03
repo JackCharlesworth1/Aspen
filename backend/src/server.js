@@ -24,15 +24,15 @@ app.use('/api/species', express.json());
 
 app.use('/api/user', express.json());
 
-app.use("/api/species/",logger)
+app.use("/api/species",logger)
 
-app.use("/api/species/",verifyUserAuthenticationHeader)
+app.use("/api/species",verifyUserAuthenticationHeader)
 
-app.use("/api/user/",logger)
+app.use("/api/user",logger)
 
-app.use("/api/species/",species_routes)
+app.use("/api/species",species_routes)
 
-app.use("/api/user/",user_routes)
+app.use("/api/user",user_routes)
 
 app.use('/api/static/images',express.static('static/images'))
 
