@@ -60,6 +60,7 @@ const UserStats=({user_seen,user_sightings})=>{
 
 
 	const mixSightings=()=>{
+        console.log("User Sightings:",user_sightings)
 		const user_sightings_count={}
 		for(let i=0;i<user_sightings.length;i++){
 			if(Object.keys(user_sightings_count).includes(user_sightings[i])){
@@ -68,6 +69,7 @@ const UserStats=({user_seen,user_sightings})=>{
 				user_sightings_count[user_sightings[i]]=1;
 			}	
 		}
+        console.log("User Sightings Count",user_sightings_count)
 		const sorted_sightings=[];
 		sorted_sightings.push(user_sightings[0])
 		for(let j=0;j<Object.keys(user_sightings_count).length;j++){
@@ -81,6 +83,7 @@ const UserStats=({user_seen,user_sightings})=>{
 				sorted_sightings.splice(assumed_index,0,Object.keys(user_sightings_count)[j])
 			}
 		}
+        console.log("Sorted Sightings:",sorted_sightings)
 		const ordered_sightings=[]
 		for(let k=0;k<user_sightings_count[sorted_sightings[0]];k++){
 			ordered_sightings.push(sorted_sightings[0]);
@@ -95,6 +98,7 @@ const UserStats=({user_seen,user_sightings})=>{
 				}
 			}
 		}
+        console.log("Ordered Sightings");
 		setMixedSightings(ordered_sightings)
 		
 	}
