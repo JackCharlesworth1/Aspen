@@ -44,13 +44,13 @@ const UserStats=({user_seen,user_sightings})=>{
 			sorted_tag_data.push(tags_data[0])
 			for(let m=1;m<tags_data.length;m++){
 				let assumed_index=0;
-				while(tag_seen_count[sorted_tag_data[assumed_index]]>tag_seen_count[tag_data[m]]){
+				while(tag_seen_count[sorted_tag_data[assumed_index]]>tag_seen_count[tags_data[m]]){
 					assumed_index++;
 				}
 				if(assumed_index===sorted_tag_data.length){
-					sorted_tag_data.push(tag_data[m])
+					sorted_tag_data.push(tags_data[m])
 				}else{
-					sorted_tag_data.splice(assumed_index,0,tag_data[m])
+					sorted_tag_data.splice(assumed_index,0,tags_data[m])
 				}
 			}
 			setSortedSeenSpecies(sorted_tag_data)
