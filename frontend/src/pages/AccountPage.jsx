@@ -15,15 +15,15 @@ const AccountPage=()=>{
             percieved_username=percieved_username.split("<GOOGLE_USER>")[1];
         }
         setUsername(percieved_username);
-        const user_details_response=await fetch("https://api.theaspenproject.cloud/api/account/info/"+percieved_username)
+        const user_details_response=await fetch("https://api.theaspenproject.cloud/api/account/info/"+percieved_username,{headers:{"Authorization":token}})
         if((!user_details_response.Error)&&user_details_response.status===200){
             user_details_data=await user_details_response.json()
-	    if(user_details_data.sightings){
-		setUserSightings(user_details_data.sightings)
-	    }
-	    if(user_details_data.seen){
-		setUserSeen(user_details_data.seen)
-	    }
+	        if(user_details_data.sightings){
+		        setUserSightings(user_details_data.sightings)
+	        }
+	        if(user_details_data.seen){
+		        setUserSeen(user_details_data.seen)
+	        }
             console.log("Got Info About User",user_details_data)
         }else{
             console.log("An Error Occured Fetching Account Info:",user_details_response.status,user_details_response.Error)
