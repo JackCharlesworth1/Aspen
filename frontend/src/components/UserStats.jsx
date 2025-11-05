@@ -119,7 +119,7 @@ const UserStats=({user_seen,user_sightings})=>{
 				</ol>
 			</div>}
             {mixedSightings&&<div>
-                {mixedSightings.map((sighting)=><p>{sighting}</p>)}
+                {mixedSightings.map((sighting)=>{return <p>{sighting}</p>)}}
             </div>}
 		</>)
 }
