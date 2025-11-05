@@ -15,7 +15,7 @@ const UserStats=({user_seen,user_sightings})=>{
 		const token=localStorage.getItem("accessToken")
 		const species_data_response=await fetch("https://api.theaspenproject.cloud/api/species/",{headers:{"Authorization":token}});
 		const tags_response=await fetch("https://api.theaspenproject.cloud/api/species/tags/",{headers:{"Authorization":token}});
-		if(!(species_data_response.status===200&&tag_response.status===200)){
+		if(!(species_data_response.status===200&&tags_response.status===200)){
 			return;
 		}
 		const species_data=await species_data_response.json()
@@ -36,7 +36,7 @@ const UserStats=({user_seen,user_sightings})=>{
 				}
 				for(let l=0;l<tags_data.length;l++){
 					if(species_object_to_index.SpeciesTags.includes(tags_data[l])){
-						tags_seen_count[tags_data[l]]=tags_seen_count[tags_data[l]]+1;	
+						tag_seen_count[tags_data[l]]=tag_seen_count[tags_data[l]]+1;	
 					}
 				}
 			}
@@ -50,7 +50,7 @@ const UserStats=({user_seen,user_sightings})=>{
 				if(assumed_index===sorted_tag_data.length){
 					sorted_tag_data.push(tag_data[m])
 				}else{
-					sorted_tag_data.insert(assumed_index,tag_data[m])
+					sorted_tag_data.splice(assumed_index,0,tag_data[m])
 				}
 			}
 			setSortedSeenSpecies(sorted_tag_data)
@@ -60,9 +60,9 @@ const UserStats=({user_seen,user_sightings})=>{
 
 
 	const mixSightings=()=>{
-		user_sightings_count={}
+		const user_sightings_count={}
 		for(let i=0;i<user_sightings.length;i++){
-			if(user_sightings_count.keys().includes(user_sightings[i])){
+			if(Object.keys(user_sightings_count).includes(user_sightings[i])){
 				user_sightings_count[user_sightings[i]]=user_sightings_count[user_sightings[i]]+1
 			}else{
 				user_sightings_count[user_sightings[i]]=1;
@@ -70,15 +70,15 @@ const UserStats=({user_seen,user_sightings})=>{
 		}
 		const sorted_sightings=[];
 		sorted_sightings.push(user_sightings[0])
-		for(let j=0;j<user_sightings_count.keys().length;j++){
+		for(let j=0;j<Object.keys(user_sightings_count).length;j++){
 			let assumed_index=0;	
-			while(user_sightings_count[sorted_sightings[assumed_index]]>user_sightings_count[user_sightings_count.keys()[j]]){
+			while(user_sightings_count[sorted_sightings[assumed_index]]>user_sightings_count[Object.keys(user_sightings_count)[j]]){
 				assumed_index++
 			}
 			if(assumed_index===sorted_sightings.length){
-				sorted_sightings.push(user_sightings_count.keys()[j])
+				sorted_sightings.push(Object.keys(user_sightings_count)[j])
 			}else{
-				sorted_sightings.insert(assumed_index,user_sightings_count.keys()[j])
+				sorted_sightings.splice(assumed_index,0,Object.keys(user_sightings_count)[j])
 			}
 		}
 		const ordered_sightings=[]
@@ -91,7 +91,7 @@ const UserStats=({user_seen,user_sightings})=>{
 				if(places_per_interval*m>=ordered_sightings.length){
 					ordered_sightings.push(sorted_sightings[l])
 				}else{
-					ordered_sightings.insert(places_per_interval*m,sorted_sightings[l])
+					ordered_sightings.splice(places_per_interval*m,0,sorted_sightings[l])
 				}
 			}
 		}
@@ -104,17 +104,17 @@ const UserStats=({user_seen,user_sightings})=>{
 			{(sortedSeenSpecies.length>0)&&<div>
 				<h5>What you see the most:</h5>
 				<ol>
-					{(sortedSeenSpecies.length>0)&&<li>sortedSeenSpecies[0]</li>}
-					{(sortedSeenSpecies.length>1)&&<li>sortedSeenSpecies[1]</li>}
-					{(sortedSeenSpecies.length>2)&&<li>sortedSeenSpecies[2]</li>}
+					{(sortedSeenSpecies.length>0)&&<li>{sortedSeenSpecies[0]}</li>}
+					{(sortedSeenSpecies.length>1)&&<li>{sortedSeenSpecies[1]}</li>}
+					{(sortedSeenSpecies.length>2)&&<li>{sortedSeenSpecies[2]}</li>}
 				</ol>
 			</div>}
 			{(sortedSeenSpecies.length>4)&&<div>
 				<h5>What you see least:</h5>
 				<ol>
-					{(sortedSeenSpecies.length>4)&&<li>sortedSeenSpecies[sortedSeenSpecies.length-1]</li>}
-					{(sortedSeenSpecies.length>5)&&<li>sortedSeenSpecies[sortedSeenSpecies.length-2]</li>}
-					{(sortedSeenSpecies.length>6)&&<li>sortedSeenSpecies[sortedSeenSpecies.length-6]</li>}
+					{(sortedSeenSpecies.length>4)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-1]}</li>}
+					{(sortedSeenSpecies.length>5)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-2]}</li>}
+					{(sortedSeenSpecies.length>6)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-3]}</li>}
 				</ol>
 			</div>}
 
