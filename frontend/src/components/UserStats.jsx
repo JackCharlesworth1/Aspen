@@ -11,7 +11,7 @@ const UserStats=({user_seen,user_sightings})=>{
 		mixSightings();
 	}
 
-	const sortSeenSpecies=()=>{
+	const sortSeenSpecies=async ()=>{
 		const token=localStorage.getItem("accessToken")
 		const species_data_response=await fetch("https://api.theaspenproject.cloud/api/species/",{headers:{"Authorization":token}});
 		const tags_response=await fetch("https://api.theaspenproject.cloud/api/species/tags/",{headers:{"Authorization":token}});
