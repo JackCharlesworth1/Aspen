@@ -104,21 +104,23 @@ const UserStats=({user_seen,user_sightings})=>{
 			{(sortedSeenSpecies.length>0)&&<div>
 				<h5>What you see the most:</h5>
 				<ol>
-					{(sortedSeenSpecies.length>0)&&<li>{sortedSeenSpecies[0]}</li>}
-					{(sortedSeenSpecies.length>1)&&<li>{sortedSeenSpecies[1]}</li>}
-					{(sortedSeenSpecies.length>2)&&<li>{sortedSeenSpecies[2]}</li>}
+                   	{(sortedSeenSpecies.length>4)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-1]}</li>}
+					{(sortedSeenSpecies.length>5)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-2]}</li>}
+					{(sortedSeenSpecies.length>6)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-3]}</li>}
+
 				</ol>
 			</div>}
 			{(sortedSeenSpecies.length>4)&&<div>
 				<h5>What you see least:</h5>
 				<ol>
-					{(sortedSeenSpecies.length>4)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-1]}</li>}
-					{(sortedSeenSpecies.length>5)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-2]}</li>}
-					{(sortedSeenSpecies.length>6)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-3]}</li>}
+                    {(sortedSeenSpecies.length>0)&&<li>{sortedSeenSpecies[0]}</li>}
+					{(sortedSeenSpecies.length>1)&&<li>{sortedSeenSpecies[1]}</li>}
+					{(sortedSeenSpecies.length>2)&&<li>{sortedSeenSpecies[2]}</li>}
 				</ol>
 			</div>}
-
-
+            {mixedSightings&&<div>
+                {mixedSightings.map((sighting)=><p>{sighting}</p>)}
+            </div>}
 		</>)
 }
 
