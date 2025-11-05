@@ -10,12 +10,13 @@ const AccountPage=()=>{
 
     const fetchAccountInfo=async ()=>{
         let percieved_username=localStorage.getItem("client_percieved_username")
+        const actual_username=percieved_username;
         const token=localStorage.getItem("accessToken")
         if(percieved_username.includes("<GOOGLE_USER>")){
             percieved_username=percieved_username.split("<GOOGLE_USER>")[1];
         }
         setUsername(percieved_username);
-        const user_details_response=await fetch("https://api.theaspenproject.cloud/api/account/info/"+percieved_username,{headers:{"Authorization":token}})
+        const user_details_response=await fetch("https://api.theaspenproject.cloud/api/account/info/"+actual_username,{headers:{"Authorization":token}})
         if((!user_details_response.Error)&&user_details_response.status===200){
             const user_details_data=await user_details_response.json()
 	        if(user_details_data.sightings){
