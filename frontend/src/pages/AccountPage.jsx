@@ -17,7 +17,7 @@ const AccountPage=()=>{
         setUsername(percieved_username);
         const user_details_response=await fetch("https://api.theaspenproject.cloud/api/account/info/"+percieved_username,{headers:{"Authorization":token}})
         if((!user_details_response.Error)&&user_details_response.status===200){
-            user_details_data=await user_details_response.json()
+            const user_details_data=await user_details_response.json()
 	        if(user_details_data.sightings){
 		        setUserSightings(user_details_data.sightings)
 	        }
