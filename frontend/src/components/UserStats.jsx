@@ -28,7 +28,7 @@ const UserStats=({user_seen,user_sightings})=>{
 				tag_seen_count[tags_data[i]]=0;
 			}
 			for(let j=0;j<user_seen.length;j++){
-				const species_object_to_index=null;
+				let species_object_to_index=null;
 				for(let k=0;k<species_data.length;k++){
 					if(species_data[k].SpeciesName===user_seen[j]){
 						species_object_to_index=speciesData[k]
