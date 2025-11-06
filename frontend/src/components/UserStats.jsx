@@ -42,7 +42,6 @@ const UserStats=({user_seen,user_sightings})=>{
 				    }
                 }
 			}
-            console.log("Leaderboards look like",tag_seen_count)
 			const sorted_tag_data=[];
 			sorted_tag_data.push(tags_data[0])
 			for(let m=1;m<tags_data.length;m++){
@@ -63,7 +62,6 @@ const UserStats=({user_seen,user_sightings})=>{
 
 
 	const mixSightings=()=>{
-        console.log("User Sightings:",user_sightings)
 		const user_sightings_count={}
 		for(let i=0;i<user_sightings.length;i++){
 			if(Object.keys(user_sightings_count).includes(user_sightings[i])){
@@ -72,7 +70,6 @@ const UserStats=({user_seen,user_sightings})=>{
 				user_sightings_count[user_sightings[i]]=1;
 			}	
 		}
-        console.log("User Sightings Count",user_sightings_count)
 		const sorted_sightings=[];
 		sorted_sightings.push(user_sightings[0])
 		for(let j=1;j<Object.keys(user_sightings_count).length;j++){
@@ -86,7 +83,6 @@ const UserStats=({user_seen,user_sightings})=>{
 				sorted_sightings.splice(assumed_index,0,Object.keys(user_sightings_count)[j])
 			}
 		}
-        console.log("Sorted Sightings:",sorted_sightings)
 		const ordered_sightings=[]
 		for(let k=0;k<user_sightings_count[sorted_sightings[0]];k++){
 			ordered_sightings.push(sorted_sightings[0]);
@@ -95,7 +91,6 @@ const UserStats=({user_seen,user_sightings})=>{
 		    for(let l=1;l<sorted_sightings.length;l++){
 			    const places_per_interval=Math.ceil((ordered_sightings.length-1)/user_sightings_count[sorted_sightings[l]])
 			    for(let m=user_sightings_count[sorted_sightings[l]];m>0;m--){
-                    console.log("Calculating the ",m,"th insertion, with",places_per_interval,"as interval on list",ordered_sightings)
 				    if(places_per_interval*m>=ordered_sightings.length){
 					    ordered_sightings.push(sorted_sightings[l])
 				    }else{
@@ -104,7 +99,6 @@ const UserStats=({user_seen,user_sightings})=>{
 			    }
 		    }
         }
-        console.log("Ordered Sightings",ordered_sightings);
 		setMixedSightings(ordered_sightings)
 		
 	}
@@ -114,18 +108,18 @@ const UserStats=({user_seen,user_sightings})=>{
 			{(sortedSeenSpecies.length>0)&&<div>
 				<h5>What you see the most:</h5>
 				<ol>
-                   	{(sortedSeenSpecies.length>4)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-1]}</li>}
-					{(sortedSeenSpecies.length>5)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-2]}</li>}
-					{(sortedSeenSpecies.length>6)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-3]}</li>}
+                    {(sortedSeenSpecies.length>0)&&<li>{sortedSeenSpecies[0]}</li>}
+					{(sortedSeenSpecies.length>1)&&<li>{sortedSeenSpecies[1]}</li>}
+					{(sortedSeenSpecies.length>2)&&<li>{sortedSeenSpecies[2]}</li>}
 
 				</ol>
 			</div>}
 			{(sortedSeenSpecies.length>4)&&<div>
 				<h5>What you see least:</h5>
 				<ol>
-                    {(sortedSeenSpecies.length>0)&&<li>{sortedSeenSpecies[0]}</li>}
-					{(sortedSeenSpecies.length>1)&&<li>{sortedSeenSpecies[1]}</li>}
-					{(sortedSeenSpecies.length>2)&&<li>{sortedSeenSpecies[2]}</li>}
+                    {(sortedSeenSpecies.length>4)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-1]}</li>}
+					{(sortedSeenSpecies.length>5)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-2]}</li>}
+					{(sortedSeenSpecies.length>6)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-3]}</li>}
 				</ol>
 			</div>}
             {mixedSightings&&<div>
