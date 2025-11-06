@@ -30,6 +30,7 @@ const UserStats=({user_seen,user_sightings})=>{
 			for(let j=0;j<user_seen.length;j++){
 				let species_object_to_index=null;
 				for(let k=0;k<species_data.length;k++){
+                    console.log(species_data[k].SpeciesName,"Vs",user_seen[j])
 					if(species_data[k].SpeciesName===user_seen[j]){
 						species_object_to_index=speciesData[k]
 					}
