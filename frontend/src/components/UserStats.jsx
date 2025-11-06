@@ -84,9 +84,11 @@ const UserStats=({actual_username,user_seen,user_sightings})=>{
 			}
 		}
 		const ordered_sightings=[]
-		for(let k=0;k<user_sightings_count[sorted_sightings[0]];k++){
-			ordered_sightings.push(sorted_sightings[0].replace(" ","_").toLowerCase()+"/"+k.toString()+".jpg");
-		}
+        if(sorted_sightings.length!==0){
+		    for(let k=0;k<user_sightings_count[sorted_sightings[0]];k++){
+			    ordered_sightings.push(sorted_sightings[0].replace(" ","_").toLowerCase()+"/"+k.toString()+".jpg");
+		    }
+        }
         if(sorted_sightings.length>1){
 		    for(let l=1;l<sorted_sightings.length;l++){
 			    const places_per_interval=Math.ceil((ordered_sightings.length-1)/user_sightings_count[sorted_sightings[l]])
