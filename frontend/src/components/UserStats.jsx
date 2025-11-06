@@ -126,9 +126,7 @@ const UserStats=({actual_username,user_seen,user_sightings})=>{
 					{(sortedSeenSpecies.length>6)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-3]}</li>}
 				</ol>
 			</div>}
-            {mixedSightings&&actual_username&&<Gallery imageData={mixedSightings}/><div>
-                {mixedSightings.map((sighting)=>{return <img src={"https://api.theaspenproject.cloud/api/static/user/"+actual_username.replace(" ","_")+"/images/"+sighting}/>})}
-            </div>}
+            {mixedSightings&&actual_username&&<Gallery imageData={mixedSightings}/>}
 		</>)
 }
 
