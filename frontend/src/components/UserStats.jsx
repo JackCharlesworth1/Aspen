@@ -1,5 +1,5 @@
 import {useState,useEffect} from 'react'
-const UserStats=({user_seen,user_sightings})=>{
+const UserStats=({actual_username,user_seen,user_sightings})=>{
 
 	const [speciesData,setSpeciesData]=useState([]);
 	const [tags,setTags]=useState([])
@@ -85,16 +85,16 @@ const UserStats=({user_seen,user_sightings})=>{
 		}
 		const ordered_sightings=[]
 		for(let k=0;k<user_sightings_count[sorted_sightings[0]];k++){
-			ordered_sightings.push(sorted_sightings[0]);
+			ordered_sightings.push(sorted_sightings[0].replace(" ","_").toLowerCase()+"/"+k.toString()+".jpg");
 		}
         if(sorted_sightings.length>1){
 		    for(let l=1;l<sorted_sightings.length;l++){
 			    const places_per_interval=Math.ceil((ordered_sightings.length-1)/user_sightings_count[sorted_sightings[l]])
 			    for(let m=user_sightings_count[sorted_sightings[l]];m>0;m--){
 				    if(places_per_interval*m>=ordered_sightings.length){
-					    ordered_sightings.push(sorted_sightings[l])
+					    ordered_sightings.push(sorted_sightings[l].replace(" ","_").toLowerCase()+"/"+m.toString()+".jpg")
 				    }else{
-					    ordered_sightings.splice(places_per_interval*m,0,sorted_sightings[l])
+					    ordered_sightings.splice(places_per_interval*m,0,sorted_sightings[l].replace(" ","_").toLowerCase()+"/"+m.toString()+".jpg")
 				    }
 			    }
 		    }
@@ -123,7 +123,7 @@ const UserStats=({user_seen,user_sightings})=>{
 				</ol>
 			</div>}
             {mixedSightings&&<div>
-                {mixedSightings.map((sighting)=>{return <p>{sighting}</p>})}
+                {mixedSightings.map((sighting)=>{return <img src={"https://api.theaspenproject.cloud/api/static/user/"+actual_username.toLowerCase().replace(" ","_")+"/images/"+sighting}/>})}
             </div>}
 		</>)
 }
