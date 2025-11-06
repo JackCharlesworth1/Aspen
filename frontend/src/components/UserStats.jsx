@@ -34,11 +34,14 @@ const UserStats=({user_seen,user_sightings})=>{
 						species_object_to_index=speciesData[k]
 					}
 				}
-				for(let l=0;l<tags_data.length;l++){
-					if(species_object_to_index.SpeciesTags.includes(tags_data[l])){
-						tag_seen_count[tags_data[l]]=tag_seen_count[tags_data[l]]+1;	
-					}
-				}
+                console.log("Species Data:",species_data,"Object To Index",species_object_to_index)
+                if(species_object_to_index){
+				    for(let l=0;l<tags_data.length;l++){
+					    if(species_object_to_index.SpeciesTags.includes(tags_data[l])){
+						    tag_seen_count[tags_data[l]]=tag_seen_count[tags_data[l]]+1;	
+					    }
+				    }
+                }
 			}
 			const sorted_tag_data=[];
 			sorted_tag_data.push(tags_data[0])
