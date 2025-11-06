@@ -9,6 +9,7 @@ const getAccountInfoHandler=(req,res)=>{
         res=writeUserReturnResponse(res,{"Error":"The username associated with the JWT token does not match that which you are trying to access - "+req.params.username})
     }else{
         const result=getUserDataByName(db_connection,req.params.username) 
+        console.log("Returning results to user:",result);
         res=writeUserReturnResponse(res,result)
     }
     res.end()
