@@ -13,8 +13,8 @@ const AccountPage=()=>{
         let percieved_username=localStorage.getItem("client_percieved_username")
         const actual_username=percieved_username;
         const token=localStorage.getItem("accessToken")
-        if(percieved_username.includes("<GOOGLE_USER>")){
-            percieved_username=percieved_username.split("<GOOGLE_USER>")[1];
+        if(percieved_username.includes("^GOOGLE_USER^")){
+            percieved_username=percieved_username.split("^GOOGLE_USER^")[1];
         }
         setUsername(percieved_username);
         setActualUsername(actual_username)

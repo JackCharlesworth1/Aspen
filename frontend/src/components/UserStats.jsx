@@ -88,7 +88,7 @@ const UserStats=({actual_username,user_seen,user_sightings})=>{
 		const ordered_sightings=[]
         if(sorted_sightings.length!==0){
 		    for(let k=0;k<user_sightings_count[sorted_sightings[0]];k++){
-			    ordered_sightings.push("https://api.theaspenproject.cloud/api/static/user/"+actual_username.replace(" ","_").replace("<","\\<").replace(">","\\>")+"/images/"+sorted_sightings[0].replace(" ","_").toLowerCase()+"/"+k.toString()+".jpg");
+			    ordered_sightings.push("https://api.theaspenproject.cloud/api/static/user/"+actual_username.replace(" ","_")+"/images/"+sorted_sightings[0].replace(" ","_").toLowerCase()+"/"+k.toString()+".jpg");
 		    }
         }
         if(sorted_sightings.length>1){

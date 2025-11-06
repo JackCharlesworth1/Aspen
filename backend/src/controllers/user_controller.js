@@ -183,7 +183,7 @@ const googleOAuthTokenGenerationHandler=async(req,res)=>{
         const {googleID,email,name}=payload;
 
         const email_split=email.split("@")
-        const assumed_username="<GOOGLE_USER>"+email_split[0];
+        const assumed_username="^GOOGLE_USER^"+email_split[0];
 
         const user_query_response=await getUser(assumed_username)
 
