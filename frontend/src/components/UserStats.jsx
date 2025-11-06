@@ -91,6 +91,7 @@ const UserStats=({user_seen,user_sightings})=>{
 		for(let l=1;l<sorted_sightings.length;l++){
 			const places_per_interval=Math.floor(ordered_sightings.length/user_sightings_count[sorted_sightings[l]])
 			for(let m=user_sightings_count[sorted_sightings[l]];m>0;m--){
+                console.log("Calculating the ",m,"th insertion, with",places_per_interval,"as interval on list",ordered_sightings)
 				if(places_per_interval*m>=ordered_sightings.length){
 					ordered_sightings.push(sorted_sightings[l])
 				}else{
@@ -98,7 +99,7 @@ const UserStats=({user_seen,user_sightings})=>{
 				}
 			}
 		}
-        console.log("Ordered Sightings");
+        console.log("Ordered Sightings",ordered_sightings);
 		setMixedSightings(ordered_sightings)
 		
 	}
