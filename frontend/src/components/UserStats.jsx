@@ -31,7 +31,6 @@ const UserStats=({user_seen,user_sightings})=>{
 				let species_object_to_index=null;
 				for(let k=0;k<species_data.length;k++){
 					if(species_data[k].SpeciesName===user_seen[j]){
-                        console.log("Found the relevant species object")
 						species_object_to_index=species_data[k]
 					}
 				}
@@ -43,6 +42,7 @@ const UserStats=({user_seen,user_sightings})=>{
 				    }
                 }
 			}
+            console.log("Leaderboards look like",tag_seen_count)
 			const sorted_tag_data=[];
 			sorted_tag_data.push(tags_data[0])
 			for(let m=1;m<tags_data.length;m++){
