@@ -96,9 +96,9 @@ const UserStats=({actual_username,user_seen,user_sightings})=>{
 			    const places_per_interval=Math.ceil((ordered_sightings.length-1)/user_sightings_count[sorted_sightings[l]])
 			    for(let m=user_sightings_count[sorted_sightings[l]];m>0;m--){
 				    if(places_per_interval*m>=ordered_sightings.length){
-					    ordered_sightings.push("https://api.theaspenproject.cloud/api/static/user/"+actual_username.replace(" ","_")+"/images/"+sorted_sightings[l].replace(" ","_").toLowerCase()+"/"+m.toString()+".jpg")
+					    ordered_sightings.push("https://api.theaspenproject.cloud/api/static/user/"+actual_username.replace(" ","_")+"/images/"+sorted_sightings[l].replace(" ","_").toLowerCase()+"/"+(m-1).toString()+".jpg")
 				    }else{
-					    ordered_sightings.splice(places_per_interval*m,0,"https://api.theaspenproject.cloud/api/static/user/"+actual_username.replace(" ","_")+"/images/"+sorted_sightings[l].replace(" ","_").toLowerCase()+"/"+m.toString()+".jpg")
+					    ordered_sightings.splice(places_per_interval*m,0,"https://api.theaspenproject.cloud/api/static/user/"+actual_username.replace(" ","_")+"/images/"+sorted_sightings[l].replace(" ","_").toLowerCase()+"/"+(m-1).toString()+".jpg")
 				    }
 			    }
 		    }
