@@ -48,7 +48,7 @@ const AccountPage=()=>{
         <div>
             <h1>Account</h1>
             {username&&<h3>{username}</h3>}
-	        <UserStats actual_username={actual_username} user_seen={userSeen} user_sightings={userSightings}/>
+	        <UserStats actual_username={actualUsername} user_seen={userSeen} user_sightings={userSightings}/>
             <button onClick={userClickedToLogout}>Log Out</button>
         </div>
     )
