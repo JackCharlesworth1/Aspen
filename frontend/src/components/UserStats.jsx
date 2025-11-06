@@ -1,4 +1,6 @@
 import {useState,useEffect} from 'react'
+import Gallery from './Gallery.jsx'
+
 const UserStats=({actual_username,user_seen,user_sightings})=>{
 
 	const [speciesData,setSpeciesData]=useState([]);
@@ -86,7 +88,7 @@ const UserStats=({actual_username,user_seen,user_sightings})=>{
 		const ordered_sightings=[]
         if(sorted_sightings.length!==0){
 		    for(let k=0;k<user_sightings_count[sorted_sightings[0]];k++){
-			    ordered_sightings.push(sorted_sightings[0].replace(" ","_").toLowerCase()+"/"+k.toString()+".jpg");
+			    ordered_sightings.push("https://api.theaspenproject.cloud/api/static/user/"+actual_username.replace(" ","_")+"/images/"+sorted_sightings[0].replace(" ","_").toLowerCase()+"/"+k.toString()+".jpg");
 		    }
         }
         if(sorted_sightings.length>1){
@@ -94,9 +96,9 @@ const UserStats=({actual_username,user_seen,user_sightings})=>{
 			    const places_per_interval=Math.ceil((ordered_sightings.length-1)/user_sightings_count[sorted_sightings[l]])
 			    for(let m=user_sightings_count[sorted_sightings[l]];m>0;m--){
 				    if(places_per_interval*m>=ordered_sightings.length){
-					    ordered_sightings.push(sorted_sightings[l].replace(" ","_").toLowerCase()+"/"+m.toString()+".jpg")
+					    ordered_sightings.push("https://api.theaspenproject.cloud/api/static/user/"+actual_username.replace(" ","_")+"/images/"+sorted_sightings[l].replace(" ","_").toLowerCase()+"/"+m.toString()+".jpg")
 				    }else{
-					    ordered_sightings.splice(places_per_interval*m,0,sorted_sightings[l].replace(" ","_").toLowerCase()+"/"+m.toString()+".jpg")
+					    ordered_sightings.splice(places_per_interval*m,0,"https://api.theaspenproject.cloud/api/static/user/"+actual_username.replace(" ","_")+"/images/"+sorted_sightings[l].replace(" ","_").toLowerCase()+"/"+m.toString()+".jpg")
 				    }
 			    }
 		    }
@@ -124,8 +126,8 @@ const UserStats=({actual_username,user_seen,user_sightings})=>{
 					{(sortedSeenSpecies.length>6)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-3]}</li>}
 				</ol>
 			</div>}
-            {mixedSightings&&actual_username&&<div>
-                {mixedSightings.map((sighting)=>{return <img src={"https://api.theaspenproject.cloud/api/static/user/"+actual_username.toLowerCase().replace(" ","_")+"/images/"+sighting}/>})}
+            {mixedSightings&&actual_username&&<Gallery imageData={mixedSightings}/><div>
+                {mixedSightings.map((sighting)=>{return <img src={"https://api.theaspenproject.cloud/api/static/user/"+actual_username.replace(" ","_")+"/images/"+sighting}/>})}
             </div>}
 		</>)
 }
