@@ -5,6 +5,7 @@ import UserStats from '../components/UserStats.jsx'
 const AccountPage=()=>{
     const navigate=useNavigate();
     const [username,setUsername]=useState(null);
+    const [actualUsername,setActualUsername]=useState(null);
     const [userSeen,setUserSeen]=useState([]);
     const [userSightings,setUserSightings]=useState([]);
 
@@ -16,6 +17,7 @@ const AccountPage=()=>{
             percieved_username=percieved_username.split("<GOOGLE_USER>")[1];
         }
         setUsername(percieved_username);
+        setActualUsername(actual_username)
         const user_details_response=await fetch("https://api.theaspenproject.cloud/api/account/info/"+actual_username,{headers:{"Authorization":token}})
         if((!user_details_response.Error)&&user_details_response.status===200){
             const user_details_data=await user_details_response.json()
@@ -46,7 +48,7 @@ const AccountPage=()=>{
         <div>
             <h1>Account</h1>
             {username&&<h3>{username}</h3>}
-	        <UserStats user_seen={userSeen} user_sightings={userSightings}/>
+	        <UserStats actual_username={actual_username} user_seen={userSeen} user_sightings={userSightings}/>
             <button onClick={userClickedToLogout}>Log Out</button>
         </div>
     )
