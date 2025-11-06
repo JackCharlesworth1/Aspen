@@ -4,7 +4,7 @@ import {getDBConnection} from '../database_scripts/species_database.js'
 
 const db_connection=await getDBConnection();
 
-const getAccountInfoHandler=(req,res)=>{
+const getAccountInfoHandler=async (req,res)=>{
     if(!checkTokenBelongsToUser(req.header('Authorization'),req.params.username)){
         res=writeUserReturnResponse(res,{"Error":"The username associated with the JWT token does not match that which you are trying to access - "+req.params.username})
     }else{
