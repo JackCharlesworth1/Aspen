@@ -30,13 +30,11 @@ const UserStats=({user_seen,user_sightings})=>{
 			for(let j=0;j<user_seen.length;j++){
 				let species_object_to_index=null;
 				for(let k=0;k<species_data.length;k++){
-                    console.log(species_data[k].SpeciesName,"Vs",user_seen[j],typeof species_data[k].SpeciesName,typeof user_seen[j])
 					if(species_data[k].SpeciesName===user_seen[j]){
                         console.log("Found the relevant species object")
-						species_object_to_index=speciesData[k]
+						species_object_to_index=species_data[k]
 					}
 				}
-                console.log("Species Data:",species_data,"Object To Index",species_object_to_index)
                 if(species_object_to_index){
 				    for(let l=0;l<tags_data.length;l++){
 					    if(species_object_to_index.SpeciesTags.includes(tags_data[l])){
