@@ -72,7 +72,7 @@ const UserStats=({user_seen,user_sightings})=>{
         console.log("User Sightings Count",user_sightings_count)
 		const sorted_sightings=[];
 		sorted_sightings.push(user_sightings[0])
-		for(let j=0;j<Object.keys(user_sightings_count).length;j++){
+		for(let j=1;j<Object.keys(user_sightings_count).length;j++){
 			let assumed_index=0;	
 			while(user_sightings_count[sorted_sightings[assumed_index]]>user_sightings_count[Object.keys(user_sightings_count)[j]]){
 				assumed_index++
