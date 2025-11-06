@@ -40,13 +40,13 @@ const AccountPage=()=>{
 
     useEffect(()=>{
        fetchAccountInfo(); 
-    },[username])
+    },[])
 
     return(
         <div>
             <h1>Account</h1>
             {username&&<h3>{username}</h3>}
-	    <UserStats user_seen={userSeen} user_sightings={userSightings}/>
+	        <UserStats user_seen={userSeen} user_sightings={userSightings}/>
             <button onClick={userClickedToLogout}>Log Out</button>
         </div>
     )
