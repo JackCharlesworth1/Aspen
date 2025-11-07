@@ -30,7 +30,7 @@ const checkTokenValidity=(token,minimum_auth_level)=>{
 }
 
 const getUsernameFromToken=(token)=>{
-    return jwt.verify(token,JWT_SECRET)
+    return jwt.verify(token,JWT_SECRET).username;
 }
 
 const checkTokenBelongsToUser=(token,proposed_username)=>{
