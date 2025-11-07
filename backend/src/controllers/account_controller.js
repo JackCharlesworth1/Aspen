@@ -24,10 +24,10 @@ const getAccountInfoHandler=async (req,res)=>{
 }
 
 const createCheckoutSessionHandler=async (req,res)=>{
-    if(!req.body.accessToken){
-        res=writeUserReturnResponse(res,{"Error":"The request to create a checkout session failed because of a lack of authentication credentials (no JWT in body)"})
+    if(!req.header('Authorization')){
+        res=writeUserReturnResponse(res,{"Error":"The request to create a checkout session failed because of a lack of authentication credentials (no JWT in headers)"})
     }
-   const authenticated_username=getUsernameFromToken(req.body.accessToken)
+   const authenticated_username=getUsernameFromToken(req.header('Authorization'))
   const prices = await stripe.prices.list({
     lookup_keys: [req.body.lookup_key],
     expand: ['data.product'],
@@ -48,37 +48,32 @@ const createCheckoutSessionHandler=async (req,res)=>{
         username: authenticated_username, 
     }
   });
-
-  res.redirect(303, session.url);
+  res.json({url:session.url})
+ 
 }
 
 const createPortalSessionHandler=async(req,res)=>{
-    if(!req.body.accessToken){
-        res=writeUserReturnResponse(res,{"Error":"The request to create a checkout session failed because of a lack of authentication credentials (no JWT in body)"})
+    if(!req.header('Authorization')){
+        res=writeUserReturnResponse(res,{"Error":"The request to create a checkout session failed because of a lack of authentication credentials (no JWT in header)"})
     }
-    const authenticated_username=getUsernameFromToken(req.body.accessToken)
+    const authenticated_username=getUsernameFromToken(req.header('Authorization'))
       // For demonstration purposes, we're using the Checkout session to retrieve the customer ID.
     // Typically this is stored alongside the authenticated user in your database.
-    const { session_id } = req.body;
-    const checkoutSession = await stripe.checkout.sessions.retrieve(session_id);
-
-    await stripe.customers.update(checkoutSession.customer, {
-    metadata: {
-        username: authenticated_username
+    const user_data=getUserDataByName(db_connection,authenticated_username);
+    const customer_id=user_data.stripe_customer_id;
+    if(!customer_id){
+        res.json({url:ACCOUNT_PAGE_REDIRECT+"&message=Not%20A%20Subscriber"})
     }
-    });
-
 
   // This is the url to which the customer will be redirected when they're done
   // managing their billing with the portal.
   const returnUrl = ACCOUNT_PAGE_REDIRECT;
 
   const portalSession = await stripe.billingPortal.sessions.create({
-    customer: checkoutSession.customer,
+    customer: customer_id,
     return_url: returnUrl,
   });
-
-  res.redirect(303, portalSession.url);
+    res.json({url:portalSession.url})
 }
 
 const stripeWebhookHandler=async(req,res)=>{

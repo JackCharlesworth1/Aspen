@@ -3,6 +3,17 @@ import {useState,useEffect} from 'react'
 const PRICE_LOOKUP_KEY="pk_test_51SPOXnL7pGfYS2IvVdcc1mFxaMwaCpEawNbw3E5wQ2DnqAmaRSTDItSY4mrM2RAAfCkm1bg7tbMjoLIOyfCxYHwQ00k3DzIcHJ"
 
 const UnsubscribedManagement=({accessToken})=>{
+
+    const subscriptionButtonClicked=async (event_)=>{
+        event_.preventDefault();
+        const response=await fetch("https://api.theaspenproject.cloud/api/account/create-checkout-session",{method:"POST",headers:{"Content-Type":"application/json","Authorization":accessToken},body:JSON.stringify({lookup_key:PRICE_LOOKUP_KEY})})
+        if(!response.ok){
+            console.log("Error creating making request to start a checkout session")
+        }
+        const response_data=await response.json();
+        window.location.href=response_data.url;
+    }
+
     return (<div>
                 <h2>You are not subscribed</h2>
                 <p>This means you cannot</p>
@@ -11,15 +22,23 @@ const UnsubscribedManagement=({accessToken})=>{
                     <li>(Coming soon...) Find where to see a particular species</li>
                     <li>(Coming soon...) Identify species in a photo</li>
                 </ul>
-                <form action="https://api.theaspenproject.cloud/api/account/create-checkout-session" method="POST">
-                    <input type="hidden" name="lookup_key" value={PRICE_LOOKUP_KEY} />
-                    <input type="hidden" name="accessToken" value={accessToken} />
+                <form onSubmit={subscriptionButtonClicked}>
                     <button id="checkout-and-portal-button" type="submit">Buy Subscription (£1.99/Month)</button>
                 </form>
            </div>)
 }
 
 const SubscribedManagement=({accessToken})=>{
+
+    const portalButtonClicked=async (event_)=>{
+        event_.preventDefault();
+        const response=await fetch("https://api.theaspenproject.cloud/api/account/create-portal-session",{method:"POST",headers:{"Content-Type":"application/json","Authorization":accessToken},body:JSON.stringify({lookup_key:PRICE_LOOKUP_KEY})})
+        if(!response.ok){
+            console.log("Error creating making request to start a checkout session")
+        }
+        const response_data=await response.json();
+        window.location.href=response_data.url;
+    }
     return (<div>
                 <h2>You are subscribed</h2>
                 <p>This means you have access to</p>
@@ -28,9 +47,7 @@ const SubscribedManagement=({accessToken})=>{
                     <li>(Coming soon...) Find where to see a particular species</li>
                     <li>(Coming soon...) Species identification</li>
                 </ul>
-                <form action="https://api.theaspenproject.cloud/api/account/create-portal-session" method="POST">
-                    <input type="hidden" name="lookup_key" value={PRICE_LOOKUP_KEY} />
-                    <input type="hidden" name="accessToken" value={accessToken} />
+                <form onSubmit={portalButtonClicked}>
                     <button id="checkout-and-portal-button" type="submit">Manage billing information</button>
                 </form>
            </div>)
