@@ -1,6 +1,6 @@
 import {useState,useEffect} from 'react'
 
-const PRICE_LOOKUP_KEY="pk_test_51SPOXnL7pGfYS2IvVdcc1mFxaMwaCpEawNbw3E5wQ2DnqAmaRSTDItSY4mrM2RAAfCkm1bg7tbMjoLIOyfCxYHwQ00k3DzIcHJ"
+const PRICE_LOOKUP_KEY="aspen_subscription"
 
 const UnsubscribedManagement=({accessToken})=>{
 
