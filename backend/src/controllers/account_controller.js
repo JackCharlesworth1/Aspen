@@ -111,11 +111,11 @@ const stripeWebhookHandler=async(req,res)=>{
         subscription = event.data.object;
         status = subscription.status;
         const customer = await stripe.customers.retrieve(subscription.customer);
-        const username = customer.metadata.username;
+        const subscription_username = customer.metadata.username;
         console.log(`Subscription status is ${status}.`);
         // Then define and call a method to handle the subscription deleted.
         // handleSubscriptionDeleted(subscriptionDeleted);
-        const result=await associateUserWithStripeCustomerID(db_connection,username,null)
+        const result=await associateUserWithStripeCustomerID(db_connection,subscription_username,null)
 
         break;
       case 'checkout.session.completed':
@@ -125,10 +125,10 @@ const stripeWebhookHandler=async(req,res)=>{
         // Then define and call a method to handle the subscription created.
         // handleSubscriptionCreated(subscription);
         const session = event.data.object;
-        const username = session.metadata.username; // your internal user
+        const checkout_username = session.metadata.username; // your internal user
         const customerID = session.customer;
 
-        const result=await associateUserWithStripeCustomerID(db_connection,username,customerID)
+        const result=await associateUserWithStripeCustomerID(db_connection,checkout_username,customerID)
 
         break;
     case 'invoice.payment_succeeded':
@@ -139,7 +139,7 @@ const stripeWebhookHandler=async(req,res)=>{
 
         // Optional: retrieve username from metadata stored on the customer
         const customer = await stripe.customers.retrieve(customer_id);
-        const username = customer.metadata.username;
+        const invoice_username = customer.metadata.username;
 
         // Download and save PDF locally or to cloud storage
         const pdfResponse = await axios.get(invoice_pdf_url, { responseType: 'arraybuffer' });
@@ -147,7 +147,7 @@ const stripeWebhookHandler=async(req,res)=>{
         const filepath=path.join(__dirname,'..','..','static','invoices',`${invoice.id}.pdf`)
         fs.writeFileSync(filepath, pdfResponse.data);
 
-        console.log(`Saved invoice ${invoice.id} PDF for user ${username}`);
+        console.log(`Saved invoice ${invoice.id} PDF for user ${invoice_username}`);
       }
       break;
 
