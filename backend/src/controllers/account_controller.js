@@ -4,7 +4,7 @@ import {getDBConnection} from '../database_scripts/species_database.js'
 import Stripe from 'stripe'
 import axios from 'axios'
 
-const ACCOUNT_PAGE_REDIRECT="https://api.theaspenproject.cloud/api/account/api/"
+const ACCOUNT_PAGE_REDIRECT="https://theaspenproject.cloud/account"
 const STRIPE_WEBHOOK_SECRET=process.env.STRIPE_WEBHOOK_SECRET
 
 const db_connection=await getDBConnection();
@@ -32,7 +32,6 @@ const createCheckoutSessionHandler=async (req,res)=>{
     lookup_keys: [req.body.lookup_key],
     expand: ['data.product'],
   });
-  console.log("Prices:",prices)
   const session = await stripe.checkout.sessions.create({
     billing_address_collection: 'auto',
     line_items: [
