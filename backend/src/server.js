@@ -8,9 +8,9 @@ import {verifyUserAuthenticationHeader,verifyAdminAuthenticationHeader} from './
 import {connectToDatabase} from './database_scripts/species_database.js'
 
 const app=express()
+const json_parser=express.json()
 
 const PORT=process.env.PORT||7000
-
 
 app.use(cors({
   origin: ['https://theaspenproject.cloud','https://api.theaspenproject.cloud'],
@@ -21,11 +21,16 @@ app.use(cors({
 
 app.options('/*anypath',cors())
 
-app.use('/api/species', express.json());
+app.use('/api/species', json_parser);
 
-app.use('/api/user', express.json());
+app.use('/api/user', json_parser);
 
-app.use('/api/account', express.json())
+app.use('/api/account', (req, res, next) => {
+    if (req.originalUrl === '/api/account/stripe/webhook'){
+            return next()
+    }
+    json_parser(req, res, next);
+})
 
 app.use("/api/species",logger)
 

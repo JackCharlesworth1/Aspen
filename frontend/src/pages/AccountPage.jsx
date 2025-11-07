@@ -1,6 +1,7 @@
 import {useState,useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 import UserStats from '../components/UserStats.jsx'
+import SubscriptionManagement from '../components/SubscriptionManagement.jsx'
 
 const AccountPage=()=>{
     const navigate=useNavigate();
@@ -8,6 +9,7 @@ const AccountPage=()=>{
     const [actualUsername,setActualUsername]=useState(null);
     const [userSeen,setUserSeen]=useState([]);
     const [userSightings,setUserSightings]=useState([]);
+    const [subscribed,setSubscribed]=useState(false)
 
     const fetchAccountInfo=async ()=>{
         let percieved_username=localStorage.getItem("client_percieved_username")
@@ -27,6 +29,9 @@ const AccountPage=()=>{
 	        if(user_details_data.seen){
 		        setUserSeen(user_details_data.seen)
 	        }
+            if(user_details_data.subscribed){
+                setSubscribed(true);
+            }
             console.log("Got Info About User",user_details_data)
         }else{
             console.log("An Error Occured Fetching Account Info:",user_details_response.status,user_details_response.Error)
@@ -48,6 +53,7 @@ const AccountPage=()=>{
         <div>
             <h1>Account</h1>
             {username&&<h3>{username}</h3>}
+            <SubscriptionManagement />
 	        <UserStats actual_username={actualUsername} user_seen={userSeen} user_sightings={userSightings}/>
             <button onClick={userClickedToLogout}>Log Out</button>
         </div>

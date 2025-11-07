@@ -29,9 +29,12 @@ const checkTokenValidity=(token,minimum_auth_level)=>{
     }
 }
 
+const getUsernameFromToken=(token)=>{
+    return jwt.verify(token,JWT_SECRET)
+}
+
 const checkTokenBelongsToUser=(token,proposed_username)=>{
-    const user_token_object=jwt.verify(token,JWT_SECRET)
-    if(user_token_object.username===proposed_username){
+    if(getUsernameFromToken(token)===proposed_username){
         return true;
     }else{
         return false;
@@ -130,4 +133,4 @@ const deleteUser=async(username)=>{
     }
 }
 
-export {createJsonWebToken,checkTokenValidity,connectToMongoose,addUser,getUser,verifyUser,deleteUser,checkTokenBelongsToUser}
+export {createJsonWebToken,checkTokenValidity,connectToMongoose,addUser,getUser,verifyUser,deleteUser,checkTokenBelongsToUser,getUsernameFromToken}

@@ -33,4 +33,10 @@ async function deleteSpeciesLinkDescription(db_connection,name){
     return result;
 }
 
-export {addUserData,getUserDataByName,getAllUserData,updateUserData,deleteSpeciesLinkDescription}
+async function associateUserWithStripeCustomerID(db_connection,username,customerID){
+    const query={username:username}
+    const result=await updateItem(db_connection,"UserData",query,{stripe_customer_id:customerID})
+    return result;
+}
+
+export {addUserData,getUserDataByName,getAllUserData,updateUserData,deleteSpeciesLinkDescription,associateUserWithStripeCustomerID}
