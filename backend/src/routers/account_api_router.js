@@ -9,6 +9,6 @@ router.post('/create-checkout-session',createCheckoutSessionHandler)
 
 router.post('/create-portal-session',createPortalSessionHandler)
 
-router.post('/stripe/webhook',stripeWebhookHandler)
+router.post('/stripe/webhook',express.raw({ type: 'application/json' }),stripeWebhookHandler)
 
 export default router;
