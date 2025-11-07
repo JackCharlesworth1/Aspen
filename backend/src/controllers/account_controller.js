@@ -12,7 +12,7 @@ const stripe=new Stripe(process.env.STRIPE_SECRET_KEY)
 
 const getAccountInfoHandler=async (req,res)=>{
     if(!checkTokenBelongsToUser(req.header('Authorization'),req.params.username)){
-        res=writeUserReturnResponse(res,{"Error":"The username associated with the JWT token does not match that which you are trying to access - "+req.params.username})
+        res=writeUserReturnResponse(res,{"Error":"The username associated with the JWT token does not match that which you are trying to access - "+req.params.username+" compared to "+getUsernameFromToken(req.header('Authorization'))})
     }else{
         const result=await getUserDataByName(db_connection,req.params.username) 
         const subscribed=(result.stripe_customer_id!==null)
