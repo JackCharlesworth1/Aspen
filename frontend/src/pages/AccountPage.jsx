@@ -53,7 +53,7 @@ const AccountPage=()=>{
         <div>
             <h1>Account</h1>
             {username&&<h3>{username}</h3>}
-            <SubscriptionManagement />
+            <SubscriptionManagement subscribed={subscribed} />
 	        <UserStats actual_username={actualUsername} user_seen={userSeen} user_sightings={userSightings}/>
             <button onClick={userClickedToLogout}>Log Out</button>
         </div>
