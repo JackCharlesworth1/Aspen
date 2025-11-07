@@ -115,7 +115,7 @@ const stripeWebhookHandler=async(req,res)=>{
         console.log(`Subscription status is ${status}.`);
         // Then define and call a method to handle the subscription deleted.
         // handleSubscriptionDeleted(subscriptionDeleted);
-        const result=await associateUserWithStripeCustomerID(db_connection,subscription_username,null)
+        const cancel_subscription_result=await associateUserWithStripeCustomerID(db_connection,subscription_username,null)
 
         break;
       case 'checkout.session.completed':
@@ -128,7 +128,7 @@ const stripeWebhookHandler=async(req,res)=>{
         const checkout_username = session.metadata.username; // your internal user
         const customerID = session.customer;
 
-        const result=await associateUserWithStripeCustomerID(db_connection,checkout_username,customerID)
+        const checkout_result=await associateUserWithStripeCustomerID(db_connection,checkout_username,customerID)
 
         break;
     case 'invoice.payment_succeeded':
