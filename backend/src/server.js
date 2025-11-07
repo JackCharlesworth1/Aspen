@@ -36,7 +36,12 @@ app.use("/api/species",logger)
 
 app.use("/api/species",verifyUserAuthenticationHeader)
 
-app.use("/api/account",verifyUserAuthenticationHeader)
+app.use('/api/account', (req, res, next) => {
+    if (req.originalUrl === '/api/account/stripe/webhook'){
+            return next()
+    }
+    verifyUserAuthenticationHeader(req, res, next);
+})
 
 app.use("/api/user",logger)
 
