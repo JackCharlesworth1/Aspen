@@ -3,6 +3,7 @@ import cors from 'cors'
 import species_routes from './routers/species_api_router.js'
 import user_routes from './routers/user_api_router.js'
 import account_routes from './routers/account_api_router.js'
+import stripeWebhookHandler from './controllers/account_controller.js'
 import logger from './middleware/logger.js'
 import {verifyUserAuthenticationHeader,verifyAdminAuthenticationHeader} from './middleware/authentication.js'
 import {connectToDatabase} from './database_scripts/species_database.js'
@@ -19,29 +20,22 @@ app.use(cors({
   credentials: false,
 }))
 
+//This route has to be used raw for signature verification, since express run in order, this has to be the first
+app.use("/api/account/stripe/webhook",express.raw({type:'application/json'}),stripeWebhookHandler)
+
 app.options('/*anypath',cors())
 
 app.use('/api/species', json_parser);
 
 app.use('/api/user', json_parser);
 
-app.use('/api/account', (req, res, next) => {
-    if (req.originalUrl === '/api/account/stripe/webhook'){
-            return next()
-    }
-    json_parser(req, res, next);
-})
+app.use('/api/account', json_parser);
 
 app.use("/api/species",logger)
 
 app.use("/api/species",verifyUserAuthenticationHeader)
 
-app.use('/api/account', (req, res, next) => {
-    if (req.originalUrl === '/api/account/stripe/webhook'){
-            return next()
-    }
-    verifyUserAuthenticationHeader(req, res, next);
-})
+app.use('/api/account', verifyUserAuthenticationHeader);
 
 app.use("/api/user",logger)
 
