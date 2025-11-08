@@ -3,9 +3,10 @@ import cors from 'cors'
 import species_routes from './routers/species_api_router.js'
 import user_routes from './routers/user_api_router.js'
 import account_routes from './routers/account_api_router.js'
+import external_routes from './routers/external_api_router.js'
 import {stripeWebhookHandler} from './controllers/account_controller.js'
 import logger from './middleware/logger.js'
-import {verifyUserAuthenticationHeader,verifyAdminAuthenticationHeader} from './middleware/authentication.js'
+import {verifyUserAuthenticationHeader,verifyAdminAuthenticationHeader,verifyUserSubscribed} from './middleware/authentication.js'
 import {connectToDatabase} from './database_scripts/species_database.js'
 
 const app=express()
@@ -31,21 +32,31 @@ app.use('/api/user', json_parser);
 
 app.use('/api/account', json_parser);
 
-app.use("/api/species",logger)
+app.use('/api/external', json_parser)
 
 app.use("/api/species",verifyUserAuthenticationHeader)
 
 app.use('/api/account', verifyUserAuthenticationHeader);
 
+app.use('/api/external', verifyUserAuthenticationHeader)
+
+app.use('/api/external', verifyUserSubscribed);
+
+app.use("/api/species",logger)
+
 app.use("/api/user",logger)
 
 app.use("/api/account",logger)
+
+app.use("/api/external",logger)
 
 app.use("/api/species",species_routes)
 
 app.use("/api/user",user_routes)
 
 app.use("/api/account",account_routes)
+
+app.use("/api/external",external_routes)
 
 app.use('/api/static/images',express.static('static/images'))
 
