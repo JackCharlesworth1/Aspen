@@ -26,7 +26,7 @@ const verifyAdminAuthenticationHeader=(req,res,next)=>{
     return verifyAuthenticationHeader(req,res,next,"admin");
 }
 
-const verifyUserSubscribed=(req,res,next)=>{
+const verifyUserSubscribed=async (req,res,next)=>{
     if(req.header("Authorization")){
         const username=getUsernameFromToken(req.header("Authorization"))
         const user_data=await getUserDataByName(db_connection,username) 
