@@ -1,6 +1,7 @@
 import {checkTokenBelongsToUser,getUsernameFromToken} from '../database_scripts/user_database.js'
 import {getUserDataByName,associateUserWithStripeCustomerID} from '../database_scripts/user_data_database.js'
 import {getDBConnection} from '../database_scripts/species_database.js'
+import path from 'path'
 import Stripe from 'stripe'
 import axios from 'axios'
 
@@ -57,10 +58,12 @@ const createPortalSessionHandler=async(req,res)=>{
         res=writeUserReturnResponse(res,{"Error":"The request to create a checkout session failed because of a lack of authentication credentials (no JWT in header)"})
     }
     const authenticated_username=getUsernameFromToken(req.header('Authorization'))
+    console.log("Getting user data for",authenticated_username)
       // For demonstration purposes, we're using the Checkout session to retrieve the customer ID.
     // Typically this is stored alongside the authenticated user in your database.
-    const user_data=getUserDataByName(db_connection,authenticated_username);
+    const user_data=await getUserDataByName(db_connection,authenticated_username);
     const customer_id=user_data.stripe_customer_id;
+    console.log("Got Customer ID:",customer_id)
     if(!customer_id){
         res.json({url:ACCOUNT_PAGE_REDIRECT+"&message=Not%20A%20Subscriber"})
     }
