@@ -25,7 +25,7 @@ const getNearbySpeciesLocationsHandler=async (req,res)=>{
     res.status(200).json({"locations":destinations}) 
 }
 
-const identifySpeciesHandler=()=>{
+const identifySpeciesHandler=async(req,res)=>{
     const formData = new FormData()
     formData.append('image', req.file.buffer, {filename:req.file.originalname,contentType:req.file.mimetype})
     formData.append('country', 'UK')
