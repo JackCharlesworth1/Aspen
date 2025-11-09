@@ -30,8 +30,7 @@ const verifyUserSubscribed=async (req,res,next)=>{
     if(req.header("Authorization")){
         const username=getUsernameFromToken(req.header("Authorization"))
         const user_data=await getUserDataByName(db_connection,username) 
-        console.log("User trying to access subscribed route",username,user_data)
-        if(user_data.subscribed){
+        if(user_data.stripe_customer_id){
             next()
         }else{
             return res.status(403).json({message:'You must be subscribed to use this route'})
