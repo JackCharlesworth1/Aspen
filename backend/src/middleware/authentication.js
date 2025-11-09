@@ -2,7 +2,7 @@ import {checkTokenValidity,getUsernameFromToken} from '../database_scripts/user_
 import {getUserDataByName} from '../database_scripts/user_data_database.js'
 import {getDBConnection} from '../database_scripts/species_database.js'
 
-const db_connection=getDBConnection();
+const db_connection=await getDBConnection();
 
 const verifyAuthenticationHeader=(req,res,next,minimum_auth_level)=>{
     const token=req.header('Authorization')
