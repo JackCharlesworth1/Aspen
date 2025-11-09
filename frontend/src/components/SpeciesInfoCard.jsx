@@ -8,6 +8,7 @@ import SpeciesDescription from './SpeciesDescription.jsx'
 import ToggleSeenButton from './ToggleSeenButton.jsx'
 import TaxonomyInfo from './TaxonomyInfo.jsx'
 import MappingTile from './MappingTile.jsx'
+import LocationFinder from './LocationFinder.jsx'
 import styles from '../css/SpeciesInfoCard.module.css'
 
 const SpeciesInfoCard=({species_name})=>{
@@ -17,6 +18,7 @@ const SpeciesInfoCard=({species_name})=>{
     const [username,setUsername]=useState("");
     const [audioFile,setAudioFile]=useState(null);
     const [commonNames,setCommonNames]=useState([]);
+    const [subscribed,setSubscribed]=useState(false);
 
     const fetchSpeciesData=async()=>{
         const token=localStorage.getItem("accessToken")
@@ -29,6 +31,14 @@ const SpeciesInfoCard=({species_name})=>{
 
         if(percieved_username){
             setUsername(percieved_username)
+        }
+
+        const account_info_response=await fetch("https://api.theaspenproject.cloud/api/account/info/"+percieved_username,{headers:{"Content-Type":"application/json","Authorization":token}})
+        if(!account_info_response.ok){
+            console.log("Failed to set account info, the request failed",account_info_response)
+        }else{
+            const account_info=await account_info_response.json()
+            setSubscribed(account_info.subscribed);
         }
 
         try{
@@ -109,7 +119,7 @@ const SpeciesInfoCard=({species_name})=>{
                                 </div>
                                 <Sightings username={username} speciesName={name}/>
                             </div>
-
+                            {subscribed?<LocationFinder />:<div>Subscribe to get directions to possible sighting spots</div>}
 
                     </>
                )
