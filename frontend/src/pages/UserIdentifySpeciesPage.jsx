@@ -52,7 +52,7 @@ const UserIdentifySpeciesPage=()=>{
                     <input type="file" id="imageFileUploadButton" onChange={onImageFileUpload} accept="image/jpeg" style={{display:'none'}}/>
                     <br />
                     {imageFile&&<img className={styles.UploadedImage} src={URL.createObjectURL(imageFile)}/>}  
-                    {imageFile&&<input type="submit">Identify Species</button>} 
+                    {imageFile&&<input type="submit">Identify Species</input>} 
                     
                     </form>:<div>
 
