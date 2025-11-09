@@ -3,6 +3,6 @@ import {getNearbySpeciesLocationsHandler} from '../controllers/external_controll
 
 const router=express.Router()
 
-router.get("/getNearbySpeciesLocations",getNearbySpeciesLocationsHandler)
+router.get("/getNearbySpeciesLocations/:species/:origin",getNearbySpeciesLocationsHandler)
 
 export default router;
