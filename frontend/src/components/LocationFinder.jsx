@@ -48,9 +48,10 @@ function LocationFinder({species}) {
         const access_token=localStorage.getItem("accessToken")
         const backend_response=await fetch('https://api.theaspenproject.cloud/api/external/getNearbySpeciesLocations/'+species+"/"+origin,{headers:{"Authorization":access_token,"Content-Type":"application/json"}})
         if(!backend_response.ok){
-            console.log("Error making request to backend in an attempt to fetch locations")
+            console.log("Error making request to backend in an attempt to fetch locations:",backend_response)
         }
         const response_data=await backend_response.json();
+        console.log("Backend responded with the json",response_data)
 
         setDestinations(response_data.locations)
     }
@@ -66,7 +67,7 @@ function LocationFinder({species}) {
           <br />
           {origin&&<div>
             <button onClick={findNearbyLocation}>Find Location</button>
-            {destinations.map((destination_option,index)=>{
+            {destinations&&destinations.map((destination_option,index)=>{
                   return <li><button onClick={()=>setDestination(destinations[index])}>{destination_option}</button></li>})
             }
           </div>}

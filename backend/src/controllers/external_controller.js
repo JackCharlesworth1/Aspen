@@ -19,8 +19,9 @@ const getNearbySpeciesLocationsHandler=async (req,res)=>{
         ]
     })
     const response_content=response.choices[0].message.content;
-    console.log(response_content); 
+    console.log("response:",response_content); 
     const destinations=response_content.split(",")
+    console.log("sending back:",destinations)
     res.status(200).json({"locations":destinations}) 
 }
 
