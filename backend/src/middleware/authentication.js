@@ -30,6 +30,7 @@ const verifyUserSubscribed=async (req,res,next)=>{
     if(req.header("Authorization")){
         const username=getUsernameFromToken(req.header("Authorization"))
         const user_data=await getUserDataByName(db_connection,username) 
+        console.log("user_data",user_data)
         if(user_data.stripe_customer_id){
             next()
         }else{

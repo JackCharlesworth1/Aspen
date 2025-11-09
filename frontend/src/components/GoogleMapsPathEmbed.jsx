@@ -5,7 +5,7 @@ const GoogleMapsPathEmbed=({start=null,end=null,method=null})=>{
     const [iFrameSRC,setIFrameSRC]=useState("");
 
     useEffect(()=>{
-        setIFrameSRC("https://www.google.com/maps/embed/v1/directions?key=AIzaSyAX5JtPgY6WYKhpG2hnVT-9I6gvNbJp2gg&origin="+start.replace(" ","+")+"&destination="+end.replace(" ","+")+",Nottingham&mode="+method)
+        setIFrameSRC("https://www.google.com/maps/embed/v1/directions?key=AIzaSyAX5JtPgY6WYKhpG2hnVT-9I6gvNbJp2gg&origin="+start.replace(" ","+")+"&destination="+end.replace(" ","+")+"&mode="+method)
     },[start,end,method])
 
     return start&&end&&method&&(
