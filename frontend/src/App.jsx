@@ -13,6 +13,7 @@ import UserAccountMethodPage from './pages/UserAccountMethodPage.jsx'
 import UserLoginPage from './pages/UserLoginPage.jsx'
 import UserRegisterPage from './pages/UserRegisterPage.jsx'
 import UserRequestErrorPage from './pages/UserRequestErrorPage.jsx'
+import UserIdentifySpeciesPage from './pages/UserIdentifySpeciesPage.jsx'
 import AccountPanelLayout from './layouts/AccountPanelLayout.jsx'
 import AccountPage from './pages/AccountPage.jsx'
 import LandingPanelLayout from './layouts/LandingPanelLayout.jsx'
@@ -38,6 +39,7 @@ function App() {
                     <Route path="/user/login" element={<UserLoginPage />} />
                     <Route path="/user/register" element={<UserRegisterPage />} />
                     <Route path="/user/request-error" element={<UserRequestErrorPage />} />
+                    <Route path="/user/identify" element={<ProtectedRoute element={<UserIdentifySpeciesPage />} minimum_authentication_level="user"/>} />
                     <Route path="/user/*" element={<NotFoundPage redirect="/user/pick-species/"/>} />
                 </Route>,
                 <Route path="/account/" element={<AccountPanelLayout />}>

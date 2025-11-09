@@ -25,4 +25,26 @@ const getNearbySpeciesLocationsHandler=async (req,res)=>{
     res.status(200).json({"locations":destinations}) 
 }
 
-export {getNearbySpeciesLocationsHandler}
+const identifySpeciesHandler=()=>{
+    const formData = new FormData()
+    formData.append('image', req.file.buffer, {filename:req.file.originalname,contentType:req.file.mimetype})
+    formData.append('country', 'UK')
+    formData.append('threshold', '0.2')
+
+    const response = await fetch('https://www.animaldetect.com/api/v1/detect', {
+    method: 'POST',
+        headers: {
+            'Authorization': 'Bearer sk_d722d9f9edbff5ceadcf2f1ae7c095798cb745a16f5e9b2cdf1a902e7eaeb8d7'
+        },
+            body: formData
+    })
+
+    if(!response.ok){
+        console.log("Something went wrong in making the request to identify the species:",response)
+    }
+
+    const result = await response.json()
+    res.status(200).json(result)
+}
+
+export {getNearbySpeciesLocationsHandler,identifySpeciesHandler}
