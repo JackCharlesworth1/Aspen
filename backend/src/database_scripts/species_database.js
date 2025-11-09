@@ -3,7 +3,7 @@ import {deleteSpeciesLinkDescription} from './species_links_database.js'
 
 const database_endpoint_url=process.env.DATABASE_ENDPOINT_URI
 
-const db_connection=connectToDatabase();
+const db_connection=await connectToDatabase();
 
 async function connectToDatabase(){
     const db_connection=await connectToMongo(database_endpoint_url);
