@@ -55,7 +55,7 @@ const AccountPage=()=>{
             <div className={styles.AccountSection}>
                 <div className={styles.HeaderSection}>
                     <h3 className={styles.BiggerHeaders}>Account</h3>
-                    {username&&<h1 className={styles.BiggerHeaders}>{username}</h1>}
+                    {username&&<h1 className={styles.BiggestHeader}>{username}</h1>}
                     <button className={styles.DefaultButton} onClick={userClickedToLogout}>Log Out</button>
                 </div>
                 <div className={styles.SubscriptionSection}>
