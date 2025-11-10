@@ -60,7 +60,7 @@ function LocationFinder({species}) {
 
   return (
     <>
-          <label>Start Point Override</label>
+          <label>If you have location disabled or want to start from somewhere else, manually enter your location</label>
           <br />
           <input className={styles.OverrideInput} value={originOverride} onChange={overrideChange} type="text" placeholder="E.g. Harborne, Birmingham"/>
           <div className={styles.OverrideButtonDiv}>
@@ -71,7 +71,7 @@ function LocationFinder({species}) {
           {origin&&<div>
             <button className={styles.OverrideButton} onClick={findNearbyLocation}>Find Nearby Locations</button>
             {destinations&&<div>
-                    {(destinations.length!==0)&&<p style={{marginLeft:"0px"}}>If you have location disabled or want to start from somewhere else, override the start location</p>}
+                    {(destinations.length!==0)&&<p style={{marginLeft:"0px"}}>Places that you may be able to see the species in:</p>}
                     <div className={styles.PossibleLocationsContainer}>
                         {destinations.map((destination_option,index)=>{
                             return (<button className={styles.OverrideButton} onClick={()=>setDestination(destinations[index])}>{destination_option}</button>)

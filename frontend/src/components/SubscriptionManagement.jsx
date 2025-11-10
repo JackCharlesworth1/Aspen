@@ -18,8 +18,8 @@ const UnsubscribedManagement=({accessToken})=>{
                 <h2>You are not subscribed</h2>
                 <p>This means you cannot</p>
                 <ul>
+                    <li>Find where to see a particular species</li>
                     <li>(Coming soon...) Find Species Close To You</li>
-                    <li>(Coming soon...) Find where to see a particular species</li>
                     <li>(Coming soon...) Identify species in a photo</li>
                 </ul>
                 <form onSubmit={subscriptionButtonClicked}>
@@ -43,8 +43,8 @@ const SubscribedManagement=({accessToken})=>{
                 <h2>You are subscribed</h2>
                 <p>This means you have access to</p>
                 <ul>
+                    <li>Find where to see a particular species</li>
                     <li>(Coming soon...) Find Species Close To You</li>
-                    <li>(Coming soon...) Find where to see a particular species</li>
                     <li>(Coming soon...) Species identification</li>
                 </ul>
                 <form onSubmit={portalButtonClicked}>
