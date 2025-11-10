@@ -79,7 +79,7 @@ function LocationFinder({species}) {
                     </div>
             </div>}
           </div>}
-          {origin&&destination&&(<div style={{width: "100%",height:"600px"}}>
+          {origin&&destination&&(<div style={{width: "100%"}}>
                 <TravelModeRadioButtons setMethod={setMethod} method={method} />
                 <GoogleMapsPathEmbed start={origin} end={destination} method={method} />
                 <DirectionsButton start={origin} end={destination} method={method} />

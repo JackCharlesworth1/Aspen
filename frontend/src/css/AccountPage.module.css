@@ -1,0 +1,39 @@
+.AccountPageContainer{
+    margin: 20px;
+}
+
+.AccountSection{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.HeaderSection{
+    width: 50%;
+    float: left;
+}
+
+.SubscriptionSection{
+    width: 50%;
+    float: right;
+}
+
+.DefaultButton{
+    background-color: white;
+    padding: 4px;
+    margin: 5px;
+    border: 2px solid black;
+}
+
+@media (aspect-ratio < 1){
+    .AccountSection{
+        flex-direction: column;
+    }
+    .HeaderSection{
+        width: 100%;
+    }
+    .SubscriptionSection{
+        width: 100%;
+    }
+}

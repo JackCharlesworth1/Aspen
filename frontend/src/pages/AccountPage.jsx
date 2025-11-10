@@ -2,6 +2,7 @@ import {useState,useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 import UserStats from '../components/UserStats.jsx'
 import SubscriptionManagement from '../components/SubscriptionManagement.jsx'
+import styles from '../css/AccountPage.module.css'
 
 const AccountPage=()=>{
     const navigate=useNavigate();
@@ -50,12 +51,21 @@ const AccountPage=()=>{
     },[])
 
     return(
-        <div>
-            <h1>Account</h1>
-            {username&&<h3>{username}</h3>}
-            <SubscriptionManagement subscribed={subscribed} />
+        <div className={styles.AccountPageContainer}>
+            <div className={styles.AccountSection}>
+                <div className={styles.HeaderSection}>
+                    <h3>Account</h3>
+                    {username&&<h1>{username}</h1>}
+                    <button className={styles.DefaultButton} onClick={userClickedToLogout}>Log Out</button>
+                </div>
+                <div className={styles.SubscriptionSection}>
+
+                </div>
+            </div>
+            <div>
+                <SubscriptionManagement subscribed={subscribed} />
+            </div>
 	        <UserStats actual_username={actualUsername} user_seen={userSeen} user_sightings={userSightings}/>
-            <button onClick={userClickedToLogout}>Log Out</button>
         </div>
     )
 }

@@ -1,5 +1,6 @@
 import {useState,useEffect} from 'react'
 import Gallery from './Gallery.jsx'
+import styles from '../css/UserStats.module.css'
 
 const UserStats=({actual_username,user_seen,user_sightings})=>{
 
@@ -108,26 +109,31 @@ const UserStats=({actual_username,user_seen,user_sightings})=>{
 	}
 
 	useEffect(()=>{prepareUserStats()},[user_seen,user_sightings])
-	return (<>
-			{(sortedSeenSpecies.length>0)&&<div>
-				<h5>What you see the most:</h5>
-				<ol>
-                    {(sortedSeenSpecies.length>0)&&<li>{sortedSeenSpecies[0]}</li>}
-					{(sortedSeenSpecies.length>1)&&<li>{sortedSeenSpecies[1]}</li>}
-					{(sortedSeenSpecies.length>2)&&<li>{sortedSeenSpecies[2]}</li>}
+	return (<div className={styles.UserStatsContainer}>
+                <div className={styles.SeenRankingContainer}>
+			        {(sortedSeenSpecies.length>0)&&<div className={styles.SeenRanking}>
+				        <h5>What you see the most:</h5>
+				        <ol>
+                            {(sortedSeenSpecies.length>0)&&<li>{sortedSeenSpecies[0]}</li>}
+					        {(sortedSeenSpecies.length>1)&&<li>{sortedSeenSpecies[1]}</li>}
+					        {(sortedSeenSpecies.length>2)&&<li>{sortedSeenSpecies[2]}</li>}
 
-				</ol>
-			</div>}
-			{(sortedSeenSpecies.length>4)&&<div>
-				<h5>What you see least:</h5>
-				<ol>
-                    {(sortedSeenSpecies.length>4)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-1]}</li>}
-					{(sortedSeenSpecies.length>5)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-2]}</li>}
-					{(sortedSeenSpecies.length>6)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-3]}</li>}
-				</ol>
-			</div>}
-            {mixedSightings&&actual_username&&<Gallery imageData={mixedSightings}/>}
-		</>)
+				        </ol>
+			        </div>}
+			        {(sortedSeenSpecies.length>4)&&<div className={styles.SeenRanking}>
+				        <h5>What you see least:</h5>
+				        <ol>
+                            {(sortedSeenSpecies.length>4)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-1]}</li>}
+					        {(sortedSeenSpecies.length>5)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-2]}</li>}
+					        {(sortedSeenSpecies.length>6)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-3]}</li>}
+				        </ol>
+			        </div>}
+                </div>
+            {mixedSightings&&actual_username&&<div className={styles.GalleryContainer}>
+                    <h3>Gallery Of Your Sightings</h3>
+                    <Gallery imageData={mixedSightings}/>
+            </div>}
+		</div>)
 }
 
 export default UserStats

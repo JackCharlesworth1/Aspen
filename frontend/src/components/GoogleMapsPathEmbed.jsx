@@ -9,7 +9,7 @@ const GoogleMapsPathEmbed=({start=null,end=null,method=null})=>{
     },[start,end,method])
 
     return start&&end&&method&&(
-            <iframe src={iFrameSRC} style={{width:"100%",height:"100%"}}>
+            <iframe src={iFrameSRC} style={{width:"100%",height:"600px"}}>
             </iframe>
     )
 

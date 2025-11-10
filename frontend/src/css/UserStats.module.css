@@ -1,0 +1,17 @@
+.UserStatsContainer{
+    margin-top: 20px;
+}
+
+.SeenRankingContainer{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.SeenRanking{
+    margin-right: auto;
+}
+
+.GalleryContainer{
+    margin-top: 20px;
+}
