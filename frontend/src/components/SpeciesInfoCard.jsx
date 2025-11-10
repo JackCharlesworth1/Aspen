@@ -119,7 +119,7 @@ const SpeciesInfoCard=({species_name})=>{
                                 </div>
                                 <Sightings username={username} speciesName={name}/>
                             </div>
-                            <div style={styles.NearbyLocationsSection}>
+                            <div className={styles.NearbyLocationsSection}>
                                 <h3 style={{marginLeft:"0px"}}>Possible Locations Nearby</h3>
                                 {subscribed?<LocationFinder species={species_name}/>:<div>Subscribe to get directions to possible sighting spots</div>}
                             </div>

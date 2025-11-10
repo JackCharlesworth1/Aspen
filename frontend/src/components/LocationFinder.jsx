@@ -61,16 +61,16 @@ function LocationFinder({species}) {
   return (
     <>
           <label>Start Point Override</label>
-          <input style={styles.OverrideInput} value={originOverride} onChange={overrideChange} type="text" placeholder="E.g. Harborne, Birmingham"/>
-          <div style={styles.OverrideButtonDiv}>
-                <button style={styles.OverrideButton} onClick={overrideOrigin}>Override</button>
-                <button style={styles.OverrideButton} onClick={cancelOriginOverride}>Cancel</button>
+          <input className={styles.OverrideInput} value={originOverride} onChange={overrideChange} type="text" placeholder="E.g. Harborne, Birmingham"/>
+          <div className={styles.OverrideButtonDiv}>
+                <button className={styles.OverrideButton} onClick={overrideOrigin}>Override</button>
+                <button className={styles.OverrideButton} onClick={cancelOriginOverride}>Cancel</button>
           </div>
           <br />
           {origin&&<div>
-            <button style={styles.OverrideButton} onClick={findNearbyLocation}>Find Location</button>
+            <button className={styles.OverrideButton} onClick={findNearbyLocation}>Find Location</button>
             {destinations&&destinations.map((destination_option,index)=>{
-                  return <li><button style={styles.OverrideButton} onClick={()=>setDestination(destinations[index])}>{destination_option}</button></li>})
+                  return <li><button className={styles.OverrideButton} onClick={()=>setDestination(destinations[index])}>{destination_option}</button></li>})
             }
           </div>}
           {origin&&destination&&(<div style={{width: "1000px",height:"1000px"}}>
