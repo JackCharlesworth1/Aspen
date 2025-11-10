@@ -23,7 +23,7 @@ const UnsubscribedManagement=({accessToken})=>{
                     <li>(Coming soon...) Identify species in a photo</li>
                 </ul>
                 <form onSubmit={subscriptionButtonClicked}>
-                    <button id="checkout-and-portal-button" type="submit">Buy Subscription (£1.99/Month)</button>
+                    <button style={{backgroundColor:"white",border:"2px solid black",margin:"5px",padding:"4px"}} id="checkout-and-portal-button" type="submit">Buy Subscription (£1.99/Month)</button>
                 </form>
            </div>)
 }
@@ -48,7 +48,7 @@ const SubscribedManagement=({accessToken})=>{
                     <li>(Coming soon...) Species identification</li>
                 </ul>
                 <form onSubmit={portalButtonClicked}>
-                    <button id="checkout-and-portal-button" type="submit">Manage billing information</button>
+                    <button style={{backgroundColor:"white",border:"2px solid black",margin:"5px",padding:"4px"}} id="checkout-and-portal-button" type="submit">Manage billing information</button>
                 </form>
            </div>)
 }

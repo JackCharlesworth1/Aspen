@@ -54,16 +54,13 @@ const AccountPage=()=>{
         <div className={styles.AccountPageContainer}>
             <div className={styles.AccountSection}>
                 <div className={styles.HeaderSection}>
-                    <h3>Account</h3>
-                    {username&&<h1>{username}</h1>}
+                    <h3 className={styles.BiggerHeaders}>Account</h3>
+                    {username&&<h1 className={styles.BiggerHeaders}>{username}</h1>}
                     <button className={styles.DefaultButton} onClick={userClickedToLogout}>Log Out</button>
                 </div>
                 <div className={styles.SubscriptionSection}>
-
+                    <SubscriptionManagement subscribed={subscribed} />
                 </div>
-            </div>
-            <div>
-                <SubscriptionManagement subscribed={subscribed} />
             </div>
 	        <UserStats actual_username={actualUsername} user_seen={userSeen} user_sightings={userSightings}/>
         </div>
