@@ -69,9 +69,9 @@ function LocationFinder({species}) {
           </div>
           <br />
           {origin&&<div>
-            <button className={styles.OverrideButton} onClick={findNearbyLocation}>Find Location</button>
+            <button className={styles.OverrideButton} onClick={findNearbyLocation}>Find Nearby Locations</button>
             {destinations&&<div>
-                    <p>Possible Sighting Locations To Choose From</p>
+                    {(destinations.length!==0)&&<p style={{marginLeft:"0px"}}>If you have location disabled or want to start from somewhere else, override the start location</p>}
                     <div className={styles.PossibleLocationsContainer}>
                         {destinations.map((destination_option,index)=>{
                             return (<button className={styles.OverrideButton} onClick={()=>setDestination(destinations[index])}>{destination_option}</button>)

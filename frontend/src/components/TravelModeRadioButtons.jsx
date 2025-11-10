@@ -7,7 +7,7 @@ const TravelModeRadioButtons=({method,setMethod})=>{
     }
 
     return (
-        <div style={{maxWidth:"850px",width:"100%",display:"flex",flexDirection:"row"}}>
+        <div style={{marginTop:"20px",marginBottom:"20px",maxWidth:"850px",width:"100%",display:"flex",flexDirection:"row"}}>
             <label style={{marginLeft:"auto",marginRight:"auto"}}>
                 <input type="radio" name="transit" value="transit" checked={method=== "transit"} onChange={handleChange} />
                 Public Transport
