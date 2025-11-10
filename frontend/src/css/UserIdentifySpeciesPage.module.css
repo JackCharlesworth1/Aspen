@@ -1,0 +1,46 @@
+.FileUploadButton{
+    margin: 20px;
+    border: 2px solid black;
+    padding: 10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.FileUploadButtonUploaded{
+    margin: 20px;
+    border: 2px solid #0F0;
+    padding: 10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.FileDropDiv{
+    height: 20vh;
+    border: 2px solid black;
+    margin-top: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.FileDropDivUploaded{
+    border: 2px solid #0F0;
+    height: 20vh;
+    margin-top: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.UploadedImage{
+    width: 25%;
+    height: auto;
+    margin: auto;
+}
+
+.IdentificationDiv{
+    margin-left:40px;
+}
