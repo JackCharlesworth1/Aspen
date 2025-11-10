@@ -53,8 +53,8 @@ const DirectionsButton=({start=null,end=null,method=null})=>{
 
     return start&&end&&method&&(<>
             <button onClick={()=>enableTextInstructions()}>Get Text Directions</button>
-            {showDirections&&(<div>
-                <button onClick={disableTextInstructions}>X</button>
+            {showDirections&&(<div style={{border:"2px solid black",padding: "20px"}}>
+                <button style={{border:"2px solid black",padding:"4px",margin:"5px"}} onClick={disableTextInstructions}>X</button>
                 {Array.isArray(directions)&&directions.map((instruction,index)=>{
                     return <li key={index}>{instruction}</li>
                 })}

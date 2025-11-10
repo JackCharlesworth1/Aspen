@@ -2,6 +2,7 @@ import { useState,useEffect } from 'react'
 import GoogleMapsPathEmbed from './GoogleMapsPathEmbed.jsx'
 import DirectionsButton from './DirectionsButton.jsx'
 import TravelModeRadioButtons from './TravelModeRadioButtons.jsx'
+import styles from '../css/LocationFinder.module.css'
 
 function LocationFinder({species}) {
     const [count, setCount] = useState(0)
@@ -60,15 +61,16 @@ function LocationFinder({species}) {
   return (
     <>
           <label>Start Point Override</label>
-          <input value={originOverride} onChange={overrideChange} type="text" placeholder="E.g. Harborne, Birmingham"/>
-          <button onClick={overrideOrigin}>Override</button>
-          <button onClick={cancelOriginOverride}>Cancel</button>
-
+          <input style={styles.OverrideInput} value={originOverride} onChange={overrideChange} type="text" placeholder="E.g. Harborne, Birmingham"/>
+          <div style={styles.OverrideButtonDiv}>
+                <button style={styles.OverrideButton} onClick={overrideOrigin}>Override</button>
+                <button style={styles.OverrideButton} onClick={cancelOriginOverride}>Cancel</button>
+          </div>
           <br />
           {origin&&<div>
-            <button onClick={findNearbyLocation}>Find Location</button>
+            <button style={styles.OverrideButton} onClick={findNearbyLocation}>Find Location</button>
             {destinations&&destinations.map((destination_option,index)=>{
-                  return <li><button onClick={()=>setDestination(destinations[index])}>{destination_option}</button></li>})
+                  return <li><button style={styles.OverrideButton} onClick={()=>setDestination(destinations[index])}>{destination_option}</button></li>})
             }
           </div>}
           {origin&&destination&&(<div style={{width: "1000px",height:"1000px"}}>

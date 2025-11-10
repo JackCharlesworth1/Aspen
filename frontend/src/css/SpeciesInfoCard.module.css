@@ -84,7 +84,10 @@ p{
     width: calc (100% - 120px);                                                 
     margin-bottom: 40px;
 }
-
+.NearbyLocationsSection{
+    margin-left: 40px;
+    margin-right: 40px;
+}
 @media(aspect-ratio<1){
     .InfoCard{
         width: 100vw;

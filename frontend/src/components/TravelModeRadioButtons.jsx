@@ -1,11 +1,13 @@
 const TravelModeRadioButtons=({method,setMethod})=>{
 
+    
+
     const handleChange=(_event)=>{
         setMethod(_event.target.value)
     }
 
     return (
-        <div className="radio-group">
+        <div style={{width:"100%",display:"flex",flexDirection:"row"}}>
             <label className="custom-radio">
                 <input type="radio" name="transit" value="transit" checked={method=== "transit"} onChange={handleChange} />
                 Public Transport
