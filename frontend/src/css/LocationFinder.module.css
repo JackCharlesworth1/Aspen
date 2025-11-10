@@ -12,13 +12,20 @@
     margin: 20px;
     max-width: 500px;
     padding: 10px;
-    margin-bottom: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     outline: none;
     border: 2px solid black;
 }
 .OverrideInput:focus{
     animation: selectedInput 0.5s ease;
     border: 2px solid #0F0;
+}
+
+.PossibleLocationsConatiner{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 @keyframes selectedInput{

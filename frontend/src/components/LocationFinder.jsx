@@ -61,6 +61,7 @@ function LocationFinder({species}) {
   return (
     <>
           <label>Start Point Override</label>
+          <br />
           <input className={styles.OverrideInput} value={originOverride} onChange={overrideChange} type="text" placeholder="E.g. Harborne, Birmingham"/>
           <div className={styles.OverrideButtonDiv}>
                 <button className={styles.OverrideButton} onClick={overrideOrigin}>Override</button>
@@ -69,11 +70,15 @@ function LocationFinder({species}) {
           <br />
           {origin&&<div>
             <button className={styles.OverrideButton} onClick={findNearbyLocation}>Find Location</button>
-            {destinations&&destinations.map((destination_option,index)=>{
-                  return <li><button className={styles.OverrideButton} onClick={()=>setDestination(destinations[index])}>{destination_option}</button></li>})
-            }
+            {destinations&&<div>
+                    <p>Possible Sighting Locations To Choose From</p>
+                    <div className={styles.PossibleLocationsContainer}>
+                    destinations.map((destination_option,index)=>{
+                        return <button className={styles.OverrideButton} onClick={()=>setDestination(destinations[index])}>{destination_option}</button>})
+                    </div>
+            </div>}
           </div>}
-          {origin&&destination&&(<div style={{width: "1000px",height:"1000px"}}>
+          {origin&&destination&&(<div style={{width: "100%",height:"600px"}}>
                 <TravelModeRadioButtons setMethod={setMethod} method={method} />
                 <GoogleMapsPathEmbed start={origin} end={destination} method={method} />
                 <DirectionsButton start={origin} end={destination} method={method} />
