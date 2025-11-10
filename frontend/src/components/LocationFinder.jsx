@@ -73,9 +73,9 @@ function LocationFinder({species}) {
             {destinations&&<div>
                     <p>Possible Sighting Locations To Choose From</p>
                     <div className={styles.PossibleLocationsContainer}>
-                    destinations.map((destination_option,index)=>{
+                    {destinations.map((destination_option,index)=>{
                         return <button className={styles.OverrideButton} onClick={()=>setDestination(destinations[index])}>{destination_option}</button>})
-                    </div>
+                    </div>}
             </div>}
           </div>}
           {origin&&destination&&(<div style={{width: "100%",height:"600px"}}>
