@@ -1,4 +1,5 @@
 import {useState,useEffect} from 'react'
+import styles from '../css/UserIdentifySpeciesPage.module.css'
 
 const UserIdentifySpeciesPage=()=>{
 
@@ -40,7 +41,7 @@ const UserIdentifySpeciesPage=()=>{
 
     return (
         <div>
-            {subscribed?<form onSubmit={identifySpecies}>
+            {subscribed?<form styles={styles.IdentificationDiv} onSubmit={identifySpecies}>
                 <div className={imageFile? styles.FileDropDivUploaded:styles.FileDropDiv} onDragOver={(e)=>e.preventDefault()} onDrop={(e)=>{
                         e.preventDefault();
                         const image_file=e.dataTransfer.files[0];
@@ -54,7 +55,7 @@ const UserIdentifySpeciesPage=()=>{
                     {imageFile&&<img className={styles.UploadedImage} src={URL.createObjectURL(imageFile)}/>}  
                     {imageFile&&<input type="submit">Identify Species</input>} 
                     
-                    </form>:<div>
+                    </form>:<div styles={styles.IdentificationDiv}>
 
                         <p>You have to subscribed in order to use the feature that allows you to identify species from a picture</p>
 
