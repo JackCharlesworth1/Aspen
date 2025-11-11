@@ -2,6 +2,9 @@ import {useState,useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
 import UserStats from '../components/UserStats.jsx'
 import SubscriptionManagement from '../components/SubscriptionManagement.jsx'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
+import {faReply} from '@fortawesome/free-solid-svg-icons';
 import styles from '../css/AccountPage.module.css'
 
 const AccountPage=()=>{
@@ -46,12 +49,22 @@ const AccountPage=()=>{
         navigate("/landing/")
     }
 
+    const navigateToSpeciesSelection=()=>{
+        navigate("/user/pick-species")
+    }
+
     useEffect(()=>{
        fetchAccountInfo(); 
     },[])
 
     return(
         <div className={styles.AccountPageContainer}>
+                <button className={styles.DefaultButton} title="Go back to pick a different species from search menu" onClick={navigateToSpeciesSelection}>
+                    <>
+                        <FontAwesomeIcon icon={faReply} />
+                        <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    </>
+                </button>
             <div className={styles.AccountSection}>
                 <div className={styles.HeaderSection}>
                     <h3 className={styles.BiggerHeaders}>Account</h3>
