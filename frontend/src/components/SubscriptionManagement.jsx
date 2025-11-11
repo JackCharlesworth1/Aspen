@@ -15,7 +15,7 @@ const UnsubscribedManagement=({accessToken})=>{
     }
 
     return (<div>
-                <h2>You are not subscribed</h2>
+                <h2 style={{fontSize:"2em"}}>You are not subscribed</h2>
                 <p>This means you cannot</p>
                 <ul>
                     <li>Find where to see a particular species</li>
@@ -40,7 +40,7 @@ const SubscribedManagement=({accessToken})=>{
         window.location.href=response_data.url;
     }
     return (<div>
-                <h2>You are subscribed</h2>
+                <h2 style={{fontSize:"2em"}}>You are subscribed</h2>
                 <p>This means you have access to</p>
                 <ul>
                     <li>Find where to see a particular species</li>
