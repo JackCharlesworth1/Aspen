@@ -129,10 +129,12 @@ const UserStats=({actual_username,user_seen,user_sightings})=>{
 				        </ol>
 			        </div>}
                 </div>
+            {(sortedSeenSpecies.length===0)&&<p>See more species to get account specific stats</p>}
             {mixedSightings&&actual_username&&<div className={styles.GalleryContainer}>
                     <h3 style={{fontSize:"1.5em"}}>Gallery Of Your Sightings</h3>
                     <Gallery imageData={mixedSightings}/>
             </div>}
+            {(mixedSightings.length===0)&&<p>You currently have no sightings, get out there, explore, and take some pictures of the things you read about</p>}
 		</div>)
 }
 
