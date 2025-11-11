@@ -112,7 +112,7 @@ const UserStats=({actual_username,user_seen,user_sightings})=>{
 	return (<div className={styles.UserStatsContainer}>
                 <div className={styles.SeenRankingContainer}>
 			        {(sortedSeenSpecies.length>0)&&<div className={styles.SeenRanking}>
-				        <h5 style={{fontSize:"2em"}}>What you see the most:</h5>
+				        <h5 style={{fontSize:"1.5em"}}>What you see the most:</h5>
 				        <ol>
                             {(sortedSeenSpecies.length>0)&&<li>{sortedSeenSpecies[0]}</li>}
 					        {(sortedSeenSpecies.length>1)&&<li>{sortedSeenSpecies[1]}</li>}
@@ -121,7 +121,7 @@ const UserStats=({actual_username,user_seen,user_sightings})=>{
 				        </ol>
 			        </div>}
 			        {(sortedSeenSpecies.length>4)&&<div className={styles.SeenRanking}>
-				        <h5 style={{fontSize:"2em"}}>What you see least:</h5>
+				        <h5 style={{fontSize:"1.5em"}}>What you see least:</h5>
 				        <ol>
                             {(sortedSeenSpecies.length>4)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-1]}</li>}
 					        {(sortedSeenSpecies.length>5)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-2]}</li>}
@@ -130,7 +130,7 @@ const UserStats=({actual_username,user_seen,user_sightings})=>{
 			        </div>}
                 </div>
             {mixedSightings&&actual_username&&<div className={styles.GalleryContainer}>
-                    <h3 style={{fontSize:"2em"}}>Gallery Of Your Sightings</h3>
+                    <h3 style={{fontSize:"1.5em"}}>Gallery Of Your Sightings</h3>
                     <Gallery imageData={mixedSightings}/>
             </div>}
 		</div>)
