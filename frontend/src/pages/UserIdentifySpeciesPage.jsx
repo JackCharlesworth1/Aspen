@@ -50,10 +50,10 @@ const UserIdentifySpeciesPage=()=>{
                     <p>Drag and drop to upload your image via here</p>
                 </div>
                     <label className={imageFile? styles.FileUploadButtonUploaded:styles.FileUploadButton} htmlFor="imageFileUploadButton">{imageFile? "Uploaded":"Pick A File To Upload"}</label>
-                    <input type="file" id="imageFileUploadButton" onChange={onImageFileUpload} accept="image/jpeg" style={{display:'none'}}/>
+                    <input type="file" id="imageFileUploadButton" onChange={onImageFileUpload} accept="image/jpeg" style={{display:'none'}} />
                     <br />
                     {imageFile&&<img className={styles.UploadedImage} src={URL.createObjectURL(imageFile)}/>}  
-                    {imageFile&&<input type="submit">Identify Species</input>} 
+                    {imageFile&&<input type="submit" value="Identify Species" />} 
                     
                     </form>:<div styles={styles.IdentificationDiv}>
 
