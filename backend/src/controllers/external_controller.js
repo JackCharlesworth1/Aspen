@@ -1,6 +1,7 @@
 import {OpenAI} from 'openai'
 
 const OPEN_AI_API_KEY=process.env.OPEN_AI_API_KEY;
+const SPECIES_IDENTIFICATION_API_KEY=process.env.SPECIES_IDENTIFICATION_API_KEY
 
 const openai=new OpenAI({
     apiKey:OPEN_AI_API_KEY
@@ -26,18 +27,21 @@ const getNearbySpeciesLocationsHandler=async (req,res)=>{
 }
 
 const identifySpeciesHandler=async(req,res)=>{
+    console.log("Started species identification process")
     const formData = new FormData()
     formData.append('image', req.file.buffer, {filename:req.file.originalname,contentType:req.file.mimetype})
     formData.append('country', 'UK')
     formData.append('threshold', '0.2')
-
+    console.log("Assembled Form Data, Sending Request")
     const response = await fetch('https://www.animaldetect.com/api/v1/detect', {
     method: 'POST',
         headers: {
-            'Authorization': 'Bearer sk_d722d9f9edbff5ceadcf2f1ae7c095798cb745a16f5e9b2cdf1a902e7eaeb8d7'
+            'Authorization': 'Bearer '+SPECIES_IDENTIFICATION_API_KEY
         },
             body: formData
     })
+
+    console.log("Finished Response")
 
     if(!response.ok){
         console.log("Something went wrong in making the request to identify the species:",response)
