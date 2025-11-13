@@ -27,7 +27,7 @@ const UserIdentifySpeciesPage=()=>{
     const identifySpecies=async()=>{
          const token=localStorage.getItem("accessToken")
          const image_form_data=new FormData();
-         imageFormData.append('file',imageFile)
+         image_form_data.append('file',imageFile)
          const image_result=await fetch("https://api.theaspenproject.cloud/api/external/identifySpecies/",{method:'POST',headers:{"Authorization":token},body:image_form_data})
 
         if(!identification_response.ok){
