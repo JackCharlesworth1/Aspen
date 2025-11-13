@@ -40,7 +40,7 @@ app.use('/api/account', verifyUserAuthenticationHeader);
 
 app.use('/api/external', verifyUserAuthenticationHeader)
 
-app.use('/api/external', verifyUserSubscribed);
+//app.use('/api/external', verifyUserSubscribed);
 
 app.use("/api/species",logger)
 
