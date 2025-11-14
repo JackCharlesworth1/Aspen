@@ -1,13 +1,24 @@
 import {useState,useEffect} from 'react'
+import SpeciesList from '../components/SpeciesList.jsx'
 import styles from '../css/UserIdentifySpeciesPage.module.css'
 
 const UserIdentifySpeciesPage=()=>{
 
     const [subscribed,setSubscribed]=useState(false); 
     const [imageFile,setImageFile]=useState(null);
+    const [menuData,setMenuData]=useState([]);
+    const [speciesToDisplay,setSpeciesToDisplay]=useState([]);
+    const [identificationCompleted,setIdentificationCompleted]=useState(false);
+    const [requestMade,setRequestMade]=useState(false);
       
     const fetchAccountStatus=async ()=>{
         const token=localStorage.getItem("accessToken")
+        const species_response=await fetch("https://api.theaspenproject.cloud/api/species",{headers:{"Content-Type":"application/json","Authorization":token}})
+        if(!species_response.ok){
+            console.log("Error fetching data about all of the species, so it will not be possible to find matches, response:",species_response)
+        }
+        const species_data=await species_response.json();
+        setMenuData(species_data)
         const percieved_username=localStorage.getItem("client_percieved_username")
         const account_response=await fetch("https://api.theaspenproject.cloud/api/account/info/"+percieved_username,{headers:{"Content-Type":"application/json","Authorization":token}});
         if(!account_response.ok){
@@ -26,6 +37,7 @@ const UserIdentifySpeciesPage=()=>{
 
     const identifySpecies=async(event_)=>{
          event_.preventDefault()
+         setRequestMade(true)
          const token=localStorage.getItem("accessToken")
          const image_form_data=new FormData();
          image_form_data.append('file',imageFile)
@@ -35,7 +47,32 @@ const UserIdentifySpeciesPage=()=>{
             console.log("Error fetching the identification of the image, response:",identification_response)
         }
         const identification_data=await identification_response.json();
+        if(!identification_data.annotations){
+            console.log("Error Identifying Species- No Annotation in return data")
+            return;
+        }
+        if(identification_data.annotations.length===0){
+            console.log("Error Identifying Species- No matches were found") 
+            return;
+        }
+        const full_annotation_string=identification_data.annotations[0];
+        const key_species_string=full_annotation_string.split(" ")[0]
+
+        const items_relevant_to_search=menuData.filter((species)=>species.SpeciesName.toLowerCase().includes(key_species_string.toLowerCase()));
+        
+        setSpeciesToDisplay(items_relevant_to_search)
+
+        setIdentificationCompleted(true);
+        setRequestMade(false);
+
         console.log("Got identification data",identification_data)
+
+    }
+
+    const resetIdentifyPage=()=>{
+        setIdentificationCompleted(false);
+        setImageFile(null);
+        setSpeciesToDisplay([]);
     }
 
     useEffect(()=>{
@@ -43,9 +80,13 @@ const UserIdentifySpeciesPage=()=>{
     },[])
 
     return (
-        <div>
-            {subscribed?<form styles={styles.IdentificationDiv} onSubmit={identifySpecies}>
-                <div className={imageFile? styles.FileDropDivUploaded:styles.FileDropDiv} onDragOver={(e)=>e.preventDefault()} onDrop={(e)=>{
+        {(identificationCompleted)?(div>
+            
+            { 
+                    requestMade?(<div>
+                        <h1>Attempting to identify a species we have information about in your image</h1>
+                    </div>):({subscribed?<form styles={styles.IdentificationDiv} onSubmit={identifySpecies}>
+                    <div className={imageFile? styles.FileDropDivUploaded:styles.FileDropDiv} onDragOver={(e)=>e.preventDefault()} onDrop={(e)=>{
                         e.preventDefault();
                         const image_file=e.dataTransfer.files[0];
                         setImageFile(image_file)
@@ -56,14 +97,26 @@ const UserIdentifySpeciesPage=()=>{
                     <input type="file" id="imageFileUploadButton" onChange={onImageFileUpload} accept="image/jpeg" style={{display:'none'}} />
                     <br />
                     {imageFile&&<img className={styles.UploadedImage} src={URL.createObjectURL(imageFile)}/>}  
-                    {imageFile&&<input type="submit" value="Identify Species" />} 
+                    <br />
+                    {imageFile&&<input classname={styles.DefaultButton} type="submit" value="Identify Species" />} 
                     
                     </form>:<div styles={styles.IdentificationDiv}>
 
                         <p>You have to subscribed in order to use the feature that allows you to identify species from a picture</p>
 
-                    </div>} 
-        </div>        
-    )
+                        </div>
+                </div>})
+           }
+
+    ):(<div>
+            {(speciesToDisplay.length!==0)?(<div>
+                <h1>Here are the species that your picture looks like</h1>
+                <SpeciesList species_to_display={speciesToDisplay}/>
+                <button classname={styles.DefaultButton} onClick={resetIdentifyPage} >Reset</button>
+            </div>):(<div>
+                <h1>Unfortunatly, we were not able to detect an animal in our database, you may want to try a new image, or try again later</h1>
+            </div>)}
+      </div>)}
 }
+
 export default UserIdentifySpeciesPage;
