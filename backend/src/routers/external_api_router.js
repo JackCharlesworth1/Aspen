@@ -6,6 +6,6 @@ const router=express.Router()
 
 router.get("/getNearbySpeciesLocations/:species/:origin",getNearbySpeciesLocationsHandler)
 
-router.post("/identifySpecies/",image_storage_middleware.single('file'),identifySpeciesHandler)
+router.post("/identifySpecies",image_storage_middleware.single('file'),identifySpeciesHandler)
 
 export default router;
