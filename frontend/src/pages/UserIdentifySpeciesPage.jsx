@@ -79,7 +79,7 @@ const UserIdentifySpeciesPage=()=>{
             fetchAccountStatus()
     },[])
 
-    return (
+    return (<>
         {(identificationCompleted)?(div>
             
             { 
@@ -117,6 +117,7 @@ const UserIdentifySpeciesPage=()=>{
                 <h1>Unfortunatly, we were not able to detect an animal in our database, you may want to try a new image, or try again later</h1>
             </div>)}
       </div>)}
+      </>
 }
 
 export default UserIdentifySpeciesPage;
