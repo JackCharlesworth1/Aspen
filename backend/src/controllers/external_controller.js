@@ -29,7 +29,8 @@ const getNearbySpeciesLocationsHandler=async (req,res)=>{
 const identifySpeciesHandler=async(req,res)=>{
     console.log("Started species identification process")
     const formData = new FormData()
-    formData.append('image', req.file.buffer, {filename:req.file.originalname,contentType:req.file.mimetype})
+    const image_blob= new Blob([req.file.buffer],{type:req.file.mimetype})
+    formData.append('image', image_blob, req.file.originalname)
     formData.append('country', 'UK')
     formData.append('threshold', '0.2')
     console.log("Assembled Form Data, Sending Request")
