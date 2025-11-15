@@ -61,6 +61,8 @@ const UserIdentifySpeciesPage=()=>{
         console.log("Split string into",key_species_string)
         const family=identification_data.annotations[0].family;
         const genus=identification_data.annotations[0].genus;
+        
+        console.log("Comparing against",menuData,"E.g",menuData[0],"Family Example",species.TaxonomyInfo.Family.toLowerCase())
 
         //const items_relevant_to_search=menuData.filter((species)=>species.SpeciesName.toLowerCase().includes(key_species_string.toLowerCase()));
         const items_relevant_to_search=menuData.filter((species)=>(species.TaxonomyInfo.Family.toLowerCase()===family)&&(species.TaxonomyInfo.Genus.toLowerCase()===genus))
@@ -96,6 +98,7 @@ const UserIdentifySpeciesPage=()=>{
 
         {subscribed ? (
           <form className={styles.IdentificationDiv} onSubmit={identifySpecies}>
+            {(!requestMade)&&(<>
             <div
               className={imageFile ? styles.FileDropDivUploaded : styles.FileDropDiv}
               onDragOver={(e) => e.preventDefault()}
@@ -107,7 +110,6 @@ const UserIdentifySpeciesPage=()=>{
             >
               <p>Drag and drop to upload your image here</p>
             </div>
-            {(!requestMade)&&(<>
             <label className={imageFile ? styles.FileUploadButtonUploaded : styles.FileUploadButton} htmlFor="imageFileUploadButton">
               {imageFile ? "Uploaded" : "Pick A File To Upload"}
             </label>
