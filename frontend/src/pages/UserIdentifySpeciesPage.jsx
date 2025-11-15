@@ -79,45 +79,77 @@ const UserIdentifySpeciesPage=()=>{
             fetchAccountStatus()
     },[])
 
-    return (<>
-        {(identificationCompleted)?(div>
-            
-            { 
-                    requestMade?(<div>
-                        <h1>Attempting to identify a species we have information about in your image</h1>
-                    </div>):({subscribed?<form styles={styles.IdentificationDiv} onSubmit={identifySpecies}>
-                    <div className={imageFile? styles.FileDropDivUploaded:styles.FileDropDiv} onDragOver={(e)=>e.preventDefault()} onDrop={(e)=>{
-                        e.preventDefault();
-                        const image_file=e.dataTransfer.files[0];
-                        setImageFile(image_file)
-                    }}>
-                    <p>Drag and drop to upload your image via here</p>
+    return (
+  <>
+    {identificationCompleted ? (
+      <div>
+        {requestMade && (
+          <div>
+            <h1>Attempting to identify a species we have information about in your image</h1>
+          </div>
+        )}
+
+        {subscribed ? (
+          <form className={styles.IdentificationDiv} onSubmit={identifySpecies}>
+            <div
+              className={imageFile ? styles.FileDropDivUploaded : styles.FileDropDiv}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={(e) => {
+                e.preventDefault();
+                const image_file = e.dataTransfer.files[0];
+                setImageFile(image_file);
+              }}
+            >
+              <p>Drag and drop to upload your image here</p>
+            </div>
+
+            <label className={imageFile ? styles.FileUploadButtonUploaded : styles.FileUploadButton} htmlFor="imageFileUploadButton">
+              {imageFile ? "Uploaded" : "Pick A File To Upload"}
+            </label>
+            <input type="file" id="imageFileUploadButton" onChange={onImageFileUpload} accept="image/jpeg" style={{ display: "none" }} />
+            <br />
+            {imageFile && (
+              <img className={styles.UploadedImage} src={URL.createObjectURL(imageFile)} />
+            )}
+
+            <br />
+
+            {imageFile && (
+              <input className={styles.DefaultButton} type="submit" value="Identify Species" />
+            )}
+          </form>
+        ) : (
+          <div className={styles.IdentificationDiv}>
+            <p>
+              You must be subscribed in order to use the feature that identifies
+              species from a picture.
+            </p>
+          </div>
+        )}
+      </div>
+    ) : (
+      <div>
+        {speciesToDisplay.length !== 0 ? (
+          <div>
+            <h1>Here are the species that your picture looks like</h1>
+            <SpeciesList species_to_display={speciesToDisplay} />
+            <button className={styles.DefaultButton} onClick={resetIdentifyPage}>
+              Reset
+            </button>
+          </div>
+        ) : (
+                <div>
+                    <h1>
+              Unfortunately, we were not able to detect an animal in our
+              database. You may want to try a new image, or try again later.
+                    </h1>
                 </div>
-                    <label className={imageFile? styles.FileUploadButtonUploaded:styles.FileUploadButton} htmlFor="imageFileUploadButton">{imageFile? "Uploaded":"Pick A File To Upload"}</label>
-                    <input type="file" id="imageFileUploadButton" onChange={onImageFileUpload} accept="image/jpeg" style={{display:'none'}} />
-                    <br />
-                    {imageFile&&<img className={styles.UploadedImage} src={URL.createObjectURL(imageFile)}/>}  
-                    <br />
-                    {imageFile&&<input classname={styles.DefaultButton} type="submit" value="Identify Species" />} 
-                    
-                    </form>:<div styles={styles.IdentificationDiv}>
+            )}
+        </div>
+        )}
+    </>
+    );
 
-                        <p>You have to subscribed in order to use the feature that allows you to identify species from a picture</p>
-
-                        </div>
-                </div>})
-           }
-
-    ):(<div>
-            {(speciesToDisplay.length!==0)?(<div>
-                <h1>Here are the species that your picture looks like</h1>
-                <SpeciesList species_to_display={speciesToDisplay}/>
-                <button classname={styles.DefaultButton} onClick={resetIdentifyPage} >Reset</button>
-            </div>):(<div>
-                <h1>Unfortunatly, we were not able to detect an animal in our database, you may want to try a new image, or try again later</h1>
-            </div>)}
-      </div>)}
-      </>
 }
 
 export default UserIdentifySpeciesPage;
