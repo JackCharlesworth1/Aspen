@@ -31,7 +31,7 @@ const identifySpeciesHandler=async(req,res)=>{
     const formData = new FormData()
     const image_blob= new Blob([req.file.buffer],{type:req.file.mimetype})
     formData.append('image', image_blob, req.file.originalname)
-    formData.append('country', 'UK')
+    formData.append('country', 'GB')
     formData.append('threshold', '0.2')
     console.log("Assembled Form Data, Sending Request")
     const response = await fetch('https://www.animaldetect.com/api/v1/detect', {

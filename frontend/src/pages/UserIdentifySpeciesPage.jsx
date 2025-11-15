@@ -59,8 +59,11 @@ const UserIdentifySpeciesPage=()=>{
         console.log("Full annotation string",full_annotation_string)
         const key_species_string=full_annotation_string.split(" ")[0]
         console.log("Split string into",key_species_string)
+        const family=identification_data.annotations[0].family;
+        const genus=identification_data.annotations[0].genus;
 
-        const items_relevant_to_search=menuData.filter((species)=>species.SpeciesName.toLowerCase().includes(key_species_string.toLowerCase()));
+        //const items_relevant_to_search=menuData.filter((species)=>species.SpeciesName.toLowerCase().includes(key_species_string.toLowerCase()));
+        const items_relevant_to_search=menuData.filter((species)=>(species.TaxonomyInfo.Family===family)&&(species.TaxonomyInfo.Genus===genus))
         console.log("Displaying",items_relevant_to_search) 
         setSpeciesToDisplay(items_relevant_to_search)
 
@@ -146,6 +149,9 @@ const UserIdentifySpeciesPage=()=>{
               Unfortunately, we were not able to detect an animal in our
               database. You may want to try a new image, or try again later.
                     </h1>
+                    <button className={styles.DefaultButton} onClick={resetIdentifyPage}>
+                        Reset
+                    </button>
                 </div>
             )}
         </div>
