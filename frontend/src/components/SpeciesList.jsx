@@ -13,6 +13,9 @@ const SpeciesList=({species_to_display})=>{
 
 
     useEffect(()=>{setSpeciesToDisplay(species_to_display)},[]);
+
+    const linkPrefix="/user/map/"
+
     return (
         <>
             {speciesToDisplay ? (
