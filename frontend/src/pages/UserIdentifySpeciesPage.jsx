@@ -56,7 +56,9 @@ const UserIdentifySpeciesPage=()=>{
             return;
         }
         const full_annotation_string=identification_data.annotations[0];
+        console.log("Full annotation string",full_annotation_string)
         const key_species_string=full_annotation_string.split(" ")[0]
+        console.log("Split string into",key_species_string)
 
         const items_relevant_to_search=menuData.filter((species)=>species.SpeciesName.toLowerCase().includes(key_species_string.toLowerCase()));
         
