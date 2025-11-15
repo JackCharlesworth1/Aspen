@@ -55,7 +55,7 @@ const UserIdentifySpeciesPage=()=>{
             console.log("Error Identifying Species- No matches were found") 
             return;
         }
-        const full_annotation_string=identification_data.annotations[0];
+        const full_annotation_string=identification_data.annotations[0].label;
         console.log("Full annotation string",full_annotation_string)
         const key_species_string=full_annotation_string.split(" ")[0]
         console.log("Split string into",key_species_string)
