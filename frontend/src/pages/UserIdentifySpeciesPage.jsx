@@ -63,7 +63,7 @@ const UserIdentifySpeciesPage=()=>{
         const genus=identification_data.annotations[0].genus;
 
         //const items_relevant_to_search=menuData.filter((species)=>species.SpeciesName.toLowerCase().includes(key_species_string.toLowerCase()));
-        const items_relevant_to_search=menuData.filter((species)=>(species.TaxonomyInfo.Family===family)&&(species.TaxonomyInfo.Genus===genus))
+        const items_relevant_to_search=menuData.filter((species)=>(species.TaxonomyInfo.Family.toLowerCase()===family)&&(species.TaxonomyInfo.Genus.toLowerCase()===genus))
         console.log("Displaying",items_relevant_to_search) 
         setSpeciesToDisplay(items_relevant_to_search)
 
@@ -90,7 +90,7 @@ const UserIdentifySpeciesPage=()=>{
       <div>
         {requestMade && (
           <div>
-            <h1>Attempting to identify a species we have information about in your image</h1>
+            <h1 style={{marginLeft:"40px"}}>Attempting to identify a species we have information about in your image</h1>
           </div>
         )}
 
@@ -137,7 +137,7 @@ const UserIdentifySpeciesPage=()=>{
       <div>
         {speciesToDisplay.length !== 0 ? (
           <div>
-            <h1>Here are the species that your picture looks like</h1>
+            <h1 style={{marginLeft:"40px"}}>Here are the species that your picture looks like</h1>
             <SpeciesList species_to_display={speciesToDisplay} />
             <button className={styles.DefaultButton} onClick={resetIdentifyPage}>
               Reset
@@ -145,7 +145,7 @@ const UserIdentifySpeciesPage=()=>{
           </div>
         ) : (
                 <div>
-                    <h1>
+                    <h1 style={{marginLeft:"40px"}}>
               Unfortunately, we were not able to detect an animal in our
               database. You may want to try a new image, or try again later.
                     </h1>

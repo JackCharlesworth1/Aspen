@@ -17,7 +17,7 @@
     margin-bottom: 10px;
 }
 .FileDropDiv{
-    width: calc(100%-160px);
+    width: calc(100% - 160px);
     height: 50vh;
     border: 2px solid black;
     margin-top: 20px;
@@ -27,7 +27,7 @@
     margin-bottom: 40px;
 }
 .FileDropDivUploaded{
-    width: calc(100%-160x);
+    width: calc(100% - 160px);
     height: 50vh;
     border: 2px solid #0F0;
     margin-top: 20px;
@@ -42,7 +42,7 @@
     height: auto;
     margin: auto;
     margin-left:40px;
-
+    margin-top: 30px;
 }
 
 .IdentificationDiv{
