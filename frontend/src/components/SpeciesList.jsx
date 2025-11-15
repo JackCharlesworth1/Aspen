@@ -22,7 +22,7 @@ const SpeciesList=({species_to_display})=>{
                     <div className={styles.SpeciesTableContainer}>
                         <ul className={styles.SpeciesTable}>
                             {speciesToDisplay.map((species,index)=>(
-                                <li className={styles.cardTableItem} key={index}><Link className={styles.CardLink} to={linkPrefix+species.SpeciesName}><SpeciesCard species_name={species.SpeciesName} scientific_name={species.ScientificName}tabled={true} active={!tagFiltersShown} /></Link></li>
+                                <li className={styles.cardTableItem} key={index}><Link className={styles.CardLink} to={linkPrefix+species.SpeciesName}><SpeciesCard species_name={species.SpeciesName} scientific_name={species.ScientificName}tabled={true} active={true} /></Link></li>
                             ))}
                         </ul>
 

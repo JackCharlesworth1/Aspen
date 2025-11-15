@@ -104,7 +104,7 @@ const UserIdentifySpeciesPage=()=>{
             >
               <p>Drag and drop to upload your image here</p>
             </div>
-
+            {(!requestMade)&&(
             <label className={imageFile ? styles.FileUploadButtonUploaded : styles.FileUploadButton} htmlFor="imageFileUploadButton">
               {imageFile ? "Uploaded" : "Pick A File To Upload"}
             </label>
@@ -118,6 +118,7 @@ const UserIdentifySpeciesPage=()=>{
 
             {imageFile && (
               <input className={styles.DefaultButton} type="submit" value="Identify Species" />
+            )}
             )}
           </form>
         ) : (
