@@ -62,7 +62,7 @@ const UserIdentifySpeciesPage=()=>{
         const family=identification_data.annotations[0].family;
         const genus=identification_data.annotations[0].genus;
         
-        console.log("Comparing against",menuData,"E.g",menuData[0],"Family Example",species.TaxonomyInfo.Family.toLowerCase())
+        console.log("Comparing against",menuData,"E.g",menuData[0],"Family Example",menuData[0].TaxonomyInfo.Family.toLowerCase())
 
         //const items_relevant_to_search=menuData.filter((species)=>species.SpeciesName.toLowerCase().includes(key_species_string.toLowerCase()));
         const items_relevant_to_search=menuData.filter((species)=>(species.TaxonomyInfo.Family.toLowerCase()===family)&&(species.TaxonomyInfo.Genus.toLowerCase()===genus))
