@@ -81,7 +81,7 @@ const UserIdentifySpeciesPage=()=>{
 
     return (
   <>
-    {identificationCompleted ? (
+    {!identificationCompleted ? (
       <div>
         {requestMade && (
           <div>
