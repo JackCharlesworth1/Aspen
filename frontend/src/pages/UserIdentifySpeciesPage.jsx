@@ -61,7 +61,7 @@ const UserIdentifySpeciesPage=()=>{
         console.log("Split string into",key_species_string)
 
         const items_relevant_to_search=menuData.filter((species)=>species.SpeciesName.toLowerCase().includes(key_species_string.toLowerCase()));
-        
+        console.log("Displaying",items_relevant_to_search) 
         setSpeciesToDisplay(items_relevant_to_search)
 
         setIdentificationCompleted(true);
