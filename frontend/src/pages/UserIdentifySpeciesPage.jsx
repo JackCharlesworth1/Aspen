@@ -61,6 +61,8 @@ const UserIdentifySpeciesPage=()=>{
         console.log("Split string into",key_species_string)
         const family=identification_data.annotations[0].family;
         const genus=identification_data.annotations[0].genus;
+        console.log("Got identification data",identification_data,"Trying to get from",identificaiton_data.annotations[0])
+
         
         console.log("Comparing against",menuData,"E.g",menuData[0],"Family Example",menuData[0].TaxonomyInfo.Family.toLowerCase())
 
