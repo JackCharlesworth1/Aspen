@@ -1,4 +1,7 @@
 import {Route,Navigate,createBrowserRouter,createRoutesFromElements,RouterProvider} from 'react-router-dom';
+import {Howl} from 'howler'
+import interactiveClickSound from '../public/audio/InteractiveClickSound.wav'
+import nonInteractiveClickSound from '../public/audio/NonInteractiveClickSound.wav'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import AdminPanelLayout from './layouts/AdminPanelLayout.jsx' 
 import AdminDashboardPage from './pages/AdminDashboardPage.jsx'
@@ -21,7 +24,6 @@ import LandingPage from './pages/LandingPage.jsx'
 import NotFoundPage from './pages/NotFoundPage.jsx'
 
 function App() {
-
   const router=createBrowserRouter(
         createRoutesFromElements([
                 <Route path="/admin/" element={<AdminPanelLayout />}>
@@ -55,6 +57,34 @@ function App() {
             ]
         )
   );
+
+  const addAudioListener=()=>{
+        const interactive_audio=new Howl({
+            src: [interactiveClickSound],
+            volume: 0.5,
+        }) 
+        const non_interactive_audio=new Howl({
+            src: [nonInteractiveClickSound],
+            volume: 0.3,
+        })
+        const playClickSFX=(event_)=>{
+            const tag_type=event_.target.tagName.toLowerCase();
+            const interactive_elements=["a","input","button","textarea","select","audio","label"]
+            if(interactive_elements.includes(tag_type)){
+                interactive_audio.play();
+            }else{
+                non_interactive_audio.play();
+            }
+
+        }
+
+        document.addEventListener("click",playClickSFX)
+        return ()=>document.removeEventListener("click",playClickSFX)
+  }
+
+  useEffect(()=>{
+        addAudioListener();
+  },[]);
 
   return <RouterProvider router={router} />
 }
