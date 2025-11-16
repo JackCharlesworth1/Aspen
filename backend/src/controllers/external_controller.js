@@ -53,14 +53,15 @@ const identifySpeciesHandler=async(req,res)=>{
 }
 
 const getReccomendationsHandler=async(req,res)=>{
-    if(!(req.body.context_tags&&req.body.possible_species)){
-        res.status(401).json({"Error":"You must include tags and possible_species in the request body, otherwise there is insufficient data to determine reccomendations got "+req.body.context_tags+" and "+req.body.possible_species})
+    if(!(req.body.already_seen&&req.body.context_tags&&req.body.possible_species)){
+        res.status(401).json({"Error":"You must include tags and possible_species in the request body, otherwise there is insufficient data to determine reccomendations got "+req.body.already_seen+","+req.body.context_tags+" and "+req.body.possible_species})
         return 
     }
     const species_list_string=req.body.possible_species.join(",");
     const species_seen_string=req.body.context_tags.join(",");
+    const already_seen_string=req.body.already_seen.join(",")
 
-    const get_reccomendations_prompt='You are the best reccomendation algorithm. Here is a list of possible species to draw from: '+species_list_string+'. Here is the characteristics of the species that the user most enjoys seeing: '+species_seen_string+'. Based on what the user has likes to see, guess what they else they would enjoy, you can consider mythological connections, habitat connections, anything you deem relevant. Only output the list as: "Species1,Species2,Species3,Species4" Do not include any other text, explanation, or instructions. No line breaks. No numbering. Follow this format exactly. If names are generic e.g. meadows, use a more specific placename';
+    const get_reccomendations_prompt='You are the best reccomendation algorithm. Here is a list of possible species to draw from: '+species_list_string+'. Here is the characteristics of the species that the user most enjoys seeing: '+species_seen_string+'. The user has already seen these species, do not use them: '+already_seen_string+'. Based on what the user has likes to see, guess what they else they would enjoy, you can consider mythological connections, habitat connections, anything you deem relevant. Only output the list as: "Species1,Species2,Species3". Do not include any other text, explanation, or instructions. No line breaks. No numbering. Follow this format exactly.';
     const response=await openai.chat.completions.create({
         model: "gpt-4-turbo",
         messages: [
