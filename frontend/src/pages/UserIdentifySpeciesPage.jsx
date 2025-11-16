@@ -59,6 +59,7 @@ const UserIdentifySpeciesPage=()=>{
         console.log("Full annotation string",full_annotation_string)
         const key_species_string=full_annotation_string.split(" ")[0]
         console.log("Split string into",key_species_string)
+        const order=identification_data.annotations[0].taxonomy.order;
         const family=identification_data.annotations[0].taxonomy.family;
         const genus=identification_data.annotations[0].taxonomy.genus;
         console.log("Got identification data",identification_data,"Trying to get from",identification_data.annotations[0])
@@ -67,7 +68,7 @@ const UserIdentifySpeciesPage=()=>{
         console.log("Comparing against",menuData,"E.g",menuData[0],"Family Example",menuData[0].TaxonomyInfo.Family.toLowerCase())
 
         //const items_relevant_to_search=menuData.filter((species)=>species.SpeciesName.toLowerCase().includes(key_species_string.toLowerCase()));
-        const items_relevant_to_search=menuData.filter((species)=>(species.TaxonomyInfo.Family.toLowerCase()===family.toLowerCase())&&((!genus)||(species.TaxonomyInfo.Genus.toLowerCase()===genus.toLowerCase())))
+        const items_relevant_to_search=menuData.filter((species)=>(species.TaxonomyInfo.Order.toLowerCase()==order.toLowerCase())&&((!family)||(species.TaxonomyInfo.Family.toLowerCase()===family.toLowerCase()))&&((!genus)||(species.TaxonomyInfo.Genus.toLowerCase()===genus.toLowerCase())))
         console.log("Displaying",items_relevant_to_search) 
         setSpeciesToDisplay(items_relevant_to_search)
 
