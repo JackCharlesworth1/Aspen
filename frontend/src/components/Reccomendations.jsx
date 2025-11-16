@@ -39,7 +39,7 @@ const Reccomendations=({seen,reccomendation_tags,introduction})=>{
         <div>
             {Array.isArray(reccomendations)&&(reccomendations.length>0)&&<div className={styles.SpeciesTableContainer}>
                 <p>{introduction}</p>
-                <ul style={{borderLeft:"2px solid black"}}className={styles.SpeciesTable}>
+                <ul style={{borderLeft:"2px solid black",width:"min-content"}}className={styles.SpeciesTable}>
                     {reccomendations.map((species_name)=>(
                         <li className={styles.cardSmallTableItem}><Link className={styles.CardLink} to={linkPrefix+species_name}><SpeciesCard species_name={species_name} tabled={true} active={true} /></Link></li>
                     ))}
