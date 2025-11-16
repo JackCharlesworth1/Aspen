@@ -31,7 +31,7 @@ const Reccomendations=({seen,reccomendation_tags,introduction})=>{
 
     useEffect(()=>{
         fetchReccomendations();
-    },[reccomendation_tags])
+    },[])
 
     const linkPrefix="/user/map/"
 
