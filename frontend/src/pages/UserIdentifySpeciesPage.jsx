@@ -59,6 +59,7 @@ const UserIdentifySpeciesPage=()=>{
         console.log("Full annotation string",full_annotation_string)
         const key_species_string=full_annotation_string.split(" ")[0]
         console.log("Split string into",key_species_string)
+        const class_=identification_data.annotations[0].taxonomy.class;
         const order=identification_data.annotations[0].taxonomy.order;
         const family=identification_data.annotations[0].taxonomy.family;
         const genus=identification_data.annotations[0].taxonomy.genus;
