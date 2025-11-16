@@ -120,7 +120,7 @@ const UserStats=({actual_username,user_seen,user_sightings})=>{
 					        {(sortedSeenSpecies.length>2)&&<li>{sortedSeenSpecies[2]}</li>}
 
 				        </ol>
-                        {(sortedSeenSpecies.length>2)?<Reccomendations tags={[sortedSeenSpecies[0],sortedSeenSpecies[1],sortedSeenSpecies[2]]} introduction="Here are some species that you may like, based on what you have seen already" />:<p>See more species and get reccomendations on where you can see more of what you like</p>}
+                        {(sortedSeenSpecies.length>2)?<Reccomendations reccomendation_tags={[sortedSeenSpecies[0],sortedSeenSpecies[1],sortedSeenSpecies[2]]} introduction="Here are some species that you may like, based on what you have seen already" />:<p>See more species and get reccomendations on where you can see more of what you like</p>}
 			        </div>}
 			        {(sortedSeenSpecies.length>4)&&<div className={styles.SeenRanking}>
 				        <h5 style={{fontSize:"1.5em"}}>What you see least:</h5>
@@ -129,7 +129,7 @@ const UserStats=({actual_username,user_seen,user_sightings})=>{
 					        {(sortedSeenSpecies.length>5)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-2]}</li>}
 					        {(sortedSeenSpecies.length>6)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-3]}</li>}
 				        </ol>
-                        {(sortedSeenSpecies.length>6)?<Reccomendations tags={[sortedSeenSpecies[sortedSeenSpecies.length-1],sortedSeenSpecies[sortedSeenSpecies.length-2],sortedSeenSpecies[sortedSeenSpecies.length-3]]} introduction="Here are some species that might push you out of your comfort zone" />:<p>See more species and get reccomendations on what might surprise you</p>}
+                        {(sortedSeenSpecies.length>6)?<Reccomendations reccomendation_tags={[sortedSeenSpecies[sortedSeenSpecies.length-1],sortedSeenSpecies[sortedSeenSpecies.length-2],sortedSeenSpecies[sortedSeenSpecies.length-3]]} introduction="Here are some species that might push you out of your comfort zone" />:<p>See more species and get reccomendations on what might surprise you</p>}
 			        </div>}
                 </div>
             {(sortedSeenSpecies.length===0)&&<p>See more species to get account specific stats</p>}
