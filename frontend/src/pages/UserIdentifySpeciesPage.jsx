@@ -67,7 +67,7 @@ const UserIdentifySpeciesPage=()=>{
         console.log("Comparing against",menuData,"E.g",menuData[0],"Family Example",menuData[0].TaxonomyInfo.Family.toLowerCase())
 
         //const items_relevant_to_search=menuData.filter((species)=>species.SpeciesName.toLowerCase().includes(key_species_string.toLowerCase()));
-        const items_relevant_to_search=menuData.filter((species)=>(species.TaxonomyInfo.Family.toLowerCase()===family.toLowerCase())&&(species.TaxonomyInfo.Genus.toLowerCase()===genus.toLowerCase()))
+        const items_relevant_to_search=menuData.filter((species)=>(species.TaxonomyInfo.Family.toLowerCase()===family.toLowerCase())&&((!genus)||(species.TaxonomyInfo.Genus.toLowerCase()===genus.toLowerCase())))
         console.log("Displaying",items_relevant_to_search) 
         setSpeciesToDisplay(items_relevant_to_search)
 
