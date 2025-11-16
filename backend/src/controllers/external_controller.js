@@ -54,7 +54,8 @@ const identifySpeciesHandler=async(req,res)=>{
 
 const getReccomendationsHandler=async(req,res)=>{
     if(!(req.body.tags&&req.body.possible_species)){
-        res.status(401).json({"Error":"You must include tags and possible_species in the request body, otherwise there is insufficient data to determine reccomendations"})
+        res.status(401).json({"Error":"You must include tags and possible_species in the request body, otherwise there is insufficient data to determine reccomendations got "+req.body.tags+" and "+req.body.possible_species})
+        return 
     }
     const species_list_string=req.body.possible_species.join(",");
     const species_seen_string=req.body.tags.join(",");
