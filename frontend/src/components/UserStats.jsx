@@ -120,7 +120,7 @@ const UserStats=({actual_username,user_seen,user_sightings})=>{
 					        {(sortedSeenSpecies.length>2)&&<li>{sortedSeenSpecies[2]}</li>}
 
 				        </ol>
-                        {(sortedSeenSpecies.length>2)?<Reccomendations tags={[sortedSeenSpecies[0],sortedSeenSpecies[1],sortedSeenSpeces[2]} introduction="Here are some species that you may like, based on what you have seen already" />:<p>See more species and get reccomendations on where you can see more of what you like</p>}
+                        {(sortedSeenSpecies.length>2)?<Reccomendations tags={[sortedSeenSpecies[0],sortedSeenSpecies[1],sortedSeenSpeces[2]]} introduction="Here are some species that you may like, based on what you have seen already" />:<p>See more species and get reccomendations on where you can see more of what you like</p>}
 			        </div>}
 			        {(sortedSeenSpecies.length>4)&&<div className={styles.SeenRanking}>
 				        <h5 style={{fontSize:"1.5em"}}>What you see least:</h5>
