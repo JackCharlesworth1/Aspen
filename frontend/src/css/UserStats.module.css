@@ -11,8 +11,15 @@
 
 .SeenRanking{
     margin-right: auto;
+    width: 40%;
 }
 
 .GalleryContainer{
     margin-top: 40px;
+}
+
+@media (aspect-ratio<1){
+    .SeenRanking{
+        width: 80%
+    }
 }
