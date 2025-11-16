@@ -32,11 +32,11 @@ const Reccomendations=({reccomendation_tags,introduction})=>{
 
     return (
         <div>
-            {(reccomendations.length>0)&&<div className={styles.SpeciesTableContainer}>
+            {Array.isArray(reccomendations)&&(reccomendations.length>0)&&<div className={styles.SpeciesTableContainer}>
                 <ul className={styles.SpeciesTable}>
-                    {reccomendations.map((species_name)=>{
+                    {reccomendations.map((species_name)=>(
                         <li className={styles.cardTableItem}><Link className={styles.CardLink} to={linkPrefix+species_name}><SpeciesCard species_name={species_name} tabled={true} active={true} /></Link></li>
-                    })}
+                    ))}
                 </ul>
             </div>}
         </div>
