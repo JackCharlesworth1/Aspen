@@ -1,4 +1,4 @@
-import {useState,useEffect} import 'react'
+import {useState,useEffect} from 'react'
 import SpeciesCard from './SpeciesCard.jsx'
 import styles from '../css/SpeciesTable.module.css'
 
