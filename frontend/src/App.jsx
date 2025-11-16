@@ -69,14 +69,11 @@ function App() {
             volume: 0.3,
         })
         const playClickSFX=(event_)=>{
-            const tag_type=event_.target.tagName.toLowerCase();
-            const interactive_elements=["a","input","button","textarea","select","audio","label"]
-            if(interactive_elements.includes(tag_type)){
+            if(event_.target.closest("button, a, input, select, textarea")){
                 interactive_audio.play();
             }else{
                 non_interactive_audio.play();
             }
-
         }
 
         document.addEventListener("click",playClickSFX)
