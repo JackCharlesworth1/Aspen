@@ -56,8 +56,8 @@ const getReccomendationsHandler=async(req,res)=>{
     if(!(req.body.tags&&req.body.possible_species)){
         res.status(401).json({"Error":"You must include tags and possible_species in the request body, otherwise there is insufficient data to determine reccomendations"})
     }
-    const species_list_string=",".join(req.body.possible_species);
-    const species_seen_string="".join(req.body.tags);
+    const species_list_string=req.body.possible_species.join(",");
+    const species_seen_string=req.body.tags.join(",");
 
     const get_reccomendations_prompt='You are the best reccomendation algorithm. Here is a list of possible species to draw from: '+species_list_string+'. Here is the characteristics of the species that the user most enjoys seeing: '+species_seen_string+'. Based on what the user has likes to see, guess what they else they would enjoy, you can consider mythological connections, habitat connections, anything you deem relevant. Only output the list as: "Species1,Species2,Species3,Species4" Do not include any other text, explanation, or instructions. No line breaks. No numbering. Follow this format exactly. If names are generic e.g. meadows, use a more specific placename';
     const response=await openai.chat.completions.create({
