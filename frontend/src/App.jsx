@@ -1,5 +1,6 @@
 import {Route,Navigate,createBrowserRouter,createRoutesFromElements,RouterProvider} from 'react-router-dom';
 import {Howl} from 'howler'
+import {useEffect} from 'react'
 import interactiveClickSound from '../public/audio/InteractiveClickSound.wav'
 import nonInteractiveClickSound from '../public/audio/NonInteractiveClickSound.wav'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
