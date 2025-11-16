@@ -21,6 +21,10 @@ const Reccomendations=({reccomendation_tags,introduction})=>{
             return;
         }
         const reccomendation_object=await reccomendations_response.json()
+        if(reccomendation_object.Error){
+            console.log("Error processing reccomendations",reccomendation_object.Error)
+            return;
+        }
         setReccomendations(reccomendation_object.reccomendations)
     }
 
