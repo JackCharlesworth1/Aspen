@@ -15,7 +15,7 @@ const Reccomendations=({reccomendation_tags,introduction})=>{
         const species_data=await species_response.json();
         const species_names=species_data.map(species_object=>species_object.SpeciesName)
         const reccomendation_body={tags:reccomendation_tags,possible_species:species_names}
-        const reccomendations_response=await fetch("https://api.theaspenproject.cloud/api/external/reccomendations",{method:"POST",headers:{"Authorization":token,"Content-Type":"application/json"},body:reccomendation_body})
+        const reccomendations_response=await fetch("https://api.theaspenproject.cloud/api/external/reccomendations",{method:"POST",headers:{"Authorization":token,"Content-Type":"application/json"},body:JSON.stringify(reccomendation_body)})
         if(!reccomendations_response){
             console.log("Error fetching reccomendation data, request failed, the response was",reccomendations_response)
             return;
