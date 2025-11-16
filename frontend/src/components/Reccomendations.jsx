@@ -1,4 +1,5 @@
 import {useState,useEffect} from 'react'
+import {Link} from 'react-router-dom'
 import SpeciesCard from './SpeciesCard.jsx'
 import styles from '../css/SpeciesTable.module.css'
 
