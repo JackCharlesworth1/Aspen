@@ -74,4 +74,4 @@ const getReccomendationsHandler=async(req,res)=>{
 
 }
 
-export {getNearbySpeciesLocationsHandler,identifySpeciesHandler}
+export {getNearbySpeciesLocationsHandler,identifySpeciesHandler,getReccomendationsHandler}
