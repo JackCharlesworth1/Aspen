@@ -129,7 +129,7 @@ const UserStats=({actual_username,user_seen,user_sightings})=>{
 					        {(sortedSeenSpecies.length>5)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-2]}</li>}
 					        {(sortedSeenSpecies.length>6)&&<li>{sortedSeenSpecies[sortedSeenSpecies.length-3]}</li>}
 				        </ol>
-                        {(sortedSeenSpecies.length>6)?<Reccomendations tags={[sortedSeenSpecies[sortedSeenSpecies.length-1],sortedSeenSpecies[sortedSeenSpecies.length-2],sortedSeenSpeces[sortedSeenSpecies.length-3]} introduction="Here are some species that might push you out of your comfort zone" />:<p>See more species and get reccomendations on what might surprise you</p>}
+                        {(sortedSeenSpecies.length>6)?<Reccomendations tags={[sortedSeenSpecies[sortedSeenSpecies.length-1],sortedSeenSpecies[sortedSeenSpecies.length-2],sortedSeenSpeces[sortedSeenSpecies.length-3]]} introduction="Here are some species that might push you out of your comfort zone" />:<p>See more species and get reccomendations on what might surprise you</p>}
 			        </div>}
                 </div>
             {(sortedSeenSpecies.length===0)&&<p>See more species to get account specific stats</p>}
