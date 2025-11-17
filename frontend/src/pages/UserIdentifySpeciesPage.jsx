@@ -1,4 +1,5 @@
 import {useState,useEffect} from 'react'
+import {useNavigate} from 'react-router-dom'
 import SpeciesList from '../components/SpeciesList.jsx'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faUser} from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +7,7 @@ import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 import styles from '../css/UserIdentifySpeciesPage.module.css'
 
 const UserIdentifySpeciesPage=()=>{
+    const navigate=useNavigate();
 
     const [subscribed,setSubscribed]=useState(false); 
     const [imageFile,setImageFile]=useState(null);
