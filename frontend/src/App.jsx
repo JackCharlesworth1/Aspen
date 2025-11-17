@@ -71,7 +71,7 @@ function App() {
         })
         const typing_audio=new Howl({
             src: [typingSound],
-            volume: 0.2,
+            volume: 0.4,
         })
         const playClickSFX=(event_)=>{
             if(event_.target.closest("button, a, input, select, textarea")){
