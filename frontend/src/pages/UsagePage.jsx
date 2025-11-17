@@ -34,7 +34,7 @@ const UsagePage=()=>{
         <p>If you are subscribed, you can follow the reccomendations on your account page, you can get suggestions on similar things to what you have read, or you can what kind of organisms you don't tend to read about</p>
         <p>If you are subscribed, you can take photos of species you see around you, and read about all the wildlife that surrounds you</p>
         <p>That being said, you can use this information how you see fit, whether it be for intrest, research or whatever you want. You know you the best.</p>
-        <Link style={{padding:"4px",border:"2px solid black",margin:"5px",backgroundColor:"white"}} to="/user/account-method">Get Started</Link>
+        <Link style={{padding:"4px",border:"2px solid black",margin:"5px",backgroundColor:"white",color:"black"}} to="/user/account-method">Get Started</Link>
     </div></div>)
 }
 
