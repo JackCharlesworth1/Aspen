@@ -71,7 +71,7 @@ const createNewUserDirectory=(username)=>{
 const addUser=async(username,email,password,auth_level)=>{
     if(connected_to_mongoose){
         try{
-            const hashed_password=null;
+            let hashed_password=null;
             if(password!==null){
                 hashed_password=await bcrypt.hash(password,10);
             }
