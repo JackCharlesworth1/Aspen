@@ -21,7 +21,7 @@ const UserPickSpeciesPage=()=>{
                 <button style={{position:"absolute",marginLeft:"5px"}} className={styles.RandomButton} title="Go to account screen" onClick={navigateToAccountPage}>
                         <FontAwesomeIcon icon={faUser} />
                 </button>
-                <button style={{position:"absolute",marginLeft:"41px"}} className={styles.RandomButton} title="Identify species from photo" onClick={navigateToCamera}>
+                <button style={{position:"absolute",marginLeft:"46px"}} className={styles.RandomButton} title="Identify species from photo" onClick={navigateToCamera}>
                     <>
                         <FontAwesomeIcon icon={faCamera} />
                     </>

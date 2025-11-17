@@ -108,10 +108,10 @@ const UserIdentifySpeciesPage=()=>{
     return (
   <>
     <div>
-        <button style={{position:"absolute",marginLeft:"5px"}} className={styles.DefaultButton} title="Go to account screen" onClick={navigateToAccountPage}>
+        <button style={{marginLeft:"5px"}} className={styles.DefaultButton} title="Go to account screen" onClick={navigateToAccountPage}>
             <FontAwesomeIcon icon={faUser} />
         </button>
-        <button style={{position:"absolute",marginLeft:"5px"}} className={styles.DefaultButton} title="Go to pick a species" onClick={navigateToSpeciesSelection}>
+        <button style={{marginLeft:"5px"}} className={styles.DefaultButton} title="Go to pick a species" onClick={navigateToSpeciesSelection}>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
         </button>
     </div>
