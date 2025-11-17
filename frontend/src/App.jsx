@@ -21,6 +21,7 @@ import UserRequestErrorPage from './pages/UserRequestErrorPage.jsx'
 import UserIdentifySpeciesPage from './pages/UserIdentifySpeciesPage.jsx'
 import AccountPanelLayout from './layouts/AccountPanelLayout.jsx'
 import AccountPage from './pages/AccountPage.jsx'
+import UsagePage from './pages/UsagePage.jsx'
 import LandingPanelLayout from './layouts/LandingPanelLayout.jsx'
 import LandingPage from './pages/LandingPage.jsx'
 import NotFoundPage from './pages/NotFoundPage.jsx'
@@ -50,6 +51,11 @@ function App() {
                     <Route path="/account/" element={<ProtectedRoute element={<AccountPage />} minimum_authentication_level="user" />} />
                     <Route path="/account/*" element={<NotFoundPage redirect="/user/account-method/" />} />
                 </Route>,
+                <Route path="/usage/" element={<UserPanelLayout />}>
+                    <Route path="/usage/" element={<UsagePage />} />
+                </Route>,
+
+
                 <Route path="/landing/" element={<LandingPanelLayout />}>
                     <Route path="/landing/" element={<LandingPage />} />
                 </Route>,
