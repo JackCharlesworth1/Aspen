@@ -10,12 +10,12 @@ const UsagePage=()=>{
         navigate("/landing")
     }
 
-    return (<div style={{display:"flex",width:"100vw",height:"100vh"}}>
-    <button style={{padding:"4px",border:"2px solid black",margin:"5px",backgroundColor:"white"}} title="Go back to landing page" onClick={navigateToLanding}>
+    return (<div style={{display:"flex",width:"100vw",marginBottom:"160px",flexDirection:"column"}}>
+    <button style={{padding:"4px",border:"2px solid black",margin:"5px",backgroundColor:"white",width:"fit-content"}} title="Go back to landing page" onClick={navigateToLanding}>
         <FontAwesomeIcon icon={faReply} />
     </button>
-    <div style={{marginLeft:"auto",marginRight:"auto"}}>
-        <h1>Usage guide</h1>
+    <div style={{marginLeft:"auto",marginRight:"auto",width:"65%"}}>
+        <h1 style={{marginBottom:"40px"}}>Usage guide</h1>
         <h2>Getting Started</h2>
         <p>You can click here to get setup with an account, if it is your first time using you can either register, or sign in with google</p>
         <p>Once you get are logged on, you will be confronted with a variety of different organisms, from flora to fauna, click on one that looks intresting, or search for something you have in mind</p>
