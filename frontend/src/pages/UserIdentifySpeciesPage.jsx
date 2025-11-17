@@ -1,5 +1,8 @@
 import {useState,useEffect} from 'react'
 import SpeciesList from '../components/SpeciesList.jsx'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faUser} from '@fortawesome/free-solid-svg-icons';
+import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 import styles from '../css/UserIdentifySpeciesPage.module.css'
 
 const UserIdentifySpeciesPage=()=>{
@@ -86,12 +89,32 @@ const UserIdentifySpeciesPage=()=>{
         setSpeciesToDisplay([]);
     }
 
+    const navigateToAccountPage=()=>{
+        navigate("/account")
+    }
+
+    const navigateToSpeciesSelection=()=>{
+        navigate("/user/pick-species")
+    }
+
+
+
     useEffect(()=>{
             fetchAccountStatus()
     },[])
 
     return (
   <>
+    <div>
+        <button style={{position:"absolute",marginLeft:"5px"}} className={styles.DefaultButton} title="Go to account screen" onClick={navigateToAccountPage}>
+            <FontAwesomeIcon icon={faUser} />
+        </button>
+        <button style={{position:"absolute",marginLeft:"5px"}} className={styles.DefaultButton} title="Go to pick a species" onClick={navigateToSpeciesSelection}>
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </button>
+    </div>
+
+
     {!identificationCompleted ? (
       <div>
         {requestMade && (

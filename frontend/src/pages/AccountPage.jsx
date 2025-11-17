@@ -4,6 +4,7 @@ import UserStats from '../components/UserStats.jsx'
 import SubscriptionManagement from '../components/SubscriptionManagement.jsx'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
+import {faCamera} from '@fortawesome/free-solid-svg-icons';
 import {faReply} from '@fortawesome/free-solid-svg-icons';
 import styles from '../css/AccountPage.module.css'
 
@@ -53,18 +54,29 @@ const AccountPage=()=>{
         navigate("/user/pick-species")
     }
 
+    const navigateToCamera=()=>{
+        navigate("/user/identify")
+    }
+
     useEffect(()=>{
        fetchAccountInfo(); 
     },[])
 
     return(
         <div className={styles.AccountPageContainer}>
+            <div>
                 <button className={styles.DefaultButton} title="Go back to pick a different species from search menu" onClick={navigateToSpeciesSelection}>
                     <>
                         <FontAwesomeIcon icon={faReply} />
                         <FontAwesomeIcon icon={faMagnifyingGlass} />
                     </>
                 </button>
+                <button className={styles.DefaultButton} title="Identify species from photo" onClick={navigateToCamera}>
+                    <>
+                        <FontAwesomeIcon icon={faCamera} />
+                    </>
+                </button>
+            </div>
             <div className={styles.AccountSection}>
                 <div className={styles.HeaderSection}>
                     <h3 className={styles.BiggerHeaders}>Account</h3>

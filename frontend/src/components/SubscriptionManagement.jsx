@@ -19,8 +19,8 @@ const UnsubscribedManagement=({accessToken})=>{
                 <p>This means you cannot</p>
                 <ul>
                     <li>Find where to see a particular species</li>
-                    <li>(Coming soon...) Find Species Close To You</li>
-                    <li>(Coming soon...) Identify species in a photo</li>
+                    <li>Get species reccomendations</li>
+                    <li>Identify species from a photo</li>
                 </ul>
                 <form onSubmit={subscriptionButtonClicked}>
                     <button style={{backgroundColor:"white",border:"2px solid black",margin:"5px",padding:"4px"}} id="checkout-and-portal-button" type="submit">Buy Subscription (£1.99/Month)</button>
@@ -44,8 +44,8 @@ const SubscribedManagement=({accessToken})=>{
                 <p>This means you have access to</p>
                 <ul>
                     <li>Find where to see a particular species</li>
-                    <li>(Coming soon...) Find Species Close To You</li>
-                    <li>(Coming soon...) Species identification</li>
+                    <li>Get species reccomendations</li>
+                    <li>Identify species from a photo</li>
                 </ul>
                 <form onSubmit={portalButtonClicked}>
                     <button style={{backgroundColor:"white",border:"2px solid black",margin:"5px",padding:"4px"}} id="checkout-and-portal-button" type="submit">Manage billing information</button>
