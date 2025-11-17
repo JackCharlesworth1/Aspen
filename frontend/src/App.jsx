@@ -3,6 +3,7 @@ import {Howl} from 'howler'
 import {useEffect} from 'react'
 import interactiveClickSound from '../public/audio/InteractiveClickSound.wav'
 import nonInteractiveClickSound from '../public/audio/NonInteractiveClickSound.wav'
+import typingSound from '../public/audio/TypingSound.wav'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import AdminPanelLayout from './layouts/AdminPanelLayout.jsx' 
 import AdminDashboardPage from './pages/AdminDashboardPage.jsx'
@@ -62,11 +63,15 @@ function App() {
   const addAudioListener=()=>{
         const interactive_audio=new Howl({
             src: [interactiveClickSound],
-            volume: 0.5,
+            volume: 0.4,
         }) 
         const non_interactive_audio=new Howl({
             src: [nonInteractiveClickSound],
             volume: 0.3,
+        })
+        const typing_audio=new Howl({
+            src: [typingSound],
+            volume: 0.2,
         })
         const playClickSFX=(event_)=>{
             if(event_.target.closest("button, a, input, select, textarea")){
@@ -75,9 +80,18 @@ function App() {
                 non_interactive_audio.play();
             }
         }
+        const playTypingSFX=(event_)=>{
+            if(event_.target.closest("input, textarea")){
+                typing_audio.play();
+            }
+        }
 
         document.addEventListener("click",playClickSFX)
-        return ()=>document.removeEventListener("click",playClickSFX)
+        document.addEventListener("keydown",playTypingSFX)
+        return ()=>{
+                document.removeEventListener("click",playClickSFX)
+                document.removeEventListener("keydown",playTypingSFX)
+        }
   }
 
   useEffect(()=>{
