@@ -6,7 +6,10 @@ const AdminNavbar=()=>{
     return (<nav className={styles.LandingNavbar}>
             <h3 className={styles.LandingTitle}>Aspen</h3>
             
+            <NavButton destination="/usage">Usage Guide</NavButton>
             <NavButton destination="/user/account-method">Get Started</NavButton>
+
+
 
             </nav>)
 }
